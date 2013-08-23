@@ -1,7 +1,10 @@
-SRCS = Sources/*.cc test.cc
+SRCS = Sources/*.cc
 CXX  = c++
 
 all:    main
 
 main:	$(SRCS)
-	$(CXX) -I./Headers -o test $(SRCS)
+	$(CXX) -I./Headers -o test test.cc $(SRCS)
+
+run:	$(SRCS)
+	./test
