@@ -26,12 +26,12 @@
 /*!
   \mainpage  Embeddable Figlet Library
   \author    Enrico Bertolazzi (enrico.bertolazzi@unitn.it), homepage: http://www.ing.unitn.it/~bertolaz
-  \version   1.0.1
+  \version   1.0.2
   \date      2013
   \copyright GNU Public License.
  
   \details
- 
+
   This library available at
   
   - https://github.com/ebertolazzi/embedFiglet

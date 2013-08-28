@@ -1,0 +1,443 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D97083E617CE8AF100AD3065 /* Figlet.hh in Headers */ = {isa = PBXBuildFile; fileRef = D97083E517CE8AF100AD3065 /* Figlet.hh */; };
+		D97083F317CE8AFB00AD3065 /* Figlet.cc in Sources */ = {isa = PBXBuildFile; fileRef = D97083E817CE8AFB00AD3065 /* Figlet.cc */; };
+		D970840717CE8B0700AD3065 /* test.cc in Sources */ = {isa = PBXBuildFile; fileRef = D970840617CE8B0700AD3065 /* test.cc */; };
+		D970840817CE8B3A00AD3065 /* FigletLib.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D97083D717CE8AB200AD3065 /* FigletLib.dylib */; };
+		D970841A17CE962000AD3065 /* FigletLib.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D97083D717CE8AB200AD3065 /* FigletLib.dylib */; };
+		D970841C17CE962D00AD3065 /* example.cc in Sources */ = {isa = PBXBuildFile; fileRef = D970841B17CE962D00AD3065 /* example.cc */; };
+		D970842617CEB2E700AD3065 /* Figlet_Font_banner.cc in Sources */ = {isa = PBXBuildFile; fileRef = D970841D17CEB2E700AD3065 /* Figlet_Font_banner.cc */; };
+		D970842717CEB2E700AD3065 /* Figlet_Font_big.cc in Sources */ = {isa = PBXBuildFile; fileRef = D970841E17CEB2E700AD3065 /* Figlet_Font_big.cc */; };
+		D970842817CEB2E700AD3065 /* Figlet_Font_doom.cc in Sources */ = {isa = PBXBuildFile; fileRef = D970841F17CEB2E700AD3065 /* Figlet_Font_doom.cc */; };
+		D970842917CEB2E700AD3065 /* Figlet_Font_larry3d.cc in Sources */ = {isa = PBXBuildFile; fileRef = D970842017CEB2E700AD3065 /* Figlet_Font_larry3d.cc */; };
+		D970842A17CEB2E700AD3065 /* Figlet_Font_mini.cc in Sources */ = {isa = PBXBuildFile; fileRef = D970842117CEB2E700AD3065 /* Figlet_Font_mini.cc */; };
+		D970842B17CEB2E700AD3065 /* Figlet_Font_script.cc in Sources */ = {isa = PBXBuildFile; fileRef = D970842217CEB2E700AD3065 /* Figlet_Font_script.cc */; };
+		D970842C17CEB2E700AD3065 /* Figlet_Font_small.cc in Sources */ = {isa = PBXBuildFile; fileRef = D970842317CEB2E700AD3065 /* Figlet_Font_small.cc */; };
+		D970842D17CEB2E700AD3065 /* Figlet_Font_standard.cc in Sources */ = {isa = PBXBuildFile; fileRef = D970842417CEB2E700AD3065 /* Figlet_Font_standard.cc */; };
+		D970842E17CEB2E700AD3065 /* Figlet_Font_straight.cc in Sources */ = {isa = PBXBuildFile; fileRef = D970842517CEB2E700AD3065 /* Figlet_Font_straight.cc */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D970840917CE8B4100AD3065 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D97083BF17CE8A7300AD3065 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D97083D617CE8AB200AD3065;
+			remoteInfo = FigletLib;
+		};
+		D970841817CE961B00AD3065 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D97083BF17CE8A7300AD3065 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D97083D617CE8AB200AD3065;
+			remoteInfo = FigletLib;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		D97083C517CE8A7300AD3065 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+		D970840D17CE961100AD3065 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		D97083C717CE8A7300AD3065 /* Figlet */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Figlet; sourceTree = BUILT_PRODUCTS_DIR; };
+		D97083D717CE8AB200AD3065 /* FigletLib.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = FigletLib.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		D97083E517CE8AF100AD3065 /* Figlet.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Figlet.hh; sourceTree = "<group>"; };
+		D97083E817CE8AFB00AD3065 /* Figlet.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Figlet.cc; sourceTree = "<group>"; };
+		D970840617CE8B0700AD3065 /* test.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = test.cc; sourceTree = "<group>"; };
+		D970840F17CE961100AD3065 /* example */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = example; sourceTree = BUILT_PRODUCTS_DIR; };
+		D970841B17CE962D00AD3065 /* example.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = example.cc; sourceTree = "<group>"; };
+		D970841D17CEB2E700AD3065 /* Figlet_Font_banner.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Figlet_Font_banner.cc; sourceTree = "<group>"; };
+		D970841E17CEB2E700AD3065 /* Figlet_Font_big.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Figlet_Font_big.cc; sourceTree = "<group>"; };
+		D970841F17CEB2E700AD3065 /* Figlet_Font_doom.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Figlet_Font_doom.cc; sourceTree = "<group>"; };
+		D970842017CEB2E700AD3065 /* Figlet_Font_larry3d.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Figlet_Font_larry3d.cc; sourceTree = "<group>"; };
+		D970842117CEB2E700AD3065 /* Figlet_Font_mini.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Figlet_Font_mini.cc; sourceTree = "<group>"; };
+		D970842217CEB2E700AD3065 /* Figlet_Font_script.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Figlet_Font_script.cc; sourceTree = "<group>"; };
+		D970842317CEB2E700AD3065 /* Figlet_Font_small.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Figlet_Font_small.cc; sourceTree = "<group>"; };
+		D970842417CEB2E700AD3065 /* Figlet_Font_standard.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Figlet_Font_standard.cc; sourceTree = "<group>"; };
+		D970842517CEB2E700AD3065 /* Figlet_Font_straight.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Figlet_Font_straight.cc; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D97083C417CE8A7300AD3065 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D970840817CE8B3A00AD3065 /* FigletLib.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D97083D417CE8AB200AD3065 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D970840C17CE961100AD3065 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D970841A17CE962000AD3065 /* FigletLib.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D97083BE17CE8A7300AD3065 = {
+			isa = PBXGroup;
+			children = (
+				D97083C817CE8A7300AD3065 /* Products */,
+				D97083E417CE8AF100AD3065 /* Headers */,
+				D97083E717CE8AFB00AD3065 /* Sources */,
+				D970840617CE8B0700AD3065 /* test.cc */,
+				D970841B17CE962D00AD3065 /* example.cc */,
+			);
+			sourceTree = "<group>";
+		};
+		D97083C817CE8A7300AD3065 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D97083C717CE8A7300AD3065 /* Figlet */,
+				D97083D717CE8AB200AD3065 /* FigletLib.dylib */,
+				D970840F17CE961100AD3065 /* example */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D97083E417CE8AF100AD3065 /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				D97083E517CE8AF100AD3065 /* Figlet.hh */,
+			);
+			path = Headers;
+			sourceTree = "<group>";
+		};
+		D97083E717CE8AFB00AD3065 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				D97083E817CE8AFB00AD3065 /* Figlet.cc */,
+				D970841D17CEB2E700AD3065 /* Figlet_Font_banner.cc */,
+				D970841E17CEB2E700AD3065 /* Figlet_Font_big.cc */,
+				D970841F17CEB2E700AD3065 /* Figlet_Font_doom.cc */,
+				D970842017CEB2E700AD3065 /* Figlet_Font_larry3d.cc */,
+				D970842117CEB2E700AD3065 /* Figlet_Font_mini.cc */,
+				D970842217CEB2E700AD3065 /* Figlet_Font_script.cc */,
+				D970842317CEB2E700AD3065 /* Figlet_Font_small.cc */,
+				D970842417CEB2E700AD3065 /* Figlet_Font_standard.cc */,
+				D970842517CEB2E700AD3065 /* Figlet_Font_straight.cc */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		D97083D517CE8AB200AD3065 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D97083E617CE8AF100AD3065 /* Figlet.hh in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		D97083C617CE8A7300AD3065 /* FigletTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D97083D017CE8A7300AD3065 /* Build configuration list for PBXNativeTarget "FigletTest" */;
+			buildPhases = (
+				D97083C317CE8A7300AD3065 /* Sources */,
+				D97083C417CE8A7300AD3065 /* Frameworks */,
+				D97083C517CE8A7300AD3065 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D970840A17CE8B4100AD3065 /* PBXTargetDependency */,
+			);
+			name = FigletTest;
+			productName = test;
+			productReference = D97083C717CE8A7300AD3065 /* Figlet */;
+			productType = "com.apple.product-type.tool";
+		};
+		D97083D617CE8AB200AD3065 /* FigletLib */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D97083E117CE8AB200AD3065 /* Build configuration list for PBXNativeTarget "FigletLib" */;
+			buildPhases = (
+				D97083D317CE8AB200AD3065 /* Sources */,
+				D97083D417CE8AB200AD3065 /* Frameworks */,
+				D97083D517CE8AB200AD3065 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FigletLib;
+			productName = FigletLib;
+			productReference = D97083D717CE8AB200AD3065 /* FigletLib.dylib */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
+		D970840E17CE961100AD3065 /* example */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D970841517CE961100AD3065 /* Build configuration list for PBXNativeTarget "example" */;
+			buildPhases = (
+				D970840B17CE961100AD3065 /* Sources */,
+				D970840C17CE961100AD3065 /* Frameworks */,
+				D970840D17CE961100AD3065 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D970841917CE961B00AD3065 /* PBXTargetDependency */,
+			);
+			name = example;
+			productName = example;
+			productReference = D970840F17CE961100AD3065 /* example */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D97083BF17CE8A7300AD3065 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0460;
+				ORGANIZATIONNAME = "Enrico Bertolazzi";
+			};
+			buildConfigurationList = D97083C217CE8A7300AD3065 /* Build configuration list for PBXProject "Figlet" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = D97083BE17CE8A7300AD3065;
+			productRefGroup = D97083C817CE8A7300AD3065 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D97083D617CE8AB200AD3065 /* FigletLib */,
+				D97083C617CE8A7300AD3065 /* FigletTest */,
+				D970840E17CE961100AD3065 /* example */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D97083C317CE8A7300AD3065 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D970840717CE8B0700AD3065 /* test.cc in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D97083D317CE8AB200AD3065 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D97083F317CE8AFB00AD3065 /* Figlet.cc in Sources */,
+				D970842617CEB2E700AD3065 /* Figlet_Font_banner.cc in Sources */,
+				D970842717CEB2E700AD3065 /* Figlet_Font_big.cc in Sources */,
+				D970842817CEB2E700AD3065 /* Figlet_Font_doom.cc in Sources */,
+				D970842917CEB2E700AD3065 /* Figlet_Font_larry3d.cc in Sources */,
+				D970842A17CEB2E700AD3065 /* Figlet_Font_mini.cc in Sources */,
+				D970842B17CEB2E700AD3065 /* Figlet_Font_script.cc in Sources */,
+				D970842C17CEB2E700AD3065 /* Figlet_Font_small.cc in Sources */,
+				D970842D17CEB2E700AD3065 /* Figlet_Font_standard.cc in Sources */,
+				D970842E17CEB2E700AD3065 /* Figlet_Font_straight.cc in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D970840B17CE961100AD3065 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D970841C17CE962D00AD3065 /* example.cc in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D970840A17CE8B4100AD3065 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D97083D617CE8AB200AD3065 /* FigletLib */;
+			targetProxy = D970840917CE8B4100AD3065 /* PBXContainerItemProxy */;
+		};
+		D970841917CE961B00AD3065 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D97083D617CE8AB200AD3065 /* FigletLib */;
+			targetProxy = D970841817CE961B00AD3065 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		D97083CE17CE8A7300AD3065 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		D97083CF17CE8A7300AD3065 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		D97083D117CE8A7300AD3065 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = Figlet;
+			};
+			name = Debug;
+		};
+		D97083D217CE8A7300AD3065 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = Figlet;
+			};
+			name = Release;
+		};
+		D97083E217CE8AB200AD3065 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		D97083E317CE8AB200AD3065 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		D970841617CE961100AD3065 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		D970841717CE961100AD3065 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D97083C217CE8A7300AD3065 /* Build configuration list for PBXProject "Figlet" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D97083CE17CE8A7300AD3065 /* Debug */,
+				D97083CF17CE8A7300AD3065 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D97083D017CE8A7300AD3065 /* Build configuration list for PBXNativeTarget "FigletTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D97083D117CE8A7300AD3065 /* Debug */,
+				D97083D217CE8A7300AD3065 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D97083E117CE8AB200AD3065 /* Build configuration list for PBXNativeTarget "FigletLib" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D97083E217CE8AB200AD3065 /* Debug */,
+				D97083E317CE8AB200AD3065 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D970841517CE961100AD3065 /* Build configuration list for PBXNativeTarget "example" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D970841617CE961100AD3065 /* Debug */,
+				D970841717CE961100AD3065 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D97083BF17CE8A7300AD3065 /* Project object */;
+}
