@@ -46,8 +46,12 @@ namespace Figlet {
     char const * rows[maxHeight]    ; //!< charater definition
   } FontFiglet ;
 
-  typedef enum { SMUSHED=0, PACKED, FULLWIDTH, MONOSPACED } PrintMode ;
-  typedef enum { SINGLE=0, DOUBLE } FrameMode ;
+  typedef enum { FIGLET_SMUSHED=0,
+                 FIGLET_PACKED,
+                 FIGLET_FULLWIDTH,
+                 FIGLET_MONOSPACED } PrintMode ;
+
+  typedef enum { FIGLET_SINGLE=0, FIGLET_DOUBLE } FrameMode ;
 
   //! Class implementing the "figlet" algorithm
   class Banner {
@@ -81,17 +85,19 @@ namespace Figlet {
 
   public:
 
-    explicit Banner( FontFiglet const * characters,
-                     char               Hardblank,
-                     unsigned           Height,
-                     unsigned           FontMaxLen,
-                     unsigned           FontSize ) ;  
+    explicit
+    Banner( FontFiglet const * characters,
+            char               Hardblank,
+            unsigned           Height,
+            unsigned           FontMaxLen,
+            unsigned           FontSize ) ;
+
     void init() ;
     
-    void setMonospaced() { printMode = MONOSPACED ; }
-    void setFullWidth()  { printMode = FULLWIDTH  ; }
-    void setPacked()     { printMode = PACKED     ; }
-    void setSmushed()    { printMode = SMUSHED    ; }
+    void setMonospaced() { printMode = FIGLET_MONOSPACED ; }
+    void setFullWidth()  { printMode = FIGLET_FULLWIDTH  ; }
+    void setPacked()     { printMode = FIGLET_PACKED     ; }
+    void setSmushed()    { printMode = FIGLET_SMUSHED    ; }
 
     unsigned print( char const message[],
                     ostream & s = cout,
@@ -100,7 +106,7 @@ namespace Figlet {
 
     void printFramed( char const message[],
                       ostream & s = cout,
-                      FrameMode fm = SINGLE ) ;
+                      FrameMode fm = FIGLET_SINGLE ) ;
   } ;
 
   extern Banner big ;

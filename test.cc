@@ -30,7 +30,7 @@ Figlet::FONT.print(msg1) ; \
 Figlet::FONT.setPacked() ; \
 Figlet::FONT.print(msg1) ; \
 Figlet::FONT.printFramed(msg2) ; \
-Figlet::FONT.printFramed(msg3,cout,Figlet::DOUBLE)
+Figlet::FONT.printFramed(msg3,cout,Figlet::FIGLET_DOUBLE)
 
 int
 main() {

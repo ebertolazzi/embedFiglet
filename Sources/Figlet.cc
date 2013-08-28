@@ -44,7 +44,7 @@ namespace Figlet {
   , FontMaxLen(_FontMaxLen)
   , FontSize(_FontSize)
   , charPosition(0)
-  , printMode(SMUSHED)
+  , printMode(FIGLET_SMUSHED)
   {
     fill(charToTable,charToTable+maxTableSize,0) ; // caratteri non noti mappati in spazi
     fill(rspaces,rspaces+Height,0) ;
@@ -242,16 +242,16 @@ namespace Figlet {
   Banner::fillForPrint( char const message[] ) {
     init() ;
     switch ( printMode ) {
-    case SMUSHED:
+    case FIGLET_SMUSHED:
       for ( char const * p = message ; *p != '\0' ; ++p ) pushSmushed(*p) ;
       break ;
-    case PACKED:
+    case FIGLET_PACKED:
       for ( char const * p = message ; *p != '\0' ; ++p ) pushPacked(*p) ;
       break ;
-    case FULLWIDTH:
+    case FIGLET_FULLWIDTH:
       for ( char const * p = message ; *p != '\0' ; ++p ) pushFullWidth(*p) ;
       break ;
-    case MONOSPACED:
+    case FIGLET_MONOSPACED:
       for ( char const * p = message ; *p != '\0' ; ++p ) pushMonospaced(*p) ;
       break ;
     }
@@ -295,7 +295,7 @@ namespace Figlet {
     fillForPrint(message) ;
 
     switch ( fm ) {
-    case SINGLE:
+    case FIGLET_SINGLE:
       s << '+' ;
       for ( unsigned j = 0 ; j < charPosition+2 ; ++j ) s << '-' ;
       s << "+\n" ;
@@ -304,7 +304,7 @@ namespace Figlet {
       for ( unsigned j = 0 ; j < charPosition+2 ; ++j ) s << '-' ;
       s << "+\n" ;
       break ;
-    case DOUBLE:
+    case FIGLET_DOUBLE:
       s << '@' ;
       for ( unsigned j = 0 ; j < charPosition+2 ; ++j ) s << '=' ;
       s << "@\n" ;
