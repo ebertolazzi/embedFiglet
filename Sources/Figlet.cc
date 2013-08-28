@@ -17,9 +17,9 @@
  |                                                                          |
 \*--------------------------------------------------------------------------*/
 
-///
-/// file: Figlet.cc
-///
+//
+// file: Figlet.cc
+//
 
 #if 0
 #include <MechatronixCore/Figlet.hh>
@@ -184,6 +184,8 @@ namespace Figlet {
     if ( left == '\\' && right == '/'  ) return 'Y' ;
     if ( left == '>'  && right == '<'  ) return 'X' ;
     // rule 6: hardblack smushing
+    // extra rules
+    if ( left == '<'  && right == '|'  ) return '<' ;
     return '\0';
   }
 
@@ -319,6 +321,6 @@ namespace Figlet {
 
 }
 
-///
-/// eof: Figlet.cc
-///
+//
+// eof: Figlet.cc
+//

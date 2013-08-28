@@ -17,11 +17,175 @@
  |                                                                          |
 \*--------------------------------------------------------------------------*/
 
-///
-/// file: Figlet.hh
-///
-   
-/// http://ruletheweb.co.uk/figlet/
+//
+// file: Figlet.hh
+//
+
+// http://ruletheweb.co.uk/figlet/
+
+/*!
+  \mainpage  Embeddable Figlet Library
+  \author    Enrico Bertolazzi (enrico.bertolazzi@unitn.it), homepage: http://www.ing.unitn.it/~bertolaz
+  \version   1.0.1
+  \date      2013
+  \copyright GNU Public License.
+ 
+  \details
+ 
+  This library available at
+  
+  - https://github.com/ebertolazzi/embedFiglet
+  - https://bitbucket.org/ebertolazzi/embedfiglet
+  
+  implement a subset of Figlet capability, i.e.
+  print large letters out of ordinary text
+ 
+  ~~~~~~~~~~~~~
+   _ _ _          _   _     _
+  | (_) | _____  | |_| |__ (_)___
+  | | | |/ / _ \ | __| '_ \| / __|
+  | | |   <  __/ | |_| | | | \__ \_
+  |_|_|_|\_\___|  \__|_| |_|_|___(_)
+ 
+  ~~~~~~~~~~~~~
+ 
+  Differently of standard FIGlet command (http://www.figlet.org/)
+  this print can be done inside a user program using run time
+  generated string as follows
+  
+  ~~~~~~~~~~~~~{.c++}
+  #include "Figlet.hh"
+  #include <sstream>
+  using namespace std ;
+
+  int
+  main() {
+    Figlet::standard.print("Fractions") ;
+    for ( int i = 2 ; i <= 4 ; ++i ) {
+      ostringstream ss ;
+      ss << "5/" << i << " = " << 5.0/i ;
+      Figlet::small.print(ss.str().c_str()) ;
+    }
+    cout << "ALL DONE!\n" ;
+    return 0;
+  }
+  ~~~~~~~~~~~~~
+  
+  which output is the following
+  
+  ~~~~~~~~~~~~~
+   _____               _   _
+  |  ___| __ __ _  ___| |_(_) ___  _ __  ___
+  | |_ | '__/ _` |/ __| __| |/ _ \| '_ \/ __|
+  |  _|| | | (_| | (__| |_| | (_) | | | \__ \
+  |_|  |_|  \__,_|\___|\__|_|\___/|_| |_|___/
+                                           
+   ___   _____         ___   ___   
+  | __| / /_  )  ___  |_  ) | __|
+  |__ \/ / / /  |___|  / / _|__ \
+  |___/_/ /___| |___| /___(_)___/
+                               
+   ___   ______        _    __  __  __  ______
+  | __| / /__ /  ___  / |  / / / / / / / /__  |
+  |__ \/ / |_ \ |___| | |_/ _ Y _ Y _ Y _ \/ /
+  |___/_/ |___/ |___| |_(_)___|___|___|___/_/
+                                             
+   ___   ___ _          _   ___ ___
+  | __| / / | |   ___  / | |_  ) __|
+  |__ \/ /|_  _| |___| | |_ / /|__ \
+  |___/_/   |_|  |___| |_(_)___|___/
+  ~~~~~~~~~~~~~
+
+  No initialization files are necessary. The fonts are
+  hardware embedded in the library. 
+  The available fonts are:
+
+  - banner
+  - big
+  - doom
+  - larry3d
+  - mini
+  - script
+  - small
+  - standard
+  - straight
+  
+  A simple ruby script permits to convert figlet .flf files
+  to structures which can be embedded in the library.
+ 
+  - \ref printmode
+  - \ref framemode
+
+ */
+
+/*!
+  \page printmode Available printing mode
+ 
+  Only four mode of print the same string:
+
+    - FIGLET_SMUSHED     standard way of figlet print
+    - FIGLET_PACKED      letters are moved left but no overlapping are permitted
+    - FIGLET_FULLWIDTH   letters are printed at width defined in the font
+    - FIGLET_MONOSPACED  letters are printed with equal width
+
+  The effect are the following
+  ~~~~~~~~~~~~~~~~~~
+   ____                      _              _
+  / ___| _ __ ___  _   _ ___| |__   ___  __| |
+  \___ \| '_ ` _ \| | | / __| '_ \ / _ \/ _` |
+   ___) | | | | | | |_| \__ \ | | |  __/ (_| |
+  |____/|_| |_| |_|\__,_|___/_| |_|\___|\__,_|
+   ____               _              _
+  |  _ \  __ _   ___ | | __ ___   __| |
+  | |_) |/ _` | / __|| |/ // _ \ / _` |
+  |  __/| (_| || (__ |   <|  __/| (_| |
+  |_|    \__,_| \___||_|\_\\___| \__,_|
+   _____           _   _  __        __  _       _   _     _
+  |  ___|  _   _  | | | | \ \      / / (_)   __| | | |_  | |__
+  | |_    | | | | | | | |  \ \ /\ / /  | |  / _` | | __| | '_ \
+  |  _|   | |_| | | | | |   \ V  V /   | | | (_| | | |_  | | | |
+  |_|      \__,_| |_| |_|    \_/\_/    |_|  \__,_|  \__| |_| |_|
+   __  __                                                                       _
+  |  \/  |   ___    _ __     ___     ___    _ __     __ _     ___     ___    __| |
+  | |\/| |  / _ \  | '_ \   / _ \   / __|  | '_ \   / _` |   / __|   / _ \  / _` |
+  | |  | | | (_) | | | | | | (_) |  \__ \  | |_) | | (_| |  | (__   |  __/ | (_| |
+  |_|  |_|  \___/  |_| |_|  \___/   |___/  | .__/   \__,_|   \___|   \___|  \__,_|
+                                           |_|
+  ~~~~~~~~~~~~~~~~~~
+ */
+
+/*!
+  \page framemode Available framing mode
+ 
+  Only two framing are available:
+ 
+   - FIGLET_SINGLE  single frame around a string
+   - FIGLET_DOUBLE  double frame around a string
+ 
+  The effect are the following
+
+  ~~~~~~~~~~~~~~~~~~
+  Figlet::small.printFramed("SINGLE",cout,Figlet::FIGLET_SINGLE);
+  +------------------------------+
+  |  ___ ___ _  _  ___ _    ___  |
+  | / __|_ _| \| |/ __| |  | __| |
+  | \__ \| || .` | (_ | |__| _|  |
+  | |___/___|_|\_|\___|____|___| |
+  |                              |
+  +------------------------------+
+  ~~~~~~~~~~~~~~~~~~
+  and
+  ~~~~~~~~~~~~~~~~~~
+  Figlet::small.printFramed("DOUBLE",cout,Figlet::FIGLET_DOUBLE);
+  @=================================@
+  #  ___   ___  _   _ ___ _    ___  #
+  # |   \ / _ \| | | | _ ) |  | __| #
+  # | |) | (_) | |_| | _ \ |__| _|  #
+  # |___/ \___/ \___/|___/____|___| #
+  #                                 #
+  @=================================@
+  ~~~~~~~~~~~~~~~~~~
+ */
 
 #ifndef FIGLET_HH
 #define FIGLET_HH
@@ -29,7 +193,9 @@
 #include <iostream>
 #include <stdint.h>
 
-//! Collects structures and classes for banner generation
+/*! \brief
+ * Collects structures and classes for banner generation
+ */
 namespace Figlet {
 
   using namespace std ;
@@ -46,11 +212,13 @@ namespace Figlet {
     char const * rows[maxHeight]    ; //!< charater definition
   } FontFiglet ;
 
+  //! Available way to print a string, see \ref printmode
   typedef enum { FIGLET_SMUSHED=0,
                  FIGLET_PACKED,
                  FIGLET_FULLWIDTH,
                  FIGLET_MONOSPACED } PrintMode ;
 
+  //! Available way to print a frames string, see \ref framemode
   typedef enum { FIGLET_SINGLE=0, FIGLET_DOUBLE } FrameMode ;
 
   //! Class implementing the "figlet" algorithm
@@ -85,6 +253,14 @@ namespace Figlet {
 
   public:
 
+    //! Constructor of `Banner` class
+    /*!
+       \param characters
+       \param Hardblank
+       \param Height
+       \param FontMaxLen
+       \param FontSize
+     */
     explicit
     Banner( FontFiglet const * characters,
             char               Hardblank,
@@ -92,37 +268,49 @@ namespace Figlet {
             unsigned           FontMaxLen,
             unsigned           FontSize ) ;
 
+    //! initialize Banner class
     void init() ;
-    
+
+    //! Set print mode to `monospaced`, see \ref printmode
     void setMonospaced() { printMode = FIGLET_MONOSPACED ; }
-    void setFullWidth()  { printMode = FIGLET_FULLWIDTH  ; }
-    void setPacked()     { printMode = FIGLET_PACKED     ; }
-    void setSmushed()    { printMode = FIGLET_SMUSHED    ; }
 
-    unsigned print( char const message[],
-                    ostream & s = cout,
-                    char const top[] = "",
-                    char const bottom[] = "" ) ;
+    //! Set print mode to `full width`, see \ref printmode
+    void setFullWidth() { printMode = FIGLET_FULLWIDTH  ; }
 
-    void printFramed( char const message[],
-                      ostream & s = cout,
-                      FrameMode fm = FIGLET_SINGLE ) ;
+    //! Set print mode to `packed`, see \ref printmode
+    void setPacked() { printMode = FIGLET_PACKED     ; }
+
+    //! Set print mode to `smushed` (figlet default), see \ref printmode
+    void setSmushed() { printMode = FIGLET_SMUSHED    ; }
+
+    //! Print large letters of string `message` on stream `s`, see \ref printmode
+    unsigned
+    print( char const message[],
+           ostream & s = cout,
+           char const top[] = "",
+           char const bottom[] = "" ) ;
+
+    //! \ref framemode
+    void
+    printFramed( char const message[],
+                 ostream & s = cout,
+                 FrameMode fm = FIGLET_SINGLE ) ;
   } ;
 
-  extern Banner big ;
-  extern Banner banner ;
-  extern Banner doom ;
-  extern Banner larry3d ;
-  extern Banner mini ;
-  extern Banner script ;
-  extern Banner small ;
-  extern Banner standard ;
-  extern Banner straight ;
+  extern Banner big      ; //!< instance `Banner` class using figlet font `big`
+  extern Banner banner   ; //!< instance `Banner` class using figlet font `banner`
+  extern Banner doom     ; //!< instance `Banner` class using figlet font `doom`
+  extern Banner larry3d  ; //!< instance `Banner` class using figlet font `larry3d`
+  extern Banner mini     ; //!< instance `Banner` class using figlet font `mini`
+  extern Banner script   ; //!< instance `Banner` class using figlet font `script`
+  extern Banner small    ; //!< instance `Banner` class using figlet font `small`
+  extern Banner standard ; //!< instance `Banner` class using figlet font `standard`
+  extern Banner straight ; //!< instance `Banner` class using figlet font `straight`
 
 }
 
 #endif
 
-///
-/// eof: Figlet.hh
-///
+//
+// eof: Figlet.hh
+//

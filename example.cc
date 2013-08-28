@@ -18,34 +18,35 @@
 \*--------------------------------------------------------------------------*/
 
 #include "Figlet.hh"
+#include <sstream>
 
 using namespace std ;
- 
-char msg1[] = "Converged \"Yes/NO\"" ;
-char msg2[] = "#$%@ pippo *&()" ;
-char msg3[] = "Precipitevolissimevolmente" ;
-
-#define DO_TEST(FONT) \
-Figlet::FONT.print(msg1) ; \
-Figlet::FONT.setPacked() ; \
-Figlet::FONT.print(msg1) ; \
-Figlet::FONT.printFramed(msg2) ; \
-Figlet::FONT.printFramed(msg3,cout,Figlet::FIGLET_DOUBLE)
 
 int
 main() {
+  Figlet::standard.print("Fractions") ;
+  for ( int i = 2 ; i <= 4 ; ++i ) {
+    ostringstream ss ;
+    ss << "5/" << i << " = " << 5.0/i ;
+    Figlet::small.print(ss.str().c_str()) ;
+  }
+  
+  Figlet::standard.setMonospaced() ;
+  Figlet::standard.print("Monospaced") ;
 
-  Figlet::standard.print("like this.") ;
+  Figlet::standard.setFullWidth() ;
+  Figlet::standard.print("FullWidth") ;
 
-  DO_TEST(banner);
-  DO_TEST(big);
-  DO_TEST(doom);
-  DO_TEST(larry3d);
-  DO_TEST(mini);
-  DO_TEST(script);
-  DO_TEST(small);
-  DO_TEST(standard);
-  DO_TEST(straight);
+  Figlet::standard.setPacked() ;
+  Figlet::standard.print("Packed") ;
 
+  Figlet::standard.setSmushed() ;
+  Figlet::standard.print("Smushed") ;
+
+  Figlet::small.printFramed("SINGLE",cout,Figlet::FIGLET_SINGLE);
+  Figlet::small.printFramed("DOUBLE",cout,Figlet::FIGLET_DOUBLE);
+
+  
   cout << "ALL DONE!\n" ;
+  return 0;
 }

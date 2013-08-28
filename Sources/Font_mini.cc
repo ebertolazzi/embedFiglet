@@ -3,6 +3,8 @@
 
 namespace Figlet {
 
+  //! \cond NODOC
+
   static char     const Hardblank  = '$' ;
   static unsigned const FontHeight = 4 ;
   static unsigned const FontMaxLen = 10 ;
@@ -2387,5 +2389,8 @@ namespace Figlet {
 
   static unsigned const FontSize   = sizeof(characters)/sizeof(characters[0]) ;
   Banner mini(characters, Hardblank, FontHeight, FontMaxLen, FontSize ) ;
+
+  //! \endcond
+  
 }
 // EOF file font
