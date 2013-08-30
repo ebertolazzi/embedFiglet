@@ -5,6 +5,7 @@
 /doc
 FontBuild.rb
 test
+xcuserdata
 
 # Compiled source #
 ###################
