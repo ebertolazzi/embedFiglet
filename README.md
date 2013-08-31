@@ -1,7 +1,10 @@
-embedFiglet is a C++ library which implement a 
+embedFiglet
+===========
+
+`embedFiglet` is a C++ library which implement a 
 subset of Figlet capability (http://www.figlet.org).
-No configuration or font file are necessary.
-The fonts are stored in structure initalized at compile time.
+No configuration or font file are necessary, moveover, 
+the fonts are stored in structure initalized at compile time.
 
 Details
 -------
@@ -156,19 +159,21 @@ and
 Compile and test
 ----------------
 
-------------------
+Edit makefile file to match compiler of your OS and do:
 
-To compile the test do:
-
-make
+  make
 
 To run the test
 
-make run
+  make run
 
------------------
+To generate documentation (using DOXYGEN: http://www.stack.nl/~dimitri/doxygen/index.html)
 
-  Enrico Bertolazzi
-  Dipartimento di Ingegneria Industriale
-  Universita` degli Studi di Trento
-  enrico.bertolazzi@unitn.it
+make doc
+
+* * *
+
+Enrico Bertolazzi<br>
+Dipartimento di Ingegneria Industriale<br>
+Universita` degli Studi di Trento<br>
+email: enrico.bertolazzi@unitn.it
