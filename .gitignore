@@ -1,10 +1,9 @@
 *~
-/original_fonts
-/FromFiglet
+/no_git
 /wiki
 /doc
-FontBuild.rb
 test
+example
 xcuserdata
 
 # Compiled source #

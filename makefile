@@ -1,17 +1,17 @@
 SRCS = \
-Sources/Figlet.cc \
-Sources/Figlet_Font_banner.cc \
-Sources/Figlet_Font_big.cc \
-Sources/Figlet_Font_doom.cc \
-Sources/Figlet_Font_larry3d.cc \
-Sources/Figlet_Font_mini.cc \
-Sources/Figlet_Font_script.cc \
-Sources/Figlet_Font_small.cc \
-Sources/Figlet_Font_standard.cc \
-Sources/Figlet_Font_straight.cc
+srcs/Figlet.cc \
+srcs/Figlet_Font_banner.cc \
+srcs/Figlet_Font_big.cc \
+srcs/Figlet_Font_doom.cc \
+srcs/Figlet_Font_larry3d.cc \
+srcs/Figlet_Font_mini.cc \
+srcs/Figlet_Font_script.cc \
+srcs/Figlet_Font_small.cc \
+srcs/Figlet_Font_standard.cc \
+srcs/Figlet_Font_straight.cc
 
 OBJS = $(SRCS:.cc=.o)
-DEPS = Headers/Figlet.hh
+DEPS = srcs/Figlet.hh
 
 #CC     = llvm-gcc
 #CXX    = llvm-g++
@@ -20,24 +20,24 @@ DEPS = Headers/Figlet.hh
 CC     = gcc
 CXX    = g++
 
-CFLAGS =  -I./Headers -Wall -pedantic -O3
-LIBS   = -L. -lembedFiglet
+CFLAGS =  -I./srcs -Wall -pedantic -O3
+LIBS   = -Llibs -lembedFiglet
 
 #AR     = ar rcs
 AR     = libtool -static -o 
 
 all: libembedFiglet.a
-	$(CXX) $(CFLAGS) -o test test.cc $(LIBS)
-	$(CXX) $(CFLAGS) -o example example.cc $(LIBS)
+	$(CXX) $(CFLAGS) -o test tests/test.cc $(LIBS)
+	$(CXX) $(CFLAGS) -o example examples/example.cc $(LIBS)
 
-Sources/%.o: Sources/%.cc $(DEPS)
+Sources/%.o: srcs/%.cc $(DEPS)
 	$(CXX) $(CFLAGS) -c $< -o $@ 
 
-Sources/%.o: Sources/%.c $(DEPS)
+Sources/%.o: srcs/%.c $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS)
 
 libembedFiglet.a: $(OBJS)
-	$(AR) libembedFiglet.a $(OBJS) 
+	$(AR) libs/libembedFiglet.a $(OBJS) 
 
 run:
 	./test
@@ -47,4 +47,4 @@ doc:
 	doxygen
 	
 clean:
-	rm -f libembedFiglet.a Sources/*.o
+	rm -f libs/libembedFiglet.a srcs/*.o
