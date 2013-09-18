@@ -21,12 +21,7 @@
 // file: Figlet.cc
 //
 
-#if 0
-#include <MechatronixCore/Figlet.hh>
-#else
 #include "Figlet.hh"
-#endif
-
 #include <string.h>
 
 namespace Figlet {
