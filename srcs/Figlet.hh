@@ -206,10 +206,10 @@ namespace Figlet {
 
   //! Structure used to store a charater of the font
   typedef struct {
-    short        nchar              ; //!< character (ascii) number
-    uint8_t      lspaces[maxHeight] ; //!< number of spaces on the left side x line 
-    uint8_t      rspaces[maxHeight] ; //!< number of spaces on the right side x line
-    char const * rows[maxHeight]    ; //!< charater definition
+    unsigned short nchar              ; //!< character (ascii) number
+    uint8_t        lspaces[maxHeight] ; //!< number of spaces on the left side x line
+    uint8_t        rspaces[maxHeight] ; //!< number of spaces on the right side x line
+    char const *   rows[maxHeight]    ; //!< charater definition
   } FontFiglet ;
 
   //! Available way to print a string, see \ref printmode

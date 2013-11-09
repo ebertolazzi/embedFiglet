@@ -21,12 +21,7 @@
 // file: Figlet.cc
 //
 
-#if 0
-#include <MechatronixCore/Figlet.hh>
-#else
 #include "Figlet.hh"
-#endif
-
 #include <string.h>
 
 namespace Figlet {
@@ -49,10 +44,10 @@ namespace Figlet {
     fill(charToTable,charToTable+maxTableSize,0) ; // caratteri non noti mappati in spazi
     fill(rspaces,rspaces+Height,0) ;
     for ( unsigned i=0 ; i < FontSize ; ++i ) {
-      unsigned ipos = characters[i].nchar ;
+      unsigned ipos = unsigned(characters[i].nchar) ;
       if ( ipos < maxTableSize ) {
-        charToTable[ipos] = i ;
-        charWidth[ipos]   = strlen(characters[i].rows[0]) ;
+        charToTable[ipos] = (unsigned short)(i) ;
+        charWidth[ipos]   = (unsigned short)strlen(characters[i].rows[0]) ;
       }
     }
     Width = charWidth[charToTable[int('M')]] ;
@@ -118,11 +113,11 @@ namespace Figlet {
   bool
   Banner::pushPacked( unsigned c ) {
     FontFiglet const * f = characters + charToTable[c]  ;
-    unsigned cw = charWidth[c] ;
+    unsigned cw = unsigned(charWidth[c]) ;
     // calcolo overlapping
-    short overlap = rspaces[0] + f->lspaces[0] ;
+    unsigned overlap = rspaces[0] + f->lspaces[0] ;
     for ( unsigned i = 1 ; i < Height ; ++i ) {
-      short tmp = rspaces[i] + f->lspaces[i] ;
+      unsigned tmp = rspaces[i] + f->lspaces[i] ;
       if ( tmp < overlap ) overlap = tmp ;
     }
 
@@ -130,10 +125,11 @@ namespace Figlet {
     if ( charPosition+cw > maxLenght+overlap ) return false ;
     
     for ( unsigned i = 0 ; i < Height ; ++i ) {
-      short dd = overlap - f->lspaces[i] ;
       // copio porzione di stringa
-      if ( dd > 0 ) strcpy( lines[i]+charPosition-dd, f->rows[i]+f->lspaces[i] ) ;
-      else          strcpy( lines[i]+charPosition,    f->rows[i]+overlap ) ;
+      if ( overlap > f->lspaces[i] )
+        strcpy( lines[i]+(charPosition+f->lspaces[i])-overlap, f->rows[i]+f->lspaces[i] ) ;
+      else
+        strcpy( lines[i]+charPosition, f->rows[i]+overlap ) ;
     }
     charPosition += cw-overlap ;
 
@@ -194,9 +190,9 @@ namespace Figlet {
     FontFiglet const * f = characters + charToTable[c]  ;
     unsigned cw = charWidth[c] ;
     // calcolo overlapping
-    short overlap = rspaces[0] + f->lspaces[0] ;
+    unsigned overlap = rspaces[0] + f->lspaces[0] ;
     for ( unsigned i = 1 ; i < Height ; ++i ) {
-      short tmp = rspaces[i] + f->lspaces[i] ;
+      unsigned tmp = rspaces[i] + f->lspaces[i] ;
       if ( tmp < overlap ) overlap = tmp ;
     }
     
@@ -204,7 +200,7 @@ namespace Figlet {
     if ( charPosition > 0 ) {
       bool do_smush = true ;
       for ( unsigned i = 0 ; i < Height && do_smush ; ++i ) {
-        short tmp = rspaces[i] + f->lspaces[i] ;
+        unsigned tmp = rspaces[i] + f->lspaces[i] ;
         if ( tmp == overlap ) {
           char * pline = lines[i]+charPosition-rspaces[i] ;
           smush[i] = smushingRules( pline[-1], f->rows[i][f->lspaces[i]] ) ;
@@ -219,19 +215,21 @@ namespace Figlet {
 
     for ( unsigned i = 0 ; i < Height ; ++i ) {
       char * pline = lines[i]+charPosition ;
-      short tmp = rspaces[i] + f->lspaces[i] ;
+      unsigned tmp = rspaces[i] + f->lspaces[i] ;
       if ( tmp < overlap ) {
         pline -= rspaces[i]+1 ;
         *pline++ = smush[i] ;
         strcpy( pline, f->rows[i]+f->lspaces[i]+1 ) ;
       } else {
-        short dd = overlap - f->lspaces[i] ;
         // copio porzione di stringa
-        if ( dd > 0 ) strcpy( pline-dd, f->rows[i]+f->lspaces[i] ) ;
-        else          strcpy( pline,    f->rows[i]+overlap ) ;      
+        if ( overlap > f->lspaces[i] )
+          strcpy( pline+f->lspaces[i]-overlap, f->rows[i]+f->lspaces[i] ) ;
+        else
+          strcpy( pline, f->rows[i]+overlap ) ;
       }
     }
-    charPosition += cw-overlap ;
+    charPosition += cw ;
+    charPosition -= overlap ;
 
     // aggiorno spazi liberi a destra
     std::copy( f -> rspaces, f -> rspaces + Height, rspaces ) ;
@@ -245,16 +243,16 @@ namespace Figlet {
     init() ;
     switch ( printMode ) {
     case FIGLET_SMUSHED:
-      for ( char const * p = message ; *p != '\0' ; ++p ) pushSmushed(*p) ;
+      for ( char const * p = message ; *p != '\0' ; ++p ) pushSmushed(unsigned(*p)) ;
       break ;
     case FIGLET_PACKED:
-      for ( char const * p = message ; *p != '\0' ; ++p ) pushPacked(*p) ;
+      for ( char const * p = message ; *p != '\0' ; ++p ) pushPacked(unsigned(*p)) ;
       break ;
     case FIGLET_FULLWIDTH:
-      for ( char const * p = message ; *p != '\0' ; ++p ) pushFullWidth(*p) ;
+      for ( char const * p = message ; *p != '\0' ; ++p ) pushFullWidth(unsigned(*p)) ;
       break ;
     case FIGLET_MONOSPACED:
-      for ( char const * p = message ; *p != '\0' ; ++p ) pushMonospaced(*p) ;
+      for ( char const * p = message ; *p != '\0' ; ++p ) pushMonospaced(unsigned(*p)) ;
       break ;
     }
 

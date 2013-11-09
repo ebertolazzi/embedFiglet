@@ -7,21 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D97083E617CE8AF100AD3065 /* Figlet.hh in Headers */ = {isa = PBXBuildFile; fileRef = D97083E517CE8AF100AD3065 /* Figlet.hh */; };
-		D97083F317CE8AFB00AD3065 /* Figlet.cc in Sources */ = {isa = PBXBuildFile; fileRef = D97083E817CE8AFB00AD3065 /* Figlet.cc */; };
-		D970840717CE8B0700AD3065 /* test.cc in Sources */ = {isa = PBXBuildFile; fileRef = D970840617CE8B0700AD3065 /* test.cc */; };
+		D96501D4182DB45B003F5B6F /* Figlet.cc in Sources */ = {isa = PBXBuildFile; fileRef = D96501BF182DB45B003F5B6F /* Figlet.cc */; };
+		D96501D5182DB45B003F5B6F /* Figlet.hh in Headers */ = {isa = PBXBuildFile; fileRef = D96501C0182DB45B003F5B6F /* Figlet.hh */; };
+		D96501D7182DB45B003F5B6F /* Figlet_Font_banner.cc in Sources */ = {isa = PBXBuildFile; fileRef = D96501C2182DB45B003F5B6F /* Figlet_Font_banner.cc */; };
+		D96501D9182DB45B003F5B6F /* Figlet_Font_big.cc in Sources */ = {isa = PBXBuildFile; fileRef = D96501C4182DB45B003F5B6F /* Figlet_Font_big.cc */; };
+		D96501DB182DB45B003F5B6F /* Figlet_Font_doom.cc in Sources */ = {isa = PBXBuildFile; fileRef = D96501C6182DB45B003F5B6F /* Figlet_Font_doom.cc */; };
+		D96501DD182DB45B003F5B6F /* Figlet_Font_larry3d.cc in Sources */ = {isa = PBXBuildFile; fileRef = D96501C8182DB45B003F5B6F /* Figlet_Font_larry3d.cc */; };
+		D96501DF182DB45B003F5B6F /* Figlet_Font_mini.cc in Sources */ = {isa = PBXBuildFile; fileRef = D96501CA182DB45B003F5B6F /* Figlet_Font_mini.cc */; };
+		D96501E1182DB45B003F5B6F /* Figlet_Font_script.cc in Sources */ = {isa = PBXBuildFile; fileRef = D96501CC182DB45B003F5B6F /* Figlet_Font_script.cc */; };
+		D96501E3182DB45B003F5B6F /* Figlet_Font_small.cc in Sources */ = {isa = PBXBuildFile; fileRef = D96501CE182DB45B003F5B6F /* Figlet_Font_small.cc */; };
+		D96501E5182DB45B003F5B6F /* Figlet_Font_standard.cc in Sources */ = {isa = PBXBuildFile; fileRef = D96501D0182DB45B003F5B6F /* Figlet_Font_standard.cc */; };
+		D96501E7182DB45B003F5B6F /* Figlet_Font_straight.cc in Sources */ = {isa = PBXBuildFile; fileRef = D96501D2182DB45B003F5B6F /* Figlet_Font_straight.cc */; };
+		D96501EB182DB476003F5B6F /* example.cc in Sources */ = {isa = PBXBuildFile; fileRef = D96501EA182DB476003F5B6F /* example.cc */; };
+		D96501EE182DB48B003F5B6F /* test.cc in Sources */ = {isa = PBXBuildFile; fileRef = D96501ED182DB48B003F5B6F /* test.cc */; };
 		D970840817CE8B3A00AD3065 /* FigletLib.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D97083D717CE8AB200AD3065 /* FigletLib.dylib */; };
 		D970841A17CE962000AD3065 /* FigletLib.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D97083D717CE8AB200AD3065 /* FigletLib.dylib */; };
-		D970841C17CE962D00AD3065 /* example.cc in Sources */ = {isa = PBXBuildFile; fileRef = D970841B17CE962D00AD3065 /* example.cc */; };
-		D970842617CEB2E700AD3065 /* Figlet_Font_banner.cc in Sources */ = {isa = PBXBuildFile; fileRef = D970841D17CEB2E700AD3065 /* Figlet_Font_banner.cc */; };
-		D970842717CEB2E700AD3065 /* Figlet_Font_big.cc in Sources */ = {isa = PBXBuildFile; fileRef = D970841E17CEB2E700AD3065 /* Figlet_Font_big.cc */; };
-		D970842817CEB2E700AD3065 /* Figlet_Font_doom.cc in Sources */ = {isa = PBXBuildFile; fileRef = D970841F17CEB2E700AD3065 /* Figlet_Font_doom.cc */; };
-		D970842917CEB2E700AD3065 /* Figlet_Font_larry3d.cc in Sources */ = {isa = PBXBuildFile; fileRef = D970842017CEB2E700AD3065 /* Figlet_Font_larry3d.cc */; };
-		D970842A17CEB2E700AD3065 /* Figlet_Font_mini.cc in Sources */ = {isa = PBXBuildFile; fileRef = D970842117CEB2E700AD3065 /* Figlet_Font_mini.cc */; };
-		D970842B17CEB2E700AD3065 /* Figlet_Font_script.cc in Sources */ = {isa = PBXBuildFile; fileRef = D970842217CEB2E700AD3065 /* Figlet_Font_script.cc */; };
-		D970842C17CEB2E700AD3065 /* Figlet_Font_small.cc in Sources */ = {isa = PBXBuildFile; fileRef = D970842317CEB2E700AD3065 /* Figlet_Font_small.cc */; };
-		D970842D17CEB2E700AD3065 /* Figlet_Font_standard.cc in Sources */ = {isa = PBXBuildFile; fileRef = D970842417CEB2E700AD3065 /* Figlet_Font_standard.cc */; };
-		D970842E17CEB2E700AD3065 /* Figlet_Font_straight.cc in Sources */ = {isa = PBXBuildFile; fileRef = D970842517CEB2E700AD3065 /* Figlet_Font_straight.cc */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,22 +63,22 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		D96501BF182DB45B003F5B6F /* Figlet.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Figlet.cc; sourceTree = "<group>"; };
+		D96501C0182DB45B003F5B6F /* Figlet.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Figlet.hh; sourceTree = "<group>"; };
+		D96501C2182DB45B003F5B6F /* Figlet_Font_banner.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Figlet_Font_banner.cc; sourceTree = "<group>"; };
+		D96501C4182DB45B003F5B6F /* Figlet_Font_big.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Figlet_Font_big.cc; sourceTree = "<group>"; };
+		D96501C6182DB45B003F5B6F /* Figlet_Font_doom.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Figlet_Font_doom.cc; sourceTree = "<group>"; };
+		D96501C8182DB45B003F5B6F /* Figlet_Font_larry3d.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Figlet_Font_larry3d.cc; sourceTree = "<group>"; };
+		D96501CA182DB45B003F5B6F /* Figlet_Font_mini.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Figlet_Font_mini.cc; sourceTree = "<group>"; };
+		D96501CC182DB45B003F5B6F /* Figlet_Font_script.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Figlet_Font_script.cc; sourceTree = "<group>"; };
+		D96501CE182DB45B003F5B6F /* Figlet_Font_small.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Figlet_Font_small.cc; sourceTree = "<group>"; };
+		D96501D0182DB45B003F5B6F /* Figlet_Font_standard.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Figlet_Font_standard.cc; sourceTree = "<group>"; };
+		D96501D2182DB45B003F5B6F /* Figlet_Font_straight.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Figlet_Font_straight.cc; sourceTree = "<group>"; };
+		D96501EA182DB476003F5B6F /* example.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = example.cc; sourceTree = "<group>"; };
+		D96501ED182DB48B003F5B6F /* test.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = test.cc; sourceTree = "<group>"; };
 		D97083C717CE8A7300AD3065 /* Figlet */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Figlet; sourceTree = BUILT_PRODUCTS_DIR; };
 		D97083D717CE8AB200AD3065 /* FigletLib.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = FigletLib.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		D97083E517CE8AF100AD3065 /* Figlet.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Figlet.hh; sourceTree = "<group>"; };
-		D97083E817CE8AFB00AD3065 /* Figlet.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Figlet.cc; sourceTree = "<group>"; };
-		D970840617CE8B0700AD3065 /* test.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = test.cc; sourceTree = "<group>"; };
 		D970840F17CE961100AD3065 /* example */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = example; sourceTree = BUILT_PRODUCTS_DIR; };
-		D970841B17CE962D00AD3065 /* example.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = example.cc; sourceTree = "<group>"; };
-		D970841D17CEB2E700AD3065 /* Figlet_Font_banner.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Figlet_Font_banner.cc; sourceTree = "<group>"; };
-		D970841E17CEB2E700AD3065 /* Figlet_Font_big.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Figlet_Font_big.cc; sourceTree = "<group>"; };
-		D970841F17CEB2E700AD3065 /* Figlet_Font_doom.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Figlet_Font_doom.cc; sourceTree = "<group>"; };
-		D970842017CEB2E700AD3065 /* Figlet_Font_larry3d.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Figlet_Font_larry3d.cc; sourceTree = "<group>"; };
-		D970842117CEB2E700AD3065 /* Figlet_Font_mini.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Figlet_Font_mini.cc; sourceTree = "<group>"; };
-		D970842217CEB2E700AD3065 /* Figlet_Font_script.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Figlet_Font_script.cc; sourceTree = "<group>"; };
-		D970842317CEB2E700AD3065 /* Figlet_Font_small.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Figlet_Font_small.cc; sourceTree = "<group>"; };
-		D970842417CEB2E700AD3065 /* Figlet_Font_standard.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Figlet_Font_standard.cc; sourceTree = "<group>"; };
-		D970842517CEB2E700AD3065 /* Figlet_Font_straight.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Figlet_Font_straight.cc; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,14 +108,47 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D96501BE182DB45B003F5B6F /* srcs */ = {
+			isa = PBXGroup;
+			children = (
+				D96501BF182DB45B003F5B6F /* Figlet.cc */,
+				D96501C0182DB45B003F5B6F /* Figlet.hh */,
+				D96501C2182DB45B003F5B6F /* Figlet_Font_banner.cc */,
+				D96501C4182DB45B003F5B6F /* Figlet_Font_big.cc */,
+				D96501C6182DB45B003F5B6F /* Figlet_Font_doom.cc */,
+				D96501C8182DB45B003F5B6F /* Figlet_Font_larry3d.cc */,
+				D96501CA182DB45B003F5B6F /* Figlet_Font_mini.cc */,
+				D96501CC182DB45B003F5B6F /* Figlet_Font_script.cc */,
+				D96501CE182DB45B003F5B6F /* Figlet_Font_small.cc */,
+				D96501D0182DB45B003F5B6F /* Figlet_Font_standard.cc */,
+				D96501D2182DB45B003F5B6F /* Figlet_Font_straight.cc */,
+			);
+			path = srcs;
+			sourceTree = "<group>";
+		};
+		D96501E9182DB476003F5B6F /* examples */ = {
+			isa = PBXGroup;
+			children = (
+				D96501EA182DB476003F5B6F /* example.cc */,
+			);
+			path = examples;
+			sourceTree = "<group>";
+		};
+		D96501EC182DB48B003F5B6F /* tests */ = {
+			isa = PBXGroup;
+			children = (
+				D96501ED182DB48B003F5B6F /* test.cc */,
+			);
+			path = tests;
+			sourceTree = "<group>";
+		};
 		D97083BE17CE8A7300AD3065 = {
 			isa = PBXGroup;
 			children = (
 				D97083C817CE8A7300AD3065 /* Products */,
-				D97083E417CE8AF100AD3065 /* Headers */,
-				D97083E717CE8AFB00AD3065 /* Sources */,
-				D970840617CE8B0700AD3065 /* test.cc */,
-				D970841B17CE962D00AD3065 /* example.cc */,
+				D96501BE182DB45B003F5B6F /* srcs */,
+				D96501E9182DB476003F5B6F /* examples */,
+				D96501EC182DB48B003F5B6F /* tests */,
 			);
 			sourceTree = "<group>";
 		};
@@ -129,31 +162,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		D97083E417CE8AF100AD3065 /* Headers */ = {
-			isa = PBXGroup;
-			children = (
-				D97083E517CE8AF100AD3065 /* Figlet.hh */,
-			);
-			path = Headers;
-			sourceTree = "<group>";
-		};
-		D97083E717CE8AFB00AD3065 /* Sources */ = {
-			isa = PBXGroup;
-			children = (
-				D97083E817CE8AFB00AD3065 /* Figlet.cc */,
-				D970841D17CEB2E700AD3065 /* Figlet_Font_banner.cc */,
-				D970841E17CEB2E700AD3065 /* Figlet_Font_big.cc */,
-				D970841F17CEB2E700AD3065 /* Figlet_Font_doom.cc */,
-				D970842017CEB2E700AD3065 /* Figlet_Font_larry3d.cc */,
-				D970842117CEB2E700AD3065 /* Figlet_Font_mini.cc */,
-				D970842217CEB2E700AD3065 /* Figlet_Font_script.cc */,
-				D970842317CEB2E700AD3065 /* Figlet_Font_small.cc */,
-				D970842417CEB2E700AD3065 /* Figlet_Font_standard.cc */,
-				D970842517CEB2E700AD3065 /* Figlet_Font_straight.cc */,
-			);
-			path = Sources;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -161,7 +169,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D97083E617CE8AF100AD3065 /* Figlet.hh in Headers */,
+				D96501D5182DB45B003F5B6F /* Figlet.hh in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -227,7 +235,7 @@
 		D97083BF17CE8A7300AD3065 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0460;
+				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Enrico Bertolazzi";
 			};
 			buildConfigurationList = D97083C217CE8A7300AD3065 /* Build configuration list for PBXProject "Figlet" */;
@@ -254,7 +262,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D970840717CE8B0700AD3065 /* test.cc in Sources */,
+				D96501EE182DB48B003F5B6F /* test.cc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -262,16 +270,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D97083F317CE8AFB00AD3065 /* Figlet.cc in Sources */,
-				D970842617CEB2E700AD3065 /* Figlet_Font_banner.cc in Sources */,
-				D970842717CEB2E700AD3065 /* Figlet_Font_big.cc in Sources */,
-				D970842817CEB2E700AD3065 /* Figlet_Font_doom.cc in Sources */,
-				D970842917CEB2E700AD3065 /* Figlet_Font_larry3d.cc in Sources */,
-				D970842A17CEB2E700AD3065 /* Figlet_Font_mini.cc in Sources */,
-				D970842B17CEB2E700AD3065 /* Figlet_Font_script.cc in Sources */,
-				D970842C17CEB2E700AD3065 /* Figlet_Font_small.cc in Sources */,
-				D970842D17CEB2E700AD3065 /* Figlet_Font_standard.cc in Sources */,
-				D970842E17CEB2E700AD3065 /* Figlet_Font_straight.cc in Sources */,
+				D96501E1182DB45B003F5B6F /* Figlet_Font_script.cc in Sources */,
+				D96501E3182DB45B003F5B6F /* Figlet_Font_small.cc in Sources */,
+				D96501E5182DB45B003F5B6F /* Figlet_Font_standard.cc in Sources */,
+				D96501E7182DB45B003F5B6F /* Figlet_Font_straight.cc in Sources */,
+				D96501DF182DB45B003F5B6F /* Figlet_Font_mini.cc in Sources */,
+				D96501DD182DB45B003F5B6F /* Figlet_Font_larry3d.cc in Sources */,
+				D96501D4182DB45B003F5B6F /* Figlet.cc in Sources */,
+				D96501D9182DB45B003F5B6F /* Figlet_Font_big.cc in Sources */,
+				D96501DB182DB45B003F5B6F /* Figlet_Font_doom.cc in Sources */,
+				D96501D7182DB45B003F5B6F /* Figlet_Font_banner.cc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -279,7 +287,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D970841C17CE962D00AD3065 /* example.cc in Sources */,
+				D96501EB182DB476003F5B6F /* example.cc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -303,17 +311,20 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_CXX0X_EXTENSIONS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_IMPLICIT_SIGN_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CLANG_WARN__EXIT_TIME_DESTRUCTORS = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -322,8 +333,17 @@
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_FIELD_INITIALIZERS = YES;
+				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = YES;
+				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
+				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
+				GCC_WARN_SHADOW = YES;
+				GCC_WARN_SIGN_COMPARE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_LABEL = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
@@ -335,21 +355,34 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_CXX0X_EXTENSIONS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_IMPLICIT_SIGN_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CLANG_WARN__EXIT_TIME_DESTRUCTORS = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_FIELD_INITIALIZERS = YES;
+				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = YES;
+				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
+				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
+				GCC_WARN_SHADOW = YES;
+				GCC_WARN_SIGN_COMPARE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_LABEL = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				SDKROOT = macosx;
