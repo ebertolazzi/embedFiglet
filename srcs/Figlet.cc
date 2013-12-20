@@ -70,7 +70,7 @@ namespace Figlet {
     // controllo che il carattere stia nel buffer
     if ( charPosition+cw > maxLenght ) return false ;
 
-    #if defined(WIN32) || defined(_WIN64)
+    #if defined(_WIN32) || defined(_WIN64)
     for ( unsigned i = 0 ; i < Height ; ++i )
       strcpy_s( lines[i]+charPosition, maxLenght-charPosition, f->rows[i] ) ;
     #else
@@ -133,7 +133,7 @@ namespace Figlet {
     
     for ( unsigned i = 0 ; i < Height ; ++i ) {
       // copio porzione di stringa
-      #if defined(WIN32) || defined(_WIN64)
+      #if defined(_WIN32) || defined(_WIN64)
       if ( overlap > f->lspaces[i] )
         strcpy_s( lines[i]+(charPosition+f->lspaces[i])-overlap,
                   maxLenght-((charPosition+f->lspaces[i])-overlap),
@@ -240,7 +240,7 @@ namespace Figlet {
         strcpy( pline, f->rows[i]+f->lspaces[i]+1 ) ;
       } else {
         // copio porzione di stringa
-        #if defined(WIN32) || defined(_WIN64)
+        #if defined(_WIN32) || defined(_WIN64)
         if ( overlap > f->lspaces[i] )
           strcpy_s( pline+f->lspaces[i]-overlap,
                     maxLenght-((charPosition+f->lspaces[i])-overlap),
