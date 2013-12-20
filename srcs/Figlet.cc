@@ -237,7 +237,15 @@ namespace Figlet {
       if ( tmp < overlap ) {
         pline -= rspaces[i]+1 ;
         *pline++ = smush[i] ;
-        strcpy( pline, f->rows[i]+f->lspaces[i]+1 ) ;
+        #if defined(_WIN32) || defined(_WIN64)
+        strcpy_s( pline,
+                  maxLenght-(charPosition-rspaces[i])+1,
+                  f->rows[i]+f->lspaces[i]+1 ) ;
+        #else
+        strncpy( pline,
+                 f->rows[i]+f->lspaces[i]+1,
+                 maxLenght-(charPosition-rspaces[i])+1 ) ;
+        #endif
       } else {
         // copio porzione di stringa
         #if defined(_WIN32) || defined(_WIN64)
