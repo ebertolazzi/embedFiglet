@@ -70,7 +70,14 @@ namespace Figlet {
     // controllo che il carattere stia nel buffer
     if ( charPosition+cw > maxLenght ) return false ;
 
-    for ( unsigned i = 0 ; i < Height ; ++i ) strcpy( lines[i]+charPosition, f->rows[i] ) ;
+    #if defined(WIN32) || defined(_WIN64)
+    for ( unsigned i = 0 ; i < Height ; ++i )
+      strcpy_s( lines[i]+charPosition, maxLenght-charPosition, f->rows[i] ) ;
+    #else
+    for ( unsigned i = 0 ; i < Height ; ++i )
+      strncpy( lines[i]+charPosition, f->rows[i], maxLenght-charPosition ) ;
+    #endif
+
     charPosition += cw ;
 
     // aggiorno spazi liberi a destra
@@ -126,10 +133,21 @@ namespace Figlet {
     
     for ( unsigned i = 0 ; i < Height ; ++i ) {
       // copio porzione di stringa
+      #if defined(WIN32) || defined(_WIN64)
       if ( overlap > f->lspaces[i] )
-        strcpy( lines[i]+(charPosition+f->lspaces[i])-overlap, f->rows[i]+f->lspaces[i] ) ;
+        strcpy_s( lines[i]+(charPosition+f->lspaces[i])-overlap,
+                  maxLenght-((charPosition+f->lspaces[i])-overlap),
+                  f->rows[i]+f->lspaces[i] ) ;
       else
-        strcpy( lines[i]+charPosition, f->rows[i]+overlap ) ;
+        strcpy_s( lines[i]+charPosition, maxLenght-charPosition, f->rows[i]+overlap ) ;
+      #else
+      if ( overlap > f->lspaces[i] )
+        strncpy( lines[i]+(charPosition+f->lspaces[i])-overlap,
+                 f->rows[i]+f->lspaces[i],
+                 maxLenght-((charPosition+f->lspaces[i])-overlap) ) ;
+      else
+        strncpy( lines[i]+charPosition, f->rows[i]+overlap, maxLenght-charPosition ) ;
+      #endif
     }
     charPosition += cw-overlap ;
 
@@ -222,10 +240,21 @@ namespace Figlet {
         strcpy( pline, f->rows[i]+f->lspaces[i]+1 ) ;
       } else {
         // copio porzione di stringa
+        #if defined(WIN32) || defined(_WIN64)
         if ( overlap > f->lspaces[i] )
-          strcpy( pline+f->lspaces[i]-overlap, f->rows[i]+f->lspaces[i] ) ;
+          strcpy_s( pline+f->lspaces[i]-overlap,
+                    maxLenght-((charPosition+f->lspaces[i])-overlap),
+                    f->rows[i]+f->lspaces[i] ) ;
         else
-          strcpy( pline, f->rows[i]+overlap ) ;
+          strcpy_s( pline, maxLenght-charPosition, f->rows[i]+overlap ) ;
+        #else
+        if ( overlap > f->lspaces[i] )
+          strncpy( pline+f->lspaces[i]-overlap,
+                   f->rows[i]+f->lspaces[i],
+                   maxLenght-((charPosition+f->lspaces[i])-overlap) ) ;
+        else
+          strncpy( pline, f->rows[i]+overlap, maxLenght-charPosition ) ;
+        #endif
       }
     }
     charPosition += cw ;
