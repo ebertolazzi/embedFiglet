@@ -24,6 +24,7 @@ using namespace std ;
 
 int
 main() {
+
   Figlet::standard.print("Fractions") ;
   for ( int i = 2 ; i <= 4 ; ++i ) {
     ostringstream ss ;
@@ -46,7 +47,9 @@ main() {
   Figlet::small.printFramed("SINGLE",cout,Figlet::FIGLET_SINGLE);
   Figlet::small.printFramed("DOUBLE",cout,Figlet::FIGLET_DOUBLE);
 
-  
+  Figlet::big.print("check \"_\" 7l 7_l e_s") ;
+  Figlet::standard.print("check \"_\" 7l 7_l e_s") ;
+
   cout << "ALL DONE!\n" ;
   return 0;
 }

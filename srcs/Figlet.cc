@@ -214,7 +214,7 @@ namespace Figlet {
       unsigned tmp = rspaces[i] + f->lspaces[i] ;
       if ( tmp < overlap ) overlap = tmp ;
     }
-    
+
     // calcolo smush se possibile
     if ( charPosition > 0 ) {
       bool do_smush = true ;
@@ -230,7 +230,8 @@ namespace Figlet {
     }
 
     // controllo che il carattere stia nel buffer
-    if ( charPosition+cw > maxLenght+overlap ) return false ;
+    unsigned cwo = cw - overlap ; // >= 0
+    if ( charPosition+cwo > maxLenght ) return false ;
 
     for ( unsigned i = 0 ; i < Height ; ++i ) {
       char    * pline = lines[i]+charPosition ;
@@ -263,11 +264,17 @@ namespace Figlet {
         }
       }
     }
-    charPosition += cw ;
-    charPosition -= overlap ;
+    // overlap <= cw ;
+    charPosition += cwo ;
 
     // aggiorno spazi liberi a destra
-    std::copy( f -> rspaces, f -> rspaces + Height, rspaces ) ;
+    for ( unsigned i = 0 ; i < Height ; ++i ) {
+      if ( rspaces[i] >= cwo ) {
+        rspaces[i] -= cwo ;
+        if ( rspaces[i] > f -> rspaces[i] ) rspaces[i] = f -> rspaces[i] ;
+      } else rspaces[i] = f -> rspaces[i] ;
+    }
+    //std::copy( f -> rspaces, f -> rspaces + Height, rspaces ) ;
     return true ;
   }
 
