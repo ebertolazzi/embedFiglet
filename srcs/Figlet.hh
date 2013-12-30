@@ -21,6 +21,11 @@
 // file: Figlet.hh
 //
 
+// check for bugged compiler
+#ifdef _MSC_VER
+  #define EMBED_FIGLET_USE_VISUAL_STUDIO
+#endif
+
 // http://ruletheweb.co.uk/figlet/
 
 /*!
