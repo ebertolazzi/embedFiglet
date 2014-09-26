@@ -291,14 +291,14 @@ namespace Figlet {
     //! Print large letters of string `message` on stream `s`, see \ref printmode
     unsigned
     print( char const message[],
-           ostream & s = cout,
+           std::basic_ostream<char> & s = cout,
            char const top[] = "",
            char const bottom[] = "" ) ;
 
     //! \ref framemode
     void
     printFramed( char const message[],
-                 ostream & s = cout,
+                 std::basic_ostream<char> & s = cout,
                  FrameMode fm = FIGLET_SINGLE ) ;
   } ;
 

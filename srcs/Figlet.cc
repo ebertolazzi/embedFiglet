@@ -297,7 +297,7 @@ namespace Figlet {
 
   unsigned
   Banner::print( char const message[], 
-                 ostream & s, 
+                 basic_ostream<char> & s,
                  char const top[], 
                  char const bottom[]  ) {
 
@@ -319,7 +319,7 @@ namespace Figlet {
 
   void
   Banner:: printFramed( char const message[],
-                        ostream & s,
+                        basic_ostream<char> & s,
                         FrameMode fm ) {
 
     fillForPrint(message) ;
