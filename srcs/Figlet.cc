@@ -177,7 +177,7 @@ namespace Figlet {
     if ( left  == '_' && strchr( "|/\\[]{}()<>", right ) != NULL ) return right ;
     if ( right == '_' && strchr( "|/\\[]{}()<>", left )  != NULL ) return left  ;
     // rule 3: hierarchy smushing
-    /*
+    /* ELIMINATED
     unsigned class_left  = findClass( left ) ;
     unsigned class_right = findClass( right ) ;
     if ( class_left > 0 && class_right > 0 ) {
@@ -200,9 +200,8 @@ namespace Figlet {
     // extra rules
     if ( left == '<' && right == '|' ) return '<' ;
     if ( left == '|' && right == '/' ) return '/' ;
-    //if ( left == '$' && ( right == '|' || right == '.' ) ) return right ;
-    //if ( left == '$' ) return right ;
-    //if ( left == '$' ) return right ;
+    if ( left == '|' && right == '(' ) return '(' ;
+    if ( (left == '\\' || left == '/') && right == '|' ) return left ;
     return '\0';
   }
 

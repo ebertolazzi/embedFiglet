@@ -124,6 +124,8 @@ main() {
   setFullWidth()  ; do_test() ;
   setPacked()     ; do_test() ;
   setSmushed()    ; do_test() ;
+  
+  Figlet::standard.print("Figlet") ;
 
   cout << "ALL DONE!\n" ;
   return 0;
