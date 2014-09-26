@@ -24,6 +24,12 @@
 #include "Figlet.hh"
 #include <string.h>
 
+#ifdef EMBED_FIGLET_USE_VISUAL_STUDIO
+  #define STRCPY(TO,FROM,MAXLEN) strcpy_s( TO, MAXLEN, FROM ) ;
+#else
+  #define STRCPY(TO,FROM,MAXLEN) strncpy( TO, FROM, MAXLEN ) ;
+#endif
+
 namespace Figlet {
 
   using namespace std ;
@@ -72,11 +78,7 @@ namespace Figlet {
 
     unsigned maxlen = maxLenght-charPosition ;
     for ( unsigned i = 0 ; i < Height ; ++i )
-    #ifdef EMBED_FIGLET_USE_VISUAL_STUDIO
-      strcpy_s( lines[i]+charPosition, maxlen, f->rows[i] ) ;
-    #else
-      strncpy( lines[i]+charPosition, f->rows[i], maxlen ) ;
-    #endif
+    STRCPY( lines[i]+charPosition, f->rows[i], maxlen ) ;
 
     charPosition += cw ;
 
@@ -136,18 +138,10 @@ namespace Figlet {
       if ( overlap > f->lspaces[i] ) {
         unsigned charP  = (charPosition+f->lspaces[i])-overlap ;
         unsigned maxlen = maxLenght - charP ;
-        #ifdef EMBED_FIGLET_USE_VISUAL_STUDIO
-        strcpy_s( lines[i]+charP, maxlen, f->rows[i]+f->lspaces[i] ) ;
-        #else
-        strncpy( lines[i]+charP, f->rows[i]+f->lspaces[i], maxlen ) ;
-        #endif
+        STRCPY( lines[i]+charP, f->rows[i]+f->lspaces[i], maxlen ) ;
       } else {
         unsigned maxlen = maxLenght-charPosition ;
-        #ifdef EMBED_FIGLET_USE_VISUAL_STUDIO
-        strcpy_s( lines[i]+charPosition, maxlen, f->rows[i]+overlap ) ;
-        #else
-        strncpy( lines[i]+charPosition, f->rows[i]+overlap, maxlen ) ;
-        #endif
+        STRCPY( lines[i]+charPosition, f->rows[i]+overlap, maxlen ) ;
       }
     }
     charPosition += cw-overlap ;
@@ -159,6 +153,7 @@ namespace Figlet {
 
   // ---------------------------------------------------------------------------
 
+  /*
   static
   inline
   unsigned
@@ -170,23 +165,26 @@ namespace Figlet {
     if ( c == '(' || c == ')'  ) return 6 ;
     return 0 ;
   }
+  */
   
   char
   Banner::smushingRules( char left, char right ) const {
     // rule 0: left blank use right
     if ( left == ' ' ) return right ;
     // rule 1: equal character smushing
-    if ( left == right ) return left ;
+    if ( left == right ) return right ;
     // rule 2: underscore smushing
     if ( left  == '_' && strchr( "|/\\[]{}()<>", right ) != NULL ) return right ;
     if ( right == '_' && strchr( "|/\\[]{}()<>", left )  != NULL ) return left  ;
     // rule 3: hierarchy smushing
+    /*
     unsigned class_left  = findClass( left ) ;
     unsigned class_right = findClass( right ) ;
     if ( class_left > 0 && class_right > 0 ) {
       if      ( class_left < class_right ) return right ;
       else if ( class_left > class_right ) return left  ;
     }
+    */
     // rule 4: opposite pair smushing
     if ( left == '[' && right == ']' ) return '|' ;
     if ( left == ']' && right == '[' ) return '|' ;
@@ -200,79 +198,69 @@ namespace Figlet {
     if ( left == '>'  && right == '<'  ) return 'X' ;
     // rule 6: hardblack smushing
     // extra rules
-    if ( left == '<'  && right == '|'  ) return '<' ;
+    if ( left == '<' && right == '|' ) return '<' ;
+    if ( left == '|' && right == '/' ) return '/' ;
+    //if ( left == '$' && ( right == '|' || right == '.' ) ) return right ;
+    //if ( left == '$' ) return right ;
+    //if ( left == '$' ) return right ;
     return '\0';
   }
 
   bool
   Banner::pushSmushed( unsigned c ) {
-    FontFiglet const * f = characters + charToTable[c]  ;
+    FontFiglet const * fchar = characters + charToTable[c]  ;
     unsigned cw = charWidth[c] ;
     // calcolo overlapping
-    unsigned overlap = rspaces[0] + f->lspaces[0] ;
+    unsigned overlap = rspaces[0] + fchar->lspaces[0] ;
     for ( unsigned i = 1 ; i < Height ; ++i ) {
-      unsigned tmp = rspaces[i] + f->lspaces[i] ;
+      unsigned tmp = rspaces[i] + fchar->lspaces[i] ;
       if ( tmp < overlap ) overlap = tmp ;
     }
 
     // calcolo smush se possibile
     if ( charPosition > 0 ) {
       bool do_smush = true ;
-      for ( unsigned i = 0 ; i < Height && do_smush ; ++i ) {
-        unsigned tmp = rspaces[i] + f->lspaces[i] ;
+      for ( unsigned i = 0 ; i < Height ; ++i ) {
+        unsigned tmp = rspaces[i] + fchar->lspaces[i] ;
         if ( tmp == overlap ) {
           char * pline = lines[i]+charPosition-rspaces[i] ;
-          smush[i] = smushingRules( pline[-1], f->rows[i][f->lspaces[i]] ) ;
-          do_smush = smush[i] != '\0' ;
+          smush[i] = smushingRules( pline[-1], fchar->rows[i][fchar->lspaces[i]] ) ;
+          do_smush = do_smush && (smush[i] != '\0') ;
         }
       }
       if ( do_smush ) ++overlap ;
     }
-
+    
     // controllo che il carattere stia nel buffer
     unsigned cwo = cw - overlap ; // >= 0
     if ( charPosition+cwo > maxLenght ) return false ;
 
     for ( unsigned i = 0 ; i < Height ; ++i ) {
       char    * pline = lines[i]+charPosition ;
-      unsigned    tmp = rspaces[i] + f->lspaces[i] ;
+      unsigned    tmp = rspaces[i] + fchar->lspaces[i] ;
       unsigned maxlen = maxLenght - charPosition ;
       if ( tmp < overlap ) {
         pline -= rspaces[i]+1 ;
         *pline++ = smush[i] ;
         maxlen += rspaces[i] ;
-        #ifdef EMBED_FIGLET_USE_VISUAL_STUDIO
-        strcpy_s( pline, maxlen, f->rows[i]+f->lspaces[i]+1 ) ;
-        #else
-        strncpy( pline, f->rows[i]+f->lspaces[i]+1, maxlen ) ;
-        #endif
+        STRCPY( pline, fchar->rows[i]+fchar->lspaces[i]+1, maxlen ) ;
       } else {
-        if ( overlap > f->lspaces[i] ) {
-          pline  -= (overlap-f->lspaces[i]) ;
-          maxlen += (overlap-f->lspaces[i]) ;
-          #ifdef EMBED_FIGLET_USE_VISUAL_STUDIO
-          strcpy_s( pline, maxlen, f->rows[i]+f->lspaces[i] ) ;
-          #else
-          strncpy( pline, f->rows[i]+f->lspaces[i], maxlen ) ;
-          #endif
+        if ( overlap > fchar->lspaces[i] ) {
+          pline  -= (overlap-fchar->lspaces[i]) ;
+          maxlen += (overlap-fchar->lspaces[i]) ;
+          STRCPY( pline, fchar->rows[i]+fchar->lspaces[i], maxlen ) ;
         } else {
-          #ifdef EMBED_FIGLET_USE_VISUAL_STUDIO
-          strcpy_s( pline, maxlen, f->rows[i]+overlap ) ;
-          #else
-          strncpy( pline, f->rows[i]+overlap, maxlen ) ;
-          #endif
+          STRCPY( pline, fchar->rows[i]+overlap, maxlen ) ;
         }
       }
     }
     // overlap <= cw ;
     charPosition += cwo ;
 
-    // aggiorno spazi liberi a destra
+    // aggiorno spazi liberi alla destra ultimo carattere inserito
     for ( unsigned i = 0 ; i < Height ; ++i ) {
-      if ( rspaces[i] >= cwo ) {
-        rspaces[i] -= cwo ;
-        if ( rspaces[i] > f -> rspaces[i] ) rspaces[i] = f -> rspaces[i] ;
-      } else rspaces[i] = f -> rspaces[i] ;
+      rspaces[i] += cwo ;
+      if ( rspaces[i] > fchar->rspaces[i] ) rspaces[i] = fchar->rspaces[i] ;
     }
     //std::copy( f -> rspaces, f -> rspaces + Height, rspaces ) ;
     return true ;

@@ -1,4 +1,4 @@
-// Converted FLF file: original_fonts/mini.flf
+// Converted FLF file: /Users/enrico/Ricerca/develop/myBitBucketProjetcs/myFiglet/fonts/mini.flf
 #include "Figlet.hh"
 
 namespace Figlet {
@@ -961,11 +961,11 @@ namespace Figlet {
     // letter N. 111 " o "
     { 111,
       { 5, 2, 1, 5 },
-      { 5, 1, 0, 5 },
+      { 5, 1, 1, 5 },
       {
         "     ",
         "  _$ ",
-        " (_)$",
+        " (_) ",
         "     "
       }
     },
@@ -2391,6 +2391,6 @@ namespace Figlet {
   Banner mini(characters, Hardblank, FontHeight, FontMaxLen, FontSize ) ;
 
   //! \endcond
-  
+
 }
 // EOF file font

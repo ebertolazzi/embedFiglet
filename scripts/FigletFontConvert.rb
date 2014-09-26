@@ -45,6 +45,7 @@ $outstr      = "// Figlet font converted for use with Figlet class"
 $outstr      = "// Converted FLF file: #{ARGV[0]}\n"
 $outstr     += "#include \"Figlet.hh\"\n\n"
 $outstr     += "namespace Figlet {\n\n"
+$outstr     += "  //! \\cond NODOC\n\n" ;
 
 begin
   
@@ -152,6 +153,7 @@ $outstr.chop!  # tolgo ,
 $outstr += "\n  };\n" ;
 $outstr += "\n  static unsigned const FontSize   = sizeof(characters)/sizeof(characters[0]) ;" ;
 $outstr += "\n  Banner #{File.basename(ARGV[0],'.*')}(characters, Hardblank, FontHeight, FontMaxLen, FontSize ) ;" ;
+$outstr += "\n\n  //! \\endcond\n" ;
 $outstr += "\n}\n// EOF file font\n" ;
 
 print $outstr
