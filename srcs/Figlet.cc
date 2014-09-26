@@ -198,9 +198,13 @@ namespace Figlet {
     if ( left == '>'  && right == '<'  ) return 'X' ;
     // rule 6: hardblack smushing
     // extra rules
+    return '\0';
+    
+    // not clear it if work well, for teh moment are disables
     if ( left == '<' && right == '|' ) return '<' ;
     if ( left == '|' && right == '/' ) return '/' ;
-    if ( left == '|' && right == '(' ) return '(' ;
+    if ( left == '|' && right == '(' ) return right ;
+    if ( left == ')' && right == '|' ) return left ;
     if ( (left == '\\' || left == '/') && right == '|' ) return left ;
     return '\0';
   }
