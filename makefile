@@ -4,6 +4,8 @@ OS=$(shell uname)
 LIB_EF = libembedFiglet.a
 CC     = gcc
 CXX    = g++
+CFLAGS =  -I./srcs -Wall -pedantic -O3
+LIBS   = -Llibs -lembedFiglet
 
 # check if the OS string contains 'Linux'
 ifneq (,$(findstring Linux, $(OS)))
@@ -32,8 +34,10 @@ srcs/Figlet_Font_straight.cc
 OBJS = $(SRCS:.cc=.o)
 DEPS = srcs/Figlet.hh
 
-CFLAGS =  -I./srcs -Wall -pedantic -O3
-LIBS   = -Llibs -lembedFiglet
+# prefix for installation, use make PREFIX=/new/prefix install
+# to override
+PREFIX    = /usr/local
+FRAMEWORK = GenericContainer
 
 #AR     = ar rcs
 AR     = libtool -static -o 
@@ -63,6 +67,11 @@ libs/libembedFiglet.so: $(OBJS)
 
 install: libs/$(LIB_EF)
 	cp srcs/Figlet.hh $(PREFIX)/include
+	cp libs/$(LIB_EF) $(PREFIX)/lib
+
+install_as_framework: libs/$(LIB_EF)
+	$(MKDIR) $(PREFIX)/include/$(FRAMEWORK)
+	cp srcs/Figlet.hh $(PREFIX)/include/$(FRAMEWORK)
 	cp libs/$(LIB_EF) $(PREFIX)/lib
 
 run:
