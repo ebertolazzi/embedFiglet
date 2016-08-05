@@ -1,4 +1,4 @@
-embedFiglet
+embedFiglet [![Build Status](https://travis-ci.org/ebertolazzi/embedFiglet.svg?branch=master)](https://travis-ci.org/ebertolazzi/embedFiglet)
 ===========
 
 `embedFiglet` is a C++ library which implement a 

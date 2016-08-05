@@ -4,8 +4,9 @@ OS=$(shell uname)
 LIB_EF = libembedFiglet.a
 CC     = gcc
 CXX    = g++
-CFLAGS =  -I./srcs -Wall -pedantic -O3
-LIBS   = -Llibs -lembedFiglet
+INC    = -I./src
+CFLAGS = -Wall -pedantic -O3
+LIBS   = -Llib -lembedFiglet
 
 # check if the OS string contains 'Linux'
 ifneq (,$(findstring Linux, $(OS)))
@@ -20,19 +21,19 @@ ifneq (,$(findstring Darwin, $(OS)))
 endif
 
 SRCS = \
-srcs/Figlet.cc \
-srcs/Figlet_Font_banner.cc \
-srcs/Figlet_Font_big.cc \
-srcs/Figlet_Font_doom.cc \
-srcs/Figlet_Font_larry3d.cc \
-srcs/Figlet_Font_mini.cc \
-srcs/Figlet_Font_script.cc \
-srcs/Figlet_Font_small.cc \
-srcs/Figlet_Font_standard.cc \
-srcs/Figlet_Font_straight.cc
+src/Figlet.cc \
+src/Figlet_Font_banner.cc \
+src/Figlet_Font_big.cc \
+src/Figlet_Font_doom.cc \
+src/Figlet_Font_larry3d.cc \
+src/Figlet_Font_mini.cc \
+src/Figlet_Font_script.cc \
+src/Figlet_Font_small.cc \
+src/Figlet_Font_standard.cc \
+src/Figlet_Font_straight.cc
 
 OBJS = $(SRCS:.cc=.o)
-DEPS = srcs/Figlet.hh
+DEPS = src/Figlet.hh
 
 # prefix for installation, use make PREFIX=/new/prefix install
 # to override
@@ -43,36 +44,38 @@ FRAMEWORK = GenericContainer
 AR     = libtool -static -o 
 MKDIR  = mkdir -p
 
-all:  libs/$(LIB_EF)
-	$(CXX) $(CFLAGS) -o test tests/test.cc $(LIBS)
-	$(CXX) $(CFLAGS) -o example examples/example.cc $(LIBS)
+all:  lib
+	$(CXX) $(CXXFLAGS) $(INC) -o test tests/test.cc $(LIBS)
+	$(CXX) $(CXXFLAGS) $(INC) -o example examples/example.cc $(LIBS)
 
-Sources/%.o: srcs/%.cc $(DEPS)
-	$(CXX) $(CFLAGS) -c $< -o $@ 
+lib:  lib/$(LIB_EF)
 
-Sources/%.o: srcs/%.c $(DEPS)
+src/%.o: src/%.cc $(DEPS)
+	$(CXX) $(CXXFLAGS) $(INC) -c $< -o $@ 
+
+src/%.o: src/%.c $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS)
 
-libs/libembedFiglet.a: $(OBJS)
-	$(MKDIR) libs
-	$(AR) libs/libembedFiglet.a $(OBJS) 
+lib/libembedFiglet.a: $(OBJS)
+	$(MKDIR) lib
+	$(AR) lib/libembedFiglet.a $(OBJS)
 
-libs/libembedFiglet.dylib: $(OBJS)
-	$(MKDIR) libs
-	$(CXX) -dynamiclib $(OBJS) -o libs/libembedFiglet.dylib $(LIB_DIR) -install_name libembedFiglet.dylib -Wl,-rpath,.
+lib/libembedFiglet.dylib: $(OBJS)
+	$(MKDIR) lib
+	$(CXX) -dynamiclib $(OBJS) -o lib/libembedFiglet.dylib $(LIB_DIR) -install_name libembedFiglet.dylib -Wl,-rpath,.
 
-libs/libembedFiglet.so: $(OBJS)
-	$(MKDIR) libs
-	$(CXX) -shared $(OBJS) -o libs/libembedFiglet.so $(LIB_DIR)
+lib/libembedFiglet.so: $(OBJS)
+	$(MKDIR) lib
+	$(CXX) -shared $(OBJS) -o lib/libembedFiglet.so $(LIB_DIR)
 
-install: libs/$(LIB_EF)
-	cp srcs/Figlet.hh $(PREFIX)/include
-	cp libs/$(LIB_EF) $(PREFIX)/lib
+install: lib/$(LIB_EF)
+	cp src/Figlet.hh $(PREFIX)/include
+	cp lib/$(LIB_EF) $(PREFIX)/lib
 
-install_as_framework: libs/$(LIB_EF)
+install_as_framework: lib/$(LIB_EF)
 	$(MKDIR) $(PREFIX)/include/$(FRAMEWORK)
-	cp srcs/Figlet.hh $(PREFIX)/include/$(FRAMEWORK)
-	cp libs/$(LIB_EF) $(PREFIX)/lib
+	cp src/Figlet.hh $(PREFIX)/include/$(FRAMEWORK)
+	cp lib/$(LIB_EF) $(PREFIX)/lib
 
 run:
 	./test
@@ -82,4 +85,4 @@ doc:
 	doxygen
 	
 clean:
-	rm -f libs/libembedFiglet.* srcs/*.o
+	rm -f lib/libembedFiglet.* src/*.o
