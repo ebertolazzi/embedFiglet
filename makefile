@@ -11,12 +11,14 @@ LIBS   = -Llib -lembedFiglet
 # check if the OS string contains 'Linux'
 ifneq (,$(findstring Linux, $(OS)))
   #LIB_GC = libembedFiglet.so
+  AR = ar rcs
 endif
 
 # check if the OS string contains 'Darwin'
 ifneq (,$(findstring Darwin, $(OS)))
-  CC     = clang
-  CXX    = clang++
+  CC  = clang
+  CXX = clang++
+  AR  = libtool -static -o 
   #LIB_GC = libembedFiglet.dylib
 endif
 
@@ -40,8 +42,6 @@ DEPS = src/Figlet.hh
 PREFIX    = /usr/local
 FRAMEWORK = GenericContainer
 
-#AR     = ar rcs
-AR     = libtool -static -o 
 MKDIR  = mkdir -p
 
 all:  lib
