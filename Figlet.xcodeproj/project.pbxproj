@@ -108,7 +108,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		D96501BE182DB45B003F5B6F /* srcs */ = {
+		D96501BE182DB45B003F5B6F /* src */ = {
 			isa = PBXGroup;
 			children = (
 				D96501BF182DB45B003F5B6F /* Figlet.cc */,
@@ -123,7 +123,7 @@
 				D96501D0182DB45B003F5B6F /* Figlet_Font_standard.cc */,
 				D96501D2182DB45B003F5B6F /* Figlet_Font_straight.cc */,
 			);
-			path = srcs;
+			path = src;
 			sourceTree = "<group>";
 		};
 		D96501E9182DB476003F5B6F /* examples */ = {
@@ -146,7 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				D97083C817CE8A7300AD3065 /* Products */,
-				D96501BE182DB45B003F5B6F /* srcs */,
+				D96501BE182DB45B003F5B6F /* src */,
 				D96501E9182DB476003F5B6F /* examples */,
 				D96501EC182DB48B003F5B6F /* tests */,
 			);
