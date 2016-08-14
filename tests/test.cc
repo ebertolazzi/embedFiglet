@@ -21,9 +21,9 @@
 
 using namespace std ;
  
-char msg1[] = "Converged \"Yes/NO\"" ;
-char msg2[] = "#$%@ pippo *&()" ;
-char msg3[] = "Precipitevolissimevolmente" ;
+static char const msg1[] = "Converged \"Yes/NO\"" ;
+static char const msg2[] = "#$%@ pippo *&()" ;
+static char const msg3[] = "Precipitevolissimevolmente" ;
 
 #define DO_TEST(FONT) \
 Figlet::FONT.print(msg1) ; \

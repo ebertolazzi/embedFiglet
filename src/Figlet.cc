@@ -56,6 +56,8 @@ POSSIBILITY OF SUCH DAMAGE.
 namespace Figlet {
 
   using namespace std ;
+  
+  typedef unsigned short u_short ;
 
   Banner::Banner( FontFiglet const * _characters, 
                   char               _Hardblank,
@@ -75,8 +77,8 @@ namespace Figlet {
     for ( unsigned i=0 ; i < FontSize ; ++i ) {
       unsigned ipos = unsigned(characters[i].nchar) ;
       if ( ipos < maxTableSize ) {
-        charToTable[ipos] = (unsigned short)(i) ;
-        charWidth[ipos]   = (unsigned short)strlen(characters[i].rows[0]) ;
+        charToTable[ipos] = u_short(i) ;
+        charWidth[ipos]   = u_short( strlen(characters[i].rows[0]) ) ;
       }
     }
     Width = charWidth[charToTable[int('M')]] ;
@@ -223,13 +225,15 @@ namespace Figlet {
     // extra rules
     return '\0';
     
-    // not clear it if work well, for teh moment are disables
+    // not clear it if work well, for the moment are disables
+    /*
     if ( left == '<' && right == '|' ) return '<' ;
     if ( left == '|' && right == '/' ) return '/' ;
     if ( left == '|' && right == '(' ) return right ;
     if ( left == ')' && right == '|' ) return left ;
     if ( (left == '\\' || left == '/') && right == '|' ) return left ;
     return '\0';
+    */
   }
 
   bool

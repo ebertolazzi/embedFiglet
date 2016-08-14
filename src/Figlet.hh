@@ -282,11 +282,11 @@ namespace Figlet {
 
     //! Constructor of `Banner` class
     /*!
-       \param characters
-       \param Hardblank
-       \param Height
-       \param FontMaxLen
-       \param FontSize
+       \param characters none
+       \param Hardblank  none
+       \param Height     none
+       \param FontMaxLen none
+       \param FontSize   none
      */
     explicit
     Banner( FontFiglet const * characters,
