@@ -16,8 +16,9 @@ endif
 
 # check if the OS string contains 'Darwin'
 ifneq (,$(findstring Darwin, $(OS)))
-  CC  = clang   -Weverything -Wno-reserved-id-macro -Wno-padded -Wno-documentation-unknown-command
-  CXX = clang++ -Weverything -Wno-reserved-id-macro -Wno-padded -Wno-documentation-unknown-command
+  WARN = -Weverything -Wno-reserved-id-macro -Wno-padded -Wno-documentation-unknown-command -Wno-global-constructors
+  CC  = clang   $(WARN)
+  CXX = clang++ $(WARN)
   AR  = libtool -static -o 
   #LIB_GC = libembedFiglet.dylib
 endif
