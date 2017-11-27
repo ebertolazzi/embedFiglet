@@ -51,25 +51,31 @@ all:  lib
 
 lib:  lib/$(LIB_EF)
 
+include_local:
+	@rm -rf lib/include
+	$(MKDIR) lib
+	$(MKDIR) lib/include
+	@cp -f src/*.h* lib/include
+
 src/%.o: src/%.cc $(DEPS)
 	$(CXX) $(CXXFLAGS) $(INC) -c $< -o $@ 
 
 src/%.o: src/%.c $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS)
 
-lib/libembedFiglet.a: $(OBJS)
+lib/libembedFiglet.a: $(OBJS) include_local
 	$(MKDIR) lib
 	$(AR) lib/libembedFiglet.a $(OBJS)
 
-lib/libembedFiglet.dylib: $(OBJS)
+lib/libembedFiglet.dylib: $(OBJS) include_local
 	$(MKDIR) lib
 	$(CXX) -dynamiclib $(OBJS) -o lib/libembedFiglet.dylib $(LIB_DIR) -install_name libembedFiglet.dylib -Wl,-rpath,.
 
-lib/libembedFiglet.so: $(OBJS)
+lib/libembedFiglet.so: $(OBJS) include_local
 	$(MKDIR) lib
 	$(CXX) -shared $(OBJS) -o lib/libembedFiglet.so $(LIB_DIR)
 
-install: lib/$(LIB_EF)
+install: lib/$(LIB_EF)/
 	cp src/Figlet.hh $(PREFIX)/include
 	cp lib/$(LIB_EF) $(PREFIX)/lib
 
