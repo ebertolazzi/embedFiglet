@@ -199,8 +199,8 @@ namespace Figlet {
     // rule 1: equal character smushing
     if ( left == right ) return right ;
     // rule 2: underscore smushing
-    if ( left  == '_' && strchr( "|/\\[]{}()<>", right ) != NULL ) return right ;
-    if ( right == '_' && strchr( "|/\\[]{}()<>", left )  != NULL ) return left  ;
+    if ( left  == '_' && strchr( "|/\\[]{}()<>", right ) != nullptr ) return right ;
+    if ( right == '_' && strchr( "|/\\[]{}()<>", left )  != nullptr ) return left  ;
     // rule 3: hierarchy smushing
     /* ELIMINATED
     unsigned class_left  = findClass( left ) ;
