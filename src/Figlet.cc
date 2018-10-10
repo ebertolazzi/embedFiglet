@@ -326,10 +326,10 @@ namespace Figlet {
   // ---------------------------------------------------------------------------
 
   unsigned
-  Banner::print( char const message[], 
-                 basic_ostream<char> & s,
-                 char const top[], 
-                 char const bottom[]  ) {
+  Banner::print( char const     message[],
+                 ostream_type & s,
+                 char const     top[],
+                 char const     bottom[]  ) {
 
     fillForPrint(message) ;
 
@@ -348,9 +348,9 @@ namespace Figlet {
   // ---------------------------------------------------------------------------
 
   void
-  Banner:: printFramed( char const message[],
-                        basic_ostream<char> & s,
-                        FrameMode fm ) {
+  Banner:: printFramed( char const     message[],
+                        ostream_type & s,
+                        FrameMode      fm ) {
 
     fillForPrint(message) ;
 

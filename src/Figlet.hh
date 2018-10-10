@@ -226,7 +226,9 @@ POSSIBILITY OF SUCH DAMAGE.
 namespace Figlet {
 
   using namespace std ;
-  
+
+  typedef std::basic_ostream<char> ostream_type;
+
   static unsigned const maxHeight    = 10  ; //!< maximum allowed (lines) height of the font 
   static unsigned const maxLenght    = 256 ; //!< maximum number of characters x line of the banner
   static unsigned const maxTableSize = 256 ; //!< maximum number of allowed character x font
@@ -312,16 +314,16 @@ namespace Figlet {
 
     //! Print large letters of string `message` on stream `s`, see \ref printmode
     unsigned
-    print( char const message[],
-           std::basic_ostream<char> & s = cout,
-           char const top[] = "",
-           char const bottom[] = "" ) ;
+    print( char const     message[],
+           ostream_type & s        = cout,
+           char const     top[]    = "",
+           char const     bottom[] = "" ) ;
 
     //! \ref framemode
     void
-    printFramed( char const message[],
-                 std::basic_ostream<char> & s = cout,
-                 FrameMode fm = FIGLET_SINGLE ) ;
+    printFramed( char const     message[],
+                 ostream_type & s  = cout,
+                 FrameMode      fm = FIGLET_SINGLE ) ;
   } ;
 
   extern Banner big      ; //!< instance `Banner` class using figlet font `big`
