@@ -5,9 +5,9 @@ namespace Figlet {
 
   //! \cond NODOC
 
-  static char     const Hardblank  = '$' ;
-  static unsigned const FontHeight = 5 ;
-  static unsigned const FontMaxLen = 13 ;
+  static char     const Hardblank  = '$';
+  static unsigned const FontHeight = 5;
+  static unsigned const FontMaxLen = 13;
   static FontFiglet characters[] = {
 
     // letter "space"
@@ -361,7 +361,7 @@ namespace Figlet {
       }
     },
 
-    // letter N. 59 " ; "
+    // letter N. 59 "; "
     { 59,
       { 2, 1, 2, 1, 1 },
       { 1, 0, 1, 0, 1 },
@@ -2585,8 +2585,8 @@ namespace Figlet {
     }
   };
 
-  static unsigned const FontSize   = sizeof(characters)/sizeof(characters[0]) ;
-  Banner small(characters, Hardblank, FontHeight, FontMaxLen, FontSize ) ;
+  static unsigned const FontSize   = sizeof(characters)/sizeof(characters[0]);
+  Banner small(characters, Hardblank, FontHeight, FontMaxLen, FontSize );
 
   //! \endcond
   

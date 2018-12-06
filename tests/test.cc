@@ -19,23 +19,23 @@
 
 #include "Figlet.hh"
 
-using namespace std ;
+using namespace std;
  
-static char const msg1[] = "Converged \"Yes/NO\"" ;
-static char const msg2[] = "#$%@ pippo *&()" ;
-static char const msg3[] = "Precipitevolissimevolmente" ;
+static char const msg1[] = "Converged \"Yes/NO\"";
+static char const msg2[] = "#$%@ pippo *&()";
+static char const msg3[] = "Precipitevolissimevolmente";
 
 #define DO_TEST(FONT) \
-Figlet::FONT.print(msg1) ; \
-Figlet::FONT.setPacked() ; \
-Figlet::FONT.print(msg1) ; \
-Figlet::FONT.printFramed(msg2) ; \
+Figlet::FONT.print(msg1); \
+Figlet::FONT.setPacked(); \
+Figlet::FONT.print(msg1); \
+Figlet::FONT.printFramed(msg2); \
 Figlet::FONT.printFramed(msg3,cout,Figlet::FIGLET_DOUBLE)
 
 int
 main() {
 
-  Figlet::standard.print("like this.") ;
+  Figlet::standard.print("like this.");
 
   DO_TEST(banner);
   DO_TEST(big);
@@ -47,5 +47,5 @@ main() {
   DO_TEST(standard);
   DO_TEST(straight);
 
-  cout << "ALL DONE!\n" ;
+  cout << "ALL DONE!\n";
 }

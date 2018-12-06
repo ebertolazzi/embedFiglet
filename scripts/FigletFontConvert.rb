@@ -45,13 +45,13 @@ $outstr      = "// Figlet font converted for use with Figlet class"
 $outstr      = "// Converted FLF file: #{ARGV[0]}\n"
 $outstr     += "#include \"Figlet.hh\"\n\n"
 $outstr     += "namespace Figlet {\n\n"
-$outstr     += "  //! \\cond NODOC\n\n" ;
+$outstr     += "  //! \\cond NODOC\n\n";
 
 begin
   
   def print_char
     # numero di carattere
-    $outstr += "\n#{$indent}// #{$char_name}\n#{$indent}{ #{$char_number},\n" ;
+    $outstr += "\n#{$indent}// #{$char_name}\n#{$indent}{ #{$char_number},\n";
     # vettore spazi a sinistra
     $outstr += "#{$indent}  { "
     $char_lines.each { |line|
@@ -87,8 +87,8 @@ begin
     $char_lines.each { |str|
       $outstr += "#{$indent}    \"" # inizio stringa
       str.each_char { |c|
-        $outstr += c ;
-        $outstr += c if c == "\\" ; # escape per carattere \
+        $outstr += c;
+        $outstr += c if c == "\\"; # escape per carattere \
       }
       $outstr += "\",\n" # fine stringa
     }
@@ -112,22 +112,22 @@ begin
         #$Print_Direction = $7.to_i
         #$Full_Layout     = $8.to_i
         #$Codetag_Count   = $9.to_i
-        $state           = $Comment_Lines == 0 ? :char : :header ;
+        $state           = $Comment_Lines == 0 ? :char : :header;
 
-        $outstr += "  static char     const Hardblank  = '#{$Hardblank}' ;\n" ;
-        $outstr += "  static unsigned const FontHeight = #{$Height} ;\n" ;
-        $outstr += "  static unsigned const FontMaxLen = #{$Max_Length} ;\n" ;
-        #$outstr += "  unsigned Baseline  = #{$Baseline} ;\n" ;
-        $outstr += "  static FontFiglet characters[] = {\n" ;
+        $outstr += "  static char     const Hardblank  = '#{$Hardblank}';\n";
+        $outstr += "  static unsigned const FontHeight = #{$Height};\n";
+        $outstr += "  static unsigned const FontMaxLen = #{$Max_Length};\n";
+        #$outstr += "  unsigned Baseline  = #{$Baseline};\n";
+        $outstr += "  static FontFiglet characters[] = {\n";
       else
         print "Bad header line: #{line}\n"
         raise "Bad flf file"
       end
     when :header then
-      #print "Skip line: #{line}" ;
-      $state = :char if nline > $Comment_Lines ;
+      #print "Skip line: #{line}";
+      $state = :char if nline > $Comment_Lines;
     when :char then
-      #print "Char: #{line}" ;
+      #print "Char: #{line}";
       if line =~ /^(.*)@@$/ then # fine carattere
         $char_lines << $1
         print_char()
@@ -150,11 +150,11 @@ rescue
 end
 $outstr.chomp! # tolgo new line
 $outstr.chop!  # tolgo ,
-$outstr += "\n  };\n" ;
-$outstr += "\n  static unsigned const FontSize   = sizeof(characters)/sizeof(characters[0]) ;" ;
-$outstr += "\n  Banner #{File.basename(ARGV[0],'.*')}(characters, Hardblank, FontHeight, FontMaxLen, FontSize ) ;" ;
-$outstr += "\n\n  //! \\endcond\n" ;
-$outstr += "\n}\n// EOF file font\n" ;
+$outstr += "\n  };\n";
+$outstr += "\n  static unsigned const FontSize   = sizeof(characters)/sizeof(characters[0]);";
+$outstr += "\n  Banner #{File.basename(ARGV[0],'.*')}(characters, Hardblank, FontHeight, FontMaxLen, FontSize );";
+$outstr += "\n\n  //! \\endcond\n";
+$outstr += "\n}\n// EOF file font\n";
 
 print $outstr
 
