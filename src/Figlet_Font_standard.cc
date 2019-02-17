@@ -1,6 +1,10 @@
 // Converted FLF file: original_fonts/standard.flf
 #include "Figlet.hh"
 
+#ifdef __clang__
+#pragma clang diagnostic ignored "-Wglobal-constructors"
+#endif
+
 namespace Figlet {
 
   //! \cond NODOC

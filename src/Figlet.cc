@@ -14,29 +14,29 @@
  |                                                                          |
 \*--------------------------------------------------------------------------*/
 /*
-Copyright (c) 2014, Enrico Bertolazzi 
+Copyright (c) 2014, Enrico Bertolazzi
 All rights reserved.
 
-Redistribution and use in source and binary forms, with or without 
-modification, are permitted provided that the following conditions are 
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are
 met:
 
-    * Redistributions of source code must retain the above copyright 
+    * Redistributions of source code must retain the above copyright
       notice, this list of conditions and the following disclaimer.
-    * Redistributions in binary form must reproduce the above copyright 
-      notice, this list of conditions and the following disclaimer in 
+    * Redistributions in binary form must reproduce the above copyright
+      notice, this list of conditions and the following disclaimer in
       the documentation and/or other materials provided with the distribution
-      
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" 
-AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
-CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF 
-SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 POSSIBILITY OF SUCH DAMAGE.
 */
 
@@ -56,14 +56,16 @@ POSSIBILITY OF SUCH DAMAGE.
 namespace Figlet {
 
   using namespace std;
-  
+
   typedef unsigned short u_short;
 
-  Banner::Banner( FontFiglet const * _characters, 
-                  char               _Hardblank,
-                  unsigned           _Height,
-                  unsigned           _FontMaxLen,
-                  unsigned           _FontSize )
+  Banner::Banner(
+    FontFiglet const * _characters,
+    char               _Hardblank,
+    unsigned           _Height,
+    unsigned           _FontMaxLen,
+    unsigned           _FontSize
+  )
   : characters(_characters)
   , Hardblank(_Hardblank)
   , Height(_Height)
@@ -90,7 +92,7 @@ namespace Figlet {
     std::fill( rspaces, rspaces+Height, 0  );
     for ( unsigned i = 0; i < Height; ++i ) *lines[i] = '\0';
   }
-  
+
   // ---------------------------------------------------------------------------
 
   bool
@@ -111,7 +113,7 @@ namespace Figlet {
     std::copy( f -> rspaces, f -> rspaces + Height, rspaces );
     return true;
   }
-  
+
   // ---------------------------------------------------------------------------
 
   bool
@@ -126,7 +128,7 @@ namespace Figlet {
     // centratura carattere
     unsigned dR = dd/2;
     unsigned dL = dd-dR;
-    
+
     for ( unsigned i = 0; i < Height; ++i ) {
       char       * p = lines[i]+charPosition;
       char const * q = f->rows[i];
@@ -141,7 +143,7 @@ namespace Figlet {
     std::copy( f -> rspaces, f -> rspaces + Height, rspaces );
     return true;
   }
-  
+
   // ---------------------------------------------------------------------------
 
   bool
@@ -157,7 +159,7 @@ namespace Figlet {
 
     // controllo che il carattere stia nel buffer
     if ( charPosition+cw > maxLenght+overlap ) return false;
-    
+
     for ( unsigned i = 0; i < Height; ++i ) {
       // copio porzione di stringa
       if ( overlap > f->lspaces[i] ) {
@@ -191,7 +193,7 @@ namespace Figlet {
     return 0;
   }
   */
-  
+
   char
   Banner::smushingRules( char left, char right ) const {
     // rule 0: left blank use right
@@ -224,7 +226,7 @@ namespace Figlet {
     // rule 6: hardblack smushing
     // extra rules
     return '\0';
-    
+
     // not clear it if work well, for the moment are disables
     /*
     if ( left == '<' && right == '|' ) return '<';
@@ -260,7 +262,7 @@ namespace Figlet {
       }
       if ( do_smush ) ++overlap;
     }
-    
+
     // controllo che il carattere stia nel buffer
     unsigned cwo = cw - overlap; // >= 0
     if ( charPosition+cwo > maxLenght ) return false;
@@ -326,17 +328,19 @@ namespace Figlet {
   // ---------------------------------------------------------------------------
 
   unsigned
-  Banner::print( char const     message[],
-                 ostream_type & s,
-                 char const     top[],
-                 char const     bottom[]  ) {
+  Banner::print(
+    char const     message[],
+    ostream_type & s,
+    char const     top[],
+    char const     bottom[]
+  ) {
 
     fillForPrint(message);
 
     for ( unsigned i = 0; i < strlen(top); ++i ) {
       for ( unsigned j = 0; j < charPosition; ++j ) s << top[i];
       s << '\n';
-    }   
+    }
     for ( unsigned i = 0; i < Height; ++i ) s << lines[i] << '\n';
     for ( unsigned i = 0; i < strlen(bottom); ++i ) {
       for ( unsigned j = 0; j < charPosition; ++j ) s << bottom[i];
@@ -348,9 +352,11 @@ namespace Figlet {
   // ---------------------------------------------------------------------------
 
   void
-  Banner:: printFramed( char const     message[],
-                        ostream_type & s,
-                        FrameMode      fm ) {
+  Banner:: printFramed(
+    char const     message[],
+    ostream_type & s,
+    FrameMode      fm
+  ) {
 
     fillForPrint(message);
 
@@ -375,7 +381,6 @@ namespace Figlet {
       break;
     }
   }
-
 
 }
 

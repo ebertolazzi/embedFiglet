@@ -14,32 +14,32 @@
  |                                                                          |
 \*--------------------------------------------------------------------------*/
 /*
-Copyright (c) 2014, Enrico Bertolazzi 
+Copyright (c) 2014, Enrico Bertolazzi
 All rights reserved.
 
-Redistribution and use in source and binary forms, with or without 
-modification, are permitted provided that the following conditions are 
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are
 met:
 
-    * Redistributions of source code must retain the above copyright 
+    * Redistributions of source code must retain the above copyright
       notice, this list of conditions and the following disclaimer.
-    * Redistributions in binary form must reproduce the above copyright 
-      notice, this list of conditions and the following disclaimer in 
+    * Redistributions in binary form must reproduce the above copyright
+      notice, this list of conditions and the following disclaimer in
       the documentation and/or other materials provided with the distribution
-      
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" 
-AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
-CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF 
-SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 POSSIBILITY OF SUCH DAMAGE.
 */
-          
+
 //
 // file: Figlet.hh
 //
@@ -56,30 +56,30 @@ POSSIBILITY OF SUCH DAMAGE.
   \author    Enrico Bertolazzi (enrico.bertolazzi@unitn.it), homepage: http://www.ing.unitn.it/~bertolaz
   \version   1.0.2
   \date      2013
- 
+
   \details
 
   This library available at
-  
+
   - https://github.com/ebertolazzi/embedFiglet
   - https://bitbucket.org/ebertolazzi/embedfiglet
-  
+
   implement a subset of Figlet capability, i.e.
   print large letters out of ordinary text
- 
+
   ~~~~~~~~~~~~~
    _ _ _          _   _     _
   | (_) | _____  | |_| |__ (_)___
   | | | |/ / _ \ | __| '_ \| / __|
   | | |   <  __/ | |_| | | | \__ \_
   |_|_|_|\_\___|  \__|_| |_|_|___(_)
- 
+
   ~~~~~~~~~~~~~
- 
+
   Differently of standard FIGlet command (http://www.figlet.org/)
   this print can be done inside a user program using run time
   generated string as follows
-  
+
   ~~~~~~~~~~~~~{.c++}
   #include "Figlet.hh"
   #include <sstream>
@@ -97,34 +97,34 @@ POSSIBILITY OF SUCH DAMAGE.
     return 0;
   }
   ~~~~~~~~~~~~~
-  
+
   which output is the following
-  
+
   ~~~~~~~~~~~~~
    _____               _   _
   |  ___| __ __ _  ___| |_(_) ___  _ __  ___
   | |_ | '__/ _` |/ __| __| |/ _ \| '_ \/ __|
   |  _|| | | (_| | (__| |_| | (_) | | | \__ \
   |_|  |_|  \__,_|\___|\__|_|\___/|_| |_|___/
-                                           
-   ___   _____         ___   ___   
+
+   ___   _____         ___   ___
   | __| / /_  )  ___  |_  ) | __|
   |__ \/ / / /  |___|  / / _|__ \
   |___/_/ /___| |___| /___(_)___/
-                               
+
    ___   ______        _    __  __  __  ______
   | __| / /__ /  ___  / |  / / / / / / / /__  |
   |__ \/ / |_ \ |___| | |_/ _ Y _ Y _ Y _ \/ /
   |___/_/ |___/ |___| |_(_)___|___|___|___/_/
-                                             
+
    ___   ___ _          _   ___ ___
   | __| / / | |   ___  / | |_  ) __|
   |__ \/ /|_  _| |___| | |_ / /|__ \
   |___/_/   |_|  |___| |_(_)___|___/
   ~~~~~~~~~~~~~
 
-  No initialization files are necessary. The fonts are
-  hardware embedded in the library. 
+  No initialization files are necessary.
+  The fonts are hardware embedded in the library.
   The available fonts are:
 
   - banner
@@ -136,10 +136,10 @@ POSSIBILITY OF SUCH DAMAGE.
   - small
   - standard
   - straight
-  
+
   A simple ruby script permits to convert figlet .flf files
   to structures which can be embedded in the library.
- 
+
   - \ref printmode
   - \ref framemode
 
@@ -147,7 +147,7 @@ POSSIBILITY OF SUCH DAMAGE.
 
 /*!
   \page printmode Available printing mode
- 
+
   Only four mode of print the same string:
 
     - FIGLET_SMUSHED     standard way of figlet print
@@ -183,12 +183,12 @@ POSSIBILITY OF SUCH DAMAGE.
 
 /*!
   \page framemode Available framing mode
- 
+
   Only two framing are available:
- 
-   - FIGLET_SINGLE  single frame around a string
-   - FIGLET_DOUBLE  double frame around a string
- 
+
+    - FIGLET_SINGLE  single frame around a string
+    - FIGLET_DOUBLE  double frame around a string
+
   The effect are the following
 
   ~~~~~~~~~~~~~~~~~~
@@ -242,10 +242,12 @@ namespace Figlet {
   } FontFiglet;
 
   //! Available way to print a string, see \ref printmode
-  typedef enum { FIGLET_SMUSHED=0,
-                 FIGLET_PACKED,
-                 FIGLET_FULLWIDTH,
-                 FIGLET_MONOSPACED } PrintMode;
+  typedef enum {
+    FIGLET_SMUSHED=0,
+    FIGLET_PACKED,
+    FIGLET_FULLWIDTH,
+    FIGLET_MONOSPACED
+  } PrintMode;
 
   //! Available way to print a frames string, see \ref framemode
   typedef enum { FIGLET_SINGLE=0, FIGLET_DOUBLE } FrameMode;
@@ -268,9 +270,9 @@ namespace Figlet {
 
     PrintMode          printMode; //!< the type of printing mode used
 
-    Banner const & operator = ( Banner const & );  
+    Banner const & operator = ( Banner const & );
     Banner( Banner const & );
-    
+
     //! evaluate smushing rules for 2 characters, return '\0' if no rules apply
     char smushingRules( char left, char right ) const;
 
@@ -284,12 +286,12 @@ namespace Figlet {
 
     //! Constructor of `Banner` class
     /*!
-       \param characters none
-       \param Hardblank  none
-       \param Height     none
-       \param FontMaxLen none
-       \param FontSize   none
-     */
+    :|: \param characters none
+    :|: \param Hardblank  none
+    :|: \param Height     none
+    :|: \param FontMaxLen none
+    :|: \param FontSize   none
+    \*/
     explicit
     Banner( FontFiglet const * characters,
             char               Hardblank,
@@ -314,16 +316,20 @@ namespace Figlet {
 
     //! Print large letters of string `message` on stream `s`, see \ref printmode
     unsigned
-    print( char const     message[],
-           ostream_type & s        = cout,
-           char const     top[]    = "",
-           char const     bottom[] = "" );
+    print(
+      char const     message[],
+      ostream_type & s        = cout,
+      char const     top[]    = "",
+      char const     bottom[] = ""
+    );
 
     //! \ref framemode
     void
-    printFramed( char const     message[],
-                 ostream_type & s  = cout,
-                 FrameMode      fm = FIGLET_SINGLE );
+    printFramed(
+      char const     message[],
+      ostream_type & s  = cout,
+      FrameMode      fm = FIGLET_SINGLE
+    );
   };
 
   extern Banner big;      //!< instance `Banner` class using figlet font `big`

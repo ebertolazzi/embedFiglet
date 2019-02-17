@@ -1,6 +1,10 @@
 // Converted FLF file: /Users/enrico/Ricerca/develop/myBitBucketProjetcs/myFiglet/fonts/mini.flf
 #include "Figlet.hh"
 
+#ifdef __clang__
+#pragma clang diagnostic ignored "-Wglobal-constructors"
+#endif
+
 namespace Figlet {
 
   //! \cond NODOC
