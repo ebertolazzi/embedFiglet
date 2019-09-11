@@ -45,9 +45,9 @@ FRAMEWORK = GenericContainer
 
 MKDIR  = mkdir -p
 
-all:  lib
-	$(CXX) $(CXXFLAGS) $(INC) -o test tests/test.cc $(LIBS)
-	$(CXX) $(CXXFLAGS) $(INC) -o example examples/example.cc $(LIBS)
+all: lib
+	$(CXX) $(CXXFLAGS) $(INC) -o test tests-cpp/test.cc $(LIBS)
+	$(CXX) $(CXXFLAGS) $(INC) -o example tests-cpp/example.cc $(LIBS)
 
 lib:  lib/$(LIB_EF)
 
@@ -90,6 +90,6 @@ run:
 
 doc:
 	doxygen
-	
+
 clean:
 	rm -f lib/libembedFiglet.* src/*.o
