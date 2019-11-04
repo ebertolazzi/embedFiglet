@@ -5,7 +5,7 @@ LIB_EF = libembedFiglet.a
 CC     = gcc
 CXX    = g++
 INC    = -I./src
-CFLAGS = -Wall -pedantic -O3
+CFLAGS = -Wall -pedantic -O2
 LIBS   = -Llib -lembedFiglet
 
 # check if the OS string contains 'Linux'
