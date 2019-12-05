@@ -74,26 +74,17 @@ task :build_win, [:year, :bits] do |t, args|
     sh cmake_cmd + ' -DCMAKE_BUILD_TYPE:VAR=Debug --loglevel=WARNING ..'
     sh 'cmake --build . --config Debug --target install '+PARALLEL+QUIET
     FileUtils.cp_r './lib/dll', '../lib/' if Dir.exist?('./lib/dll')
-    Dir['./lib/bin/*'].each do |f|
-      FileUtils.cp f, '../lib/bin/'+args.bits+'/'+File.basename(f)
-    end
-    Dir['./lib/lib/*'].each do |f|
-      if /\_static.*\.lib$/.match(f) then
-        FileUtils.cp f, '../lib/lib/'+File.basename(f)
-      else
-        FileUtils.cp f, '../lib/dll/'+File.basename(f)
-      end
-    end
+  else
+    sh cmake_cmd + ' -DCMAKE_BUILD_TYPE:VAR=Release --loglevel=WARNING ..'
+    sh 'cmake  --build . --config Release  --target install '+PARALLEL+QUIET
+    FileUtils.cp_r './lib/dll', '../lib/' if Dir.exist?('./lib/dll')
   end
 
-  sh cmake_cmd + ' -DCMAKE_BUILD_TYPE:VAR=Release --loglevel=WARNING ..'
-  sh 'cmake  --build . --config Release  --target install '+PARALLEL+QUIET
-  FileUtils.cp_r './lib/dll', '../lib/' if Dir.exist?('./lib/dll')
   Dir['./lib/bin/*'].each do |f|
     FileUtils.cp f, '../lib/bin/'+args.bits+'/'+File.basename(f)
   end
   Dir['./lib/lib/*'].each do |f|
-    if /\_static.*\.lib$/.match(f) then
+    if /\_static*.*\.lib$/.match(f) then
       FileUtils.cp f, '../lib/lib/'+File.basename(f)
     else
       FileUtils.cp f, '../lib/dll/'+File.basename(f)
@@ -129,9 +120,10 @@ task :build_osx do
   if COMPILE_DEBUG then
     sh cmake_cmd + ' -DCMAKE_BUILD_TYPE:VAR=Debug --loglevel=WARNING ..'
     sh 'cmake --build . --config Debug --target install '+PARALLEL+QUIET
+  else
+    sh cmake_cmd + ' -DCMAKE_BUILD_TYPE:VAR=Release --loglevel=WARNING ..'
+    sh 'cmake --build . --config Release --target install '+PARALLEL+QUIET
   end
-  sh cmake_cmd + ' -DCMAKE_BUILD_TYPE:VAR=Release --loglevel=WARNING ..'
-  sh 'cmake --build . --config Release --target install '+PARALLEL+QUIET
   FileUtils.cd '..'
 end
 
