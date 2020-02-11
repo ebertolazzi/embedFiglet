@@ -18,7 +18,7 @@ end
 
 TESTS = [
   "example",
-  "test"
+  "test1"
 ]
 
 "run tests on linux/osx"
