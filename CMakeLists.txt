@@ -9,7 +9,10 @@
 #                                                                          #
 ############################################################################
 
-cmake_minimum_required(VERSION 3.5)
+CMAKE_MINIMUM_REQUIRED(VERSION 3.5)
+
+PROJECT( embedFiglet CXX C )
+
 SET( CMAKE_VERBOSE_MAKEFILE OFF )
 SET( CMAKE_INSTALL_MESSAGE NEVER )
 
@@ -37,8 +40,6 @@ ELSEIF( LINUX OR UNIX )
 ELSE()
   SET( TARGETS embedFiglet_win_${BITS}_static${DEBUG_SUFFIX} )
 ENDIF()
-
-PROJECT( embedFiglet CXX C )
 
 INCLUDE( ./CMakeLists-cflags.txt )
 MESSAGE( STATUS "Compiler used: ${CMAKE_CXX_COMPILER_ID}")
@@ -91,6 +92,8 @@ IF( BUILD_EXECUTABLE )
 ENDIF()
 
 INCLUDE_DIRECTORIES( src )
+
+SET_PROPERTY( TARGET ${TARGETS} PROPERTY POSITION_INDEPENDENT_CODE ON )
 
 INSTALL( FILES ${HEADERS} DESTINATION ${CMAKE_INSTALL_PREFIX}/include )
 
