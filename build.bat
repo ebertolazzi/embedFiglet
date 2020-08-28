@@ -15,6 +15,8 @@
   @set STR=Visual Studio 14 2015
 ) ELSE IF %YEAR% == 2017 (
   @set STR=Visual Studio 15 2017
+) ELSE IF %YEAR% == 2019 (
+  @set STR=Visual Studio 16 2019
 ) ELSE (
   @echo.
   @powershell -command write-host -foreground "red" -background "yellow" -nonewline "Unsupported %YEAR%"
