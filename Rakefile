@@ -18,7 +18,7 @@ end
 
 TESTS = [
   "example",
-  "test1"
+  "test"
 ]
 
 "run tests on linux/osx"
@@ -44,6 +44,9 @@ end
 
 desc "compile for Visual Studio [default year=2017, bits=x64]"
 task :build_win, [:year, :bits] do |t, args|
+  FileUtils.rm_rf 'lib'
+  FileUtils.rm_rf 'lib3rd'
+
   args.with_defaults( :year => "2017", :bits => "x64" )
 
   dir = "vs_#{args.year}_#{args.bits}"
@@ -97,6 +100,8 @@ end
 
 desc 'compile for OSX'
 task :build_osx do
+  FileUtils.rm_rf 'lib'
+  FileUtils.rm_rf 'lib3rd'
 
   dir = "build"
 
@@ -133,12 +138,18 @@ end
 
 desc "clean for OSX"
 task :clean_osx do
+  FileUtils.rm_rf 'lib'
+  FileUtils.rm_rf 'lib3rd'
 end
 
 desc "clean for LINUX"
 task :clean_linux do
+  FileUtils.rm_rf 'lib'
+  FileUtils.rm_rf 'lib3rd'
 end
 
 desc "clean for WINDOWS"
 task :clean_win do
+  FileUtils.rm_rf 'lib'
+  FileUtils.rm_rf 'lib3rd'
 end
