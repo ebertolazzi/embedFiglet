@@ -218,7 +218,7 @@ POSSIBILITY OF SUCH DAMAGE.
 #define FIGLET_HH
 
 #include <iostream>
-#include <stdint.h>
+#include <cstdint>
 
 /*! \brief
  * Collects structures and classes for banner generation
@@ -331,6 +331,34 @@ namespace Figlet {
       FrameMode      fm = FIGLET_SINGLE
     );
   };
+
+  #ifdef big
+    #undef big
+  #endif
+  #ifdef banner
+    #undef banner
+  #endif
+  #ifdef doom
+    #undef doom
+  #endif
+  #ifdef larry3d
+    #undef larry3d
+  #endif
+  #ifdef mini
+    #undef mini
+  #endif
+  #ifdef script
+    #undef script
+  #endif
+  #ifdef small
+    #undef small
+  #endif
+  #ifdef standard
+    #undef standard
+  #endif
+  #ifdef straight
+    #undef straights
+  #endif
 
   extern Banner big;      //!< instance `Banner` class using figlet font `big`
   extern Banner banner;   //!< instance `Banner` class using figlet font `banner`

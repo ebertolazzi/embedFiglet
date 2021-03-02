@@ -2,6 +2,9 @@
 /no_git
 /wiki
 /doc
+/bin
+/vs_2017*
+/vs_2019*
 test
 example
 xcuserdata
