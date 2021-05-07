@@ -78,3 +78,6 @@ build
 lib
 DerivedData
 Figlet.xcodeproj
+docs_build/sphinx/_build
+docs_build/sphinx/_doxygen
+*.mltbx

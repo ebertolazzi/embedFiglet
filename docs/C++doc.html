@@ -1,0 +1,379 @@
+
+
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>C++ usage &#8212; Embedded Figlet v</title>
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/cloud.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/table_styling.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
+    
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+
+    
+    
+     
+        <script src="_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script src="_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script src="_static/cloud.js"></script>
+    
+
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="MATLAB toolbox" href="Matlab-doc.html" />
+    <link rel="prev" title="Embed Figlet" href="index.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="index.html" title="Table Of Contents"
+             accesskey="C">toc</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="Matlab-doc.html" title="MATLAB toolbox"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="index.html" title="Embed Figlet"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="index.html">Embedded Figlet</a> &#187;</li>
+
+        <li class="nav-item nav-item-this"><a href="">C++ usage</a></li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="c-usage">
+<h1>C++ usage<a class="headerlink" href="#c-usage" title="Permalink to this headline">¶</a>
+</h1>
+<p>This library implement a subset of Figlet capability, i.e. print large
+letters out of ordinary text</p>
+<div class="highlight-text notranslate">
+<div class="highlight"><pre><span></span> _ _ _          _   _     _
+| (_) | _____  | |_| |__ (_)___
+| | | |/ / _ \ | __| '_ \| / __|
+| | |   &lt;  __/ | |_| | | | \__ \_
+|_|_|_|\_\___|  \__|_| |_|_|___(_)
+</pre></div>
+</div>
+<p>Differently of standard FIGlet command (<a class="reference external" href="http://www.figlet.org/">http://www.figlet.org/</a>) this
+print can be done inside a user program using run time generated string
+as follows</p>
+<div class="highlight-cpp notranslate">
+<div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">"Figlet.hh"</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;sstream&gt;</span><span class="cp"></span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">int</span>
+<span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">Figlet</span><span class="o">::</span><span class="n">standard</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">"Fractions"</span><span class="p">);</span>
+  <span class="k">for</span> <span class="p">(</span> <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="mi">4</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="n">ostringstream</span> <span class="n">ss</span><span class="p">;</span>
+    <span class="n">ss</span> <span class="o">&lt;&lt;</span> <span class="s">"5/"</span> <span class="o">&lt;&lt;</span> <span class="n">i</span> <span class="o">&lt;&lt;</span> <span class="s">" = "</span> <span class="o">&lt;&lt;</span> <span class="mf">5.0</span><span class="o">/</span><span class="n">i</span><span class="p">;</span>
+    <span class="n">Figlet</span><span class="o">::</span><span class="n">small</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">ss</span><span class="p">.</span><span class="n">str</span><span class="p">().</span><span class="n">c_str</span><span class="p">());</span>
+  <span class="p">}</span>
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"ALL DONE!</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>which output is the following</p>
+<div class="highlight-text notranslate">
+<div class="highlight"><pre><span></span> _____               _   _
+|  ___| __ __ _  ___| |_(_) ___  _ __  ___
+| |_ | '__/ _` |/ __| __| |/ _ \| '_ \/ __|
+|  _|| | | (_| | (__| |_| | (_) | | | \__ \
+|_|  |_|  \__,_|\___|\__|_|\___/|_| |_|___/
+
+ ___   _____         ___   ___
+| __| / /_  )  ___  |_  ) | __|
+|__ \/ / / /  |___|  / / _|__ \
+|___/_/ /___| |___| /___(_)___/
+
+ ___   ______        _    __  __  __  ______
+| __| / /__ /  ___  / |  / / / / / / / /__  |
+|__ \/ / |_ \ |___| | |_/ _ Y _ Y _ Y _ \/ /
+|___/_/ |___/ |___| |_(_)___|___|___|___/_/
+
+ ___   ___ _          _   ___ ___
+| __| / / | |   ___  / | |_  ) __|
+|__ \/ /|_  _| |___| | |_ / /|__ \
+|___/_/   |_|  |___| |_(_)___|___/
+</pre></div>
+</div>
+<p>No initialization files are necessary. The fonts are hardware embedded
+in the library.</p>
+<table class="docutils align-default" id="id1">
+<caption>
+<span class="caption-text">Available fonts</span><a class="headerlink" href="#id1" title="Permalink to this table">¶</a>
+</caption>
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<tbody>
+<tr class="row-odd">
+<td><p>banner</p></td>
+<td><p>big</p></td>
+<td><p>doom</p></td>
+</tr>
+<tr class="row-even">
+<td><p>larry3d</p></td>
+<td><p>mini</p></td>
+<td><p>script</p></td>
+</tr>
+<tr class="row-odd">
+<td><p>small</p></td>
+<td><p>standard</p></td>
+<td><p>straight</p></td>
+</tr>
+</tbody>
+</table>
+<p>A simple ruby script permits to convert figlet .flf files to structures
+which can be embedded in the library.</p>
+<div class="section" id="available-printing-mode">
+<h2>Available printing mode<a class="headerlink" href="#available-printing-mode" title="Permalink to this headline">¶</a>
+</h2>
+<p>Only four mode of print the same string:</p>
+<table class="docutils align-default" id="id2">
+<caption>
+<span class="caption-text">Printing mode</span><a class="headerlink" href="#id2" title="Permalink to this table">¶</a>
+</caption>
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<tbody>
+<tr class="row-odd">
+<td><p>FIGLET_SMUSHED</p></td>
+<td><p>standard way of figlet print</p></td>
+</tr>
+<tr class="row-even">
+<td><p>FIGLET_PACKED</p></td>
+<td><p>letters are moved left but no overlapping are permitted</p></td>
+</tr>
+<tr class="row-odd">
+<td><p>FIGLET_FULLWIDTH</p></td>
+<td><p>letters are printed at width defined in the font</p></td>
+</tr>
+<tr class="row-even">
+<td><p>FIGLET_MONOSPACED</p></td>
+<td><p>letters are printed with equal width</p></td>
+</tr>
+</tbody>
+</table>
+<p>The effect are the following</p>
+<div class="highlight-text notranslate">
+<div class="highlight"><pre><span></span> ____                      _              _
+/ ___| _ __ ___  _   _ ___| |__   ___  __| |
+\___ \| '_ ` _ \| | | / __| '_ \ / _ \/ _` |
+ ___) | | | | | | |_| \__ \ | | |  __/ (_| |
+|____/|_| |_| |_|\__,_|___/_| |_|\___|\__,_|
+ ____               _              _
+|  _ \  __ _   ___ | | __ ___   __| |
+| |_) |/ _` | / __|| |/ // _ \ / _` |
+|  __/| (_| || (__ |   &lt;|  __/| (_| |
+|_|    \__,_| \___||_|\_\\___| \__,_|
+ _____           _   _  __        __  _       _   _     _
+|  ___|  _   _  | | | | \ \      / / (_)   __| | | |_  | |__
+| |_    | | | | | | | |  \ \ /\ / /  | |  / _` | | __| | '_ \
+|  _|   | |_| | | | | |   \ V  V /   | | | (_| | | |_  | | | |
+|_|      \__,_| |_| |_|    \_/\_/    |_|  \__,_|  \__| |_| |_|
+ __  __                                                                       _
+|  \/  |   ___    _ __     ___     ___    _ __     __ _     ___     ___    __| |
+| |\/| |  / _ \  | '_ \   / _ \   / __|  | '_ \   / _` |   / __|   / _ \  / _` |
+| |  | | | (_) | | | | | | (_) |  \__ \  | |_) | | (_| |  | (__   |  __/ | (_| |
+|_|  |_|  \___/  |_| |_|  \___/   |___/  | .__/   \__,_|   \___|   \___|  \__,_|
+                                         |_|
+</pre></div>
+</div>
+</div>
+<div class="section" id="available-framing-mode">
+<h2>Available framing mode<a class="headerlink" href="#available-framing-mode" title="Permalink to this headline">¶</a>
+</h2>
+<p>Only two framing are available:</p>
+<table class="docutils align-default" id="id3">
+<caption>
+<span class="caption-text">Framing mode</span><a class="headerlink" href="#id3" title="Permalink to this table">¶</a>
+</caption>
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<tbody>
+<tr class="row-odd">
+<td><p>FIGLET_SINGLE</p></td>
+<td><p>single frame around a string</p></td>
+</tr>
+<tr class="row-even">
+<td><p>FIGLET_DOUBLE</p></td>
+<td><p>double frame around a string</p></td>
+</tr>
+</tbody>
+</table>
+<p>The effect are the following</p>
+<div class="highlight-text notranslate">
+<div class="highlight"><pre><span></span>Figlet::small.printFramed("SINGLE",cout,Figlet::FIGLET_SINGLE);
++------------------------------+
+|  ___ ___ _  _  ___ _    ___  |
+| / __|_ _| \| |/ __| |  | __| |
+| \__ \| || .` | (_ | |__| _|  |
+| |___/___|_|\_|\___|____|___| |
+|                              |
++------------------------------+
+</pre></div>
+</div>
+<p>and</p>
+<div class="highlight-text notranslate">
+<div class="highlight"><pre><span></span>Figlet::small.printFramed("DOUBLE",cout,Figlet::FIGLET_DOUBLE);
+@=================================@
+#  ___   ___  _   _ ___ _    ___  #
+# |   \ / _ \| | | | _ ) |  | __| #
+# | |) | (_) | |_| | _ \ |__| _|  #
+# |___/ \___/ \___/|___/____|___| #
+#                                 #
+@=================================@
+</pre></div>
+</div>
+</div>
+<div class="section" id="compile-and-test">
+<h2>Compile and test<a class="headerlink" href="#compile-and-test" title="Permalink to this headline">¶</a>
+</h2>
+<p>Edit makefile file to match compiler of your OS and do:</p>
+<div class="highlight-bash notranslate">
+<div class="highlight"><pre><span></span>make
+</pre></div>
+</div>
+<p>To run the test</p>
+<div class="highlight-bash notranslate">
+<div class="highlight"><pre><span></span>make run
+</pre></div>
+</div>
+<p>or use rakefile</p>
+<div class="highlight-bash notranslate">
+<div class="highlight"><pre><span></span><span class="c1"># on linux os</span>
+rake build_linux
+
+<span class="c1"># on mac</span>
+rake build_osx
+
+<span class="c1"># on windows</span>
+rake build_win
+</pre></div>
+</div>
+</div>
+</div>
+
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="index.html" title="index">
+          <img class="logo" src="_static/Figlet.png" alt="Logo"/>
+        </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+<div class="sphinx-toc sphinxglobaltoc">
+<h3><a href="index.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">C++ usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#available-printing-mode">Available printing mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#available-framing-mode">Available framing mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#compile-and-test">Compile and test</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Matlab-doc.html">MATLAB toolbox</a></li>
+</ul>
+</div>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="index.html" title="Table Of Contents"
+             >toc</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="Matlab-doc.html" title="MATLAB toolbox"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="index.html" title="Embed Figlet"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="index.html">Embedded Figlet</a> &#187;</li>
+
+        <li class="nav-item nav-item-this"><a href="">C++ usage</a></li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, Enrico Bertolazzi.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.5.4.
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

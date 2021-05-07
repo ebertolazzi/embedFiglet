@@ -16,7 +16,7 @@ endif
 
 # check if the OS string contains 'Darwin'
 ifneq (,$(findstring Darwin, $(OS)))
-  WARN = -Weverything -Wno-reserved-id-macro -Wno-padded -Wno-documentation-unknown-command -Wno-global-constructors
+  WARN = -Weverything -Wno-reserved-id-macro -Wno-padded -Wno-documentation-unknown-command -Wno-global-constructors -Wno-poison-system-directories
   CC  = clang   $(WARN)
   CXX = clang++ $(WARN)
   AR  = libtool -static -o 
@@ -43,7 +43,7 @@ DEPS = src/Figlet.hh
 PREFIX    = /usr/local
 FRAMEWORK = GenericContainer
 
-MKDIR  = mkdir -p
+MKDIR = mkdir -p
 
 all: lib
 	$(CXX) $(CXXFLAGS) $(INC) -o test tests-cpp/test.cc $(LIBS)
