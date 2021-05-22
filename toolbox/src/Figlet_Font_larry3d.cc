@@ -7,7 +7,7 @@
 
 namespace Figlet {
 
-  //! \cond NODOC
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   static char     const Hardblank  = '$';
   static unsigned const FontHeight = 9;
@@ -1752,7 +1752,7 @@ namespace Figlet {
   static unsigned const FontSize   = sizeof(characters)/sizeof(characters[0]);
   Banner larry3d(characters, Hardblank, FontHeight, FontMaxLen, FontSize );
 
-  //! \endcond
+  #endif
   
 }
 // EOF file font
