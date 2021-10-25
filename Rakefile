@@ -55,7 +55,9 @@ task :build_win, [:year, :bits] do |t, args|
   FileUtils.mkdir_p dir
   FileUtils.cd      dir
 
-  cmake_cmd = win_vs(args.bits,args.year)
+  #cmake_cmd = win_vs(args.bits,args.year)
+  cmake_cmd = 'cmake -G "NMake Makefiles" '
+
   if COMPILE_EXECUTABLE then
     cmake_cmd += ' -DBUILD_EXECUTABLE:VAR=true '
   else
