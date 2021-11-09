@@ -1,0 +1,37 @@
+if(INSTALL_HERE) 
+  # install in the home of the whole project
+  if ( ${CMAKE_HOME_DIRECTORY} STREQUAL ${CMAKE_CURRENT_SOURCE_DIR} )
+    set(INSTALL_PREFIX "${CMAKE_CURRENT_SOURCE_DIR}/lib")
+  else()
+    set(INSTALL_PREFIX "${CMAKE_HOME_DIRECTORY}/lib3rd")
+  endif()
+  set(PROJECT_PUBLIC_HEADER_DESTINATION "${INSTALL_PREFIX}/include")
+else()
+  set( INSTALL_TARGETS ${INSTALL_TARGETS} )
+  set( INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
+  set( PROJECT_PUBLIC_HEADER_DESTINATION "${CMAKE_INSTALL_PREFIX}/include/${PROJECT_NAME}" )
+endif()
+
+#MESSAGE( STATUS "\n\n\nCMAKE_HOME_DIRECTORY     = ${CMAKE_HOME_DIRECTORY}\n\n\n")
+#MESSAGE( STATUS "\n\n\nCMAKE_CURRENT_SOURCE_DIR = ${CMAKE_CURRENT_SOURCE_DIR}\n\n\n")
+#MESSAGE( STATUS "\n\n\nINSTALL_PREFIX           = ${INSTALL_PREFIX}\n\n\n")
+
+# Installing Dependencies
+install(
+  TARGETS ${INSTALL_TARGETS}
+  EXPORT embedFigletTargets
+  RUNTIME DESTINATION "${INSTALL_PREFIX}/bin"
+  ARCHIVE DESTINATION "${INSTALL_PREFIX}/lib"
+  LIBRARY DESTINATION "${INSTALL_PREFIX}/dll"
+  PUBLIC_HEADER DESTINATION "${PROJECT_PUBLIC_HEADER_DESTINATION}"
+)
+
+# FIXME: The header structure forces me to do this... And this will create issues!
+install(FILES "src/Figlet.hh" DESTINATION "${PROJECT_PUBLIC_HEADER_DESTINATION}")
+
+if(INSTALL_HERE)
+  add_custom_command(
+    TARGET ${STATIC_PROJECT} POST_BUILD
+    COMMAND cmake --build . --config Release  --target install
+  )
+endif()

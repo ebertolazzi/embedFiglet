@@ -9,6 +9,27 @@ end
 
 require_relative "./Rakefile_common.rb"
 
+file_base = File.expand_path(File.dirname(__FILE__)).to_s+'/lib'
+
+cmd_cmake_build = ""
+if COMPILE_EXECUTABLE then
+  cmd_cmake_build += ' -DBUILD_EXECUTABLE:VAR=true '
+else
+  cmd_cmake_build += ' -DBUILD_EXECUTABLE:VAR=false '
+end
+if COMPILE_DYNAMIC then
+  cmd_cmake_build += ' -DBUILD_SHARED:VAR=true '
+else
+  cmd_cmake_build += ' -DBUILD_SHARED:VAR=false '
+end
+if COMPILE_DEBUG then
+  cmd_cmake_build += ' -DCMAKE_BUILD_TYPE:VAR=Debug --loglevel=WARNING '
+else
+  cmd_cmake_build += ' -DCMAKE_BUILD_TYPE:VAR=Release --loglevel=WARNING '
+end
+cmd_cmake_build += " -DINSTALL_HERE:VAR=true "
+
+
 task :default => [:build]
 
 task :mkl, [:year, :bits] do |t, args|
@@ -55,48 +76,16 @@ task :build_win, [:year, :bits] do |t, args|
   FileUtils.mkdir_p dir
   FileUtils.cd      dir
 
-  #cmake_cmd = win_vs(args.bits,args.year)
-  cmake_cmd = 'cmake -G "NMake Makefiles" '
+  cmd_cmake = win_vs(args.bits,args.year) + cmd_cmake_build
 
-  if COMPILE_EXECUTABLE then
-    cmake_cmd += ' -DBUILD_EXECUTABLE:VAR=true '
-  else
-    cmake_cmd += ' -DBUILD_EXECUTABLE:VAR=false '
-  end
-  if COMPILE_DYNAMIC then
-    cmake_cmd += ' -DBUILD_SHARED:VAR=true '
-  else
-    cmake_cmd += ' -DBUILD_SHARED:VAR=false '
-  end
-
-  FileUtils.mkdir_p "../lib/lib"
-  FileUtils.mkdir_p "../lib/bin"
-  FileUtils.mkdir_p "../lib/bin/"+args.bits
-  FileUtils.mkdir_p "../lib/dll"
-  FileUtils.mkdir_p "../lib/include"
-
+  puts "run CMAKE for CLOTHOIDS".yellow
+  sh cmd_cmake + ' ..'
+  puts "compile with CMAKE for CLOTHOIDS".yellow
   if COMPILE_DEBUG then
-    sh cmake_cmd + ' -DCMAKE_BUILD_TYPE:VAR=Debug --loglevel=WARNING ..'
     sh 'cmake --build . --config Debug --target install '+PARALLEL+QUIET
-    FileUtils.cp_r './lib/dll', '../lib/' if Dir.exist?('./lib/dll')
   else
-    sh cmake_cmd + ' -DCMAKE_BUILD_TYPE:VAR=Release --loglevel=WARNING ..'
-    sh 'cmake  --build . --config Release  --target install '+PARALLEL+QUIET
-    FileUtils.cp_r './lib/dll', '../lib/' if Dir.exist?('./lib/dll')
+    sh 'cmake --build . --config Release --target install '+PARALLEL+QUIET
   end
-
-  Dir['./lib/bin/*'].each do |f|
-    FileUtils.cp f, '../lib/bin/'+args.bits+'/'+File.basename(f)
-  end
-  Dir['./lib/lib/*'].each do |f|
-    if /\_static*.*\.lib$/.match(f) then
-      FileUtils.cp f, '../lib/lib/'+File.basename(f)
-    else
-      FileUtils.cp f, '../lib/dll/'+File.basename(f)
-    end
-  end
-  FileUtils.cp_r './lib/include', '../lib/' if Dir.exist?('./lib/include')
-  FileUtils.cd '..'
 
 end
 
@@ -111,26 +100,17 @@ task :build_osx do
   FileUtils.mkdir_p dir
   FileUtils.cd      dir
 
-  cmake_cmd = 'cmake '
+  cmd_cmake = "cmake " + cmd_cmake_build
 
-  if COMPILE_EXECUTABLE then
-    cmake_cmd += ' -DBUILD_EXECUTABLE:VAR=true '
-  else
-    cmake_cmd += ' -DBUILD_EXECUTABLE:VAR=false '
-  end
-  if COMPILE_DYNAMIC then
-    cmake_cmd += ' -DBUILD_SHARED:VAR=true '
-  else
-    cmake_cmd += ' -DBUILD_SHARED:VAR=false '
-  end
-
+  puts "run CMAKE for CLOTHOIDS".yellow
+  sh cmd_cmake + ' ..'
+  puts "compile with CMAKE for CLOTHOIDS".yellow
   if COMPILE_DEBUG then
-    sh cmake_cmd + ' -DCMAKE_BUILD_TYPE:VAR=Debug --loglevel=WARNING ..'
     sh 'cmake --build . --config Debug --target install '+PARALLEL+QUIET
   else
-    sh cmake_cmd + ' -DCMAKE_BUILD_TYPE:VAR=Release --loglevel=WARNING ..'
-    sh 'cmake --build . --config Release --target install '+PARALLEL+QUIET
+    sh 'cmake  --build . --config Release  --target install '+PARALLEL+QUIET
   end
+
   FileUtils.cd '..'
 end
 
