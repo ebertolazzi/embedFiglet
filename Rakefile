@@ -27,7 +27,7 @@ if COMPILE_DEBUG then
 else
   cmd_cmake_build += ' -DCMAKE_BUILD_TYPE:VAR=Release --loglevel=WARNING '
 end
-cmd_cmake_build += " -DINSTALL_HERE:VAR=true "
+cmd_cmake_build += " -DINSTALL_LOCAL=ON "
 
 
 task :default => [:build]
@@ -35,6 +35,13 @@ task :default => [:build]
 task :mkl, [:year, :bits] do |t, args|
   args.with_defaults(:year => "2017", :bits => "x64" )
   sh "'C:/Program Files (x86)/IntelSWTools/compilers_and_libraries/windows/bin/compilervars.bat' -arch #{args.bits} vs#{args.year}shell"
+end
+
+desc "run tests"
+task :test do
+  FileUtils.cd "build"
+  sh 'ctest --output-on-failure'
+  FileUtils.cd '..'
 end
 
 TESTS = [
@@ -116,6 +123,15 @@ end
 
 desc 'compile for LINUX'
 task :build_linux => [ :build_osx ] do
+end
+
+desc 'pack for OSX/LINUX/WINDOWS'
+task :cpack do
+  FileUtils.cd "build"
+  puts "run CPACK for ROOTS".yellow
+  sh 'cpack -C CPackConfig.cmake'
+  sh 'cpack -C CPackSourceConfig.cmake'
+  FileUtils.cd ".."
 end
 
 desc "clean for OSX"

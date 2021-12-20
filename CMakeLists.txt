@@ -5,35 +5,24 @@
 #      Enrico Bertolazzi                                                   #
 #      Dipartimento di Ingegneria Industriale                              #
 #      Universita` degli Studi di Trento                                   #
-#      <mailto:enrico.bertolazzi@unitn.it>                                 #
+#      email: enrico.bertolazzi@ing.unitn.it                               #
 #                                                                          #
 ############################################################################
 
-cmake_minimum_required(VERSION 3.0.0)
-set(CMAKE_VERBOSE_MAKEFILE OFF)
-# set(CMAKE_INSTALL_MESSAGE NEVER)
-set(CMAKE_EXPORT_COMPILE_COMMANDS TRUE)
+cmake_minimum_required(VERSION 3.14)
 
-if(ENABLE_CTEST)
-  enable_testing()
+include(./cmake/CMakeLists-common.txt)
+
+project( embedFiglet VERSION ${EB_PROJECT_VERSION} )
+
+if ( EB_INSTALL_LOCAL )
+  set( CMAKE_INSTALL_PREFIX ${CMAKE_HOME_DIRECTORY} )
 endif()
 
-# get version from the git tag
-execute_process(COMMAND git describe --tags --abbrev=0 OUTPUT_VARIABLE VERSION)
-string(REGEX REPLACE "\n$" "" VERSION "${VERSION}")
+message("LAPACK_WRAPPER current version = v${EB_PROJECT_VERSION}")
 
-project(
-  embedFiglet
-  VERSION ${VERSION}
-)
-
-# NOTE: Predictable target name
-set(STATIC_PROJECT "${PROJECT_NAME}Static")
-set(DYNAMIC_PROJECT "${PROJECT_NAME}")
-
-include(./CMakeLists-cflags.txt)
-include(./CMakeUtilities.txt)
-
+include(./cmake/CMakeLists-cflags.txt)
+include(./cmake/CMakeLists-utilities.txt)
 
 # Evaluating the suffix to append to target built by this CMake file
 ebertolazzi_artifacts_suffix(ARTIFACTS_STATIC_SUFFIX TRUE)
@@ -41,109 +30,132 @@ if(BUILD_SHARED)
   ebertolazzi_artifacts_suffix(ARTIFACTS_DYNAMIC_SUFFIX FALSE)
 endif()
 
-include_directories(lib3rd/include)
+message( STATUS "Compiler used: ${CMAKE_CXX_COMPILER_ID}" )
+message( STATUS "BASE SUFFIXES = ${ARTIFACTS_STATIC_SUFFIX} ${ARTIFACTS_DYNAMIC_SUFFIX}" )
 
-message( STATUS "Compiler used: ${CMAKE_CXX_COMPILER_ID}")
-set(CMAKE_C_FLAGS_RELEASE ${CMAKE_CXX_FLAGS_RELEASE})
-set(CMAKE_C_FLAGS_DEBUG   ${CMAKE_CXX_FLAGS_DEBUG})
+#   ___
+#  / __| ___ _  _ _ _ __ ___ ___
+#  \__ \/ _ \ || | '_/ _/ -_|_-<
+#  |___/\___/\_,_|_| \__\___/__/
+#
+set( SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/src" )
 
 set( SOURCES )
-file( GLOB S ./src/*.cc )
-foreach (F ${S})
-  file( RELATIVE_PATH RF ${CMAKE_CURRENT_SOURCE_DIR} "${F}" )
+file( GLOB S ${SOURCE_DIR}/*.cc )
+foreach(F ${S})
+  # build relative path respect to source directory
+  file( RELATIVE_PATH RF ${SOURCE_DIR} "${F}" )
   list( APPEND SOURCES ${RF} )
 endforeach(F ${S})
+list(FILTER SOURCES EXCLUDE REGEX ".*hsl_fake.cc$")
 
-set( HEADERS )
-file( GLOB S ./src/*.h* )
-foreach (F ${S})  
-  file( RELATIVE_PATH RF ${CMAKE_CURRENT_SOURCE_DIR} "${F}" )
-  list( APPEND HEADERS ${RF} )
+#   _  _             _
+#  | || |___ __ _ __| |___ _ _ ___
+#  | __ / -_) _` / _` / -_) '_(_-<
+#  |_||_\___\__,_\__,_\___|_| /__/
+#
+set( PUBLIC_HEADERS )
+file(
+  GLOB S
+  ${SOURCE_DIR}/*.h*
+)
+foreach (F ${S})
+  # build relative path respect to source directory
+  file( RELATIVE_PATH RF ${SOURCE_DIR} "${F}" )
+  list( APPEND PUBLIC_HEADERS ${RF} )
 endforeach(F ${S})
 
+set( PRIVATE_HEADERS )
+# no private headers
 
-add_library(${STATIC_PROJECT} STATIC ${SOURCES})
-target_include_directories(
-  ${STATIC_PROJECT} PUBLIC 
-  "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/lib/include>"
-  "$<INSTALL_INTERFACE:include/${PROJECT_NAME}>"
-)
-set_target_properties(
-  ${STATIC_PROJECT} PROPERTIES
-  OUTPUT_NAME "${PROJECT_NAME}${ARTIFACTS_STATIC_SUFFIX}"
-  # FIXME: I'm not sure if this is required for OSX Framework
-  #PUBLIC_HEADER "${HEADERS}"
-  POSITION_INDEPENDENT_CODE ON
-)
+list(FILTER PUBLIC_HEADERS EXCLUDE REGEX ".*.tmpl$")
+list(FILTER PRIVATE_HEADERS EXCLUDE REGEX ".*.tmpl$")
 
-if ( NOT ( "${DEPEND_TARGETS}" STREQUAL "" ) )
-  add_dependencies( ${STATIC_PROJECT} ${DEPEND_TARGETS} )
+# extra include directory for compilation
+include_directories( ./lib3rd/include )
+
+#   _____                  _
+#  |_   _|_ _ _ _ __ _ ___| |_ ___
+#    | |/ _` | '_/ _` / -_)  _(_-<
+#    |_|\__,_|_| \__, \___|\__/__/
+#                |___/
+#
+# define target
+ebertolazzi_setup_target(
+  ${PROJECT_NAME}
+  TRUE # build static
+  "${SOURCE_DIR}"
+  "${SOURCES}"
+  "${PUBLIC_HEADERS}"
+  "${PRIVATE_HEADERS}"
+)
+if ( BUILD_SHARED )
+  ebertolazzi_setup_target(
+    ${PROJECT_NAME}
+    FALSE # build dynamic
+    "${SOURCE_DIR}"
+    "${SOURCES}"
+    "${PUBLIC_HEADERS}"
+    "${PRIVATE_HEADERS}"
+  )
 endif()
 
-if(BUILD_SHARED)
-  add_library(${DYNAMIC_PROJECT} SHARED ${SOURCES})
-  set_target_properties(
-    ${DYNAMIC_PROJECT} PROPERTIES
-    OUTPUT_NAME "${PROJECT_NAME}${ARTIFACTS_DYNAMIC_SUFFIX}"
-    # FIXME: I'm not sure if this is required for OSX Framework
-    # PUBLIC_HEADER "${HEADERS}"
-    POSITION_INDEPENDENT_CODE ON
-  )
-  target_include_directories(
-    ${DYNAMIC_PROJECT} PUBLIC 
-    "$<BUILD_INTERFACE:${Clothoids_DIR}>"
-    "$<INSTALL_INTERFACE:include/${PROJECT_NAME}>"
-  )
-  if(WIN32)
-    set_target_properties(
-      ${DYNAMIC_PROJECT} PROPERTIES 
-      WINDOWS_EXPORT_ALL_SYMBOLS TRUE
-    )
-  endif()
-endif()
+#   _____       _
+#  |_   _|__ __| |_ ___
+#    | |/ -_|_-<  _(_-<
+#    |_|\___/__/\__/__/
+#
+if ( BUILD_EXECUTABLE OR EB_ENABLE_TESTS )
 
-
-if(BUILD_EXECUTABLE OR ENABLE_CTEST)
   enable_testing()
-  set(TEST_OUTPUT_PATH "${CMAKE_CURRENT_SOURCE_DIR}/bin")
+
+  set( EXELISTBIN_DIR "${CMAKE_CURRENT_SOURCE_DIR}/bin" )
+  set( EXELISTCPP_DIR "${CMAKE_CURRENT_SOURCE_DIR}/src_tests" )
+
   set(
-    EXECUTABLES 
-    test
-    example 
+    EXELISTCPP
+    example
+    test1
   )
-  foreach(EXE ${EXECUTABLES})
-    add_executable(${EXE} tests-cpp/${EXE}.cc)
-    target_link_libraries(${EXE} PRIVATE ${STATIC_PROJECT} ${CMAKE_DL_LIBS})
-    set_target_properties(
-      ${EXE} PROPERTIES
-      RUNTIME_OUTPUT_DIRECTORY "${TEST_OUTPUT_PATH}"
+
+  add_custom_target( all_tests ALL )
+
+  set( EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/bin )
+  set( LIBS ${EB_NAMESPACE}_${PROJECT_NAME}_Static ${CMAKE_DL_LIBS} )
+  foreach( S ${EXELISTCPP} )
+    add_executable( ${S} ${CMAKE_CURRENT_SOURCE_DIR}/src_tests/${S}.cc )
+    target_link_libraries( ${S} ${LIBS} )
+    add_test(
+      NAME "${S}"
+      COMMAND ./bin/${S}
+      WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
     )
-    add_test(${EXE} "${CMAKE_CURRENT_SOURCE_DIR}/bin/${EXE}")
+    add_dependencies( all_tests ${S} )
   endforeach()
+
 endif()
 
-# INSTALL TARGETS
-set(INSTALL_TARGETS ${STATIC_PROJECT})
-if(BUILD_SHARED)
-  set(INSTALL_TARGETS ${INSTALL_TARGETS} ${DYNAMIC_PROJECT})
-endif()
+#   ___         _        _ _
+#  |_ _|_ _  __| |_ __ _| | |
+#   | || ' \(_-<  _/ _` | | |
+#  |___|_||_/__/\__\__,_|_|_|
+#
+install(
+  TARGETS ${TARGETS_TO_BE_INSTALLED}
+  # EXPORT (da definire)
+  LIBRARY DESTINATION ${INSTALL_PREFIX}/dll
+  ARCHIVE DESTINATION ${INSTALL_PREFIX}/lib
+  RUNTIME DESTINATION ${INSTALL_PREFIX}/bin
+  PUBLIC_HEADER DESTINATION ${PROJECT_PUBLIC_HEADER_DESTINATION}
+)
 
-include("${CMAKE_CURRENT_SOURCE_DIR}/CMakeInstall.txt")
+#   ___         _
+#  | _ \__ _ __| |____ _ __ _ ___
+#  |  _/ _` / _| / / _` / _` / -_)
+#  |_| \__,_\__|_\_\__,_\__, \___|
+#                       |___/
+#
 
-message(STATUS "Using ${SSE_FLAGS} extensions")
-message(STATUS "C compiler                  = ${CMAKE_C_COMPILER_ID} ${CMAKE_C_COMPILER}")
-message(STATUS "C++ compiler                = ${CMAKE_CXX_COMPILER_ID} ${CMAKE_CXX_COMPILER}")
-message(STATUS "CMAKE_CXX_FLAGS_RELEASE     = ${CMAKE_CXX_FLAGS_RELEASE}")
-message(STATUS "CMAKE_CXX_FLAGS             = ${CMAKE_CXX_FLAGS}")
-message(STATUS "CMAKE_C_FLAGS_RELEASE       = ${CMAKE_C_FLAGS_RELEASE}")
-message(STATUS "CMAKE_C_FLAGS               = ${CMAKE_C_FLAGS}")
-message(STATUS "CMAKE_SYSTEM_NAME           = ${CMAKE_SYSTEM_NAME}")
-message(STATUS "CMAKE_SYSTEM_PROCESSOR      = ${CMAKE_SYSTEM_PROCESSOR}")
-if(APPLE)
-  message(STATUS "CMAKE_OSX_SYSROOT           = ${CMAKE_OSX_SYSROOT}")
-  message(STATUS "CMAKE_OSX_ARCHITECTURES     = ${CMAKE_OSX_ARCHITECTURES}")
-  message(STATUS "CMAKE_OSX_DEPLOYMENT_TARGET = ${CMAKE_OSX_DEPLOYMENT_TARGET}")
-endif()
-message(STATUS "BUILD_EXECUTABLE            = ${BUILD_EXECUTABLE}")
-message(STATUS "SOURCES = ${SOURCES}")
-message(STATUS "HEADERS = ${HEADERS}")
+include( ./cmake/CMakeLists-cpack.txt )
+
+ebertolazzi_final_messages()
