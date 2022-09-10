@@ -7,30 +7,59 @@
   end
 end
 
+require 'rake/clean'
+
+CLEAN.clear_exclude.exclude { |fn| fn.pathmap("%f").downcase == "core" }
+
+case RUBY_PLATFORM
+when /darwin/
+  OS = :mac
+when /linux/
+  OS = :linux
+when /cygwin|mswin|mingw|bccwin|wince|emx/
+  OS = :win
+when /msys/
+  OS = :win
+end
+
 require_relative "./Rakefile_common.rb"
 
-file_base = File.expand_path(File.dirname(__FILE__)).to_s+'/lib'
+file_base = File.expand_path(File.dirname(__FILE__)).to_s
 
 cmd_cmake_build = ""
 if COMPILE_EXECUTABLE then
-  cmd_cmake_build += ' -DBUILD_EXECUTABLE:VAR=true '
+  cmd_cmake_build += ' -DEB_ENABLE_TESTS:VAR=ON '
 else
-  cmd_cmake_build += ' -DBUILD_EXECUTABLE:VAR=false '
+  cmd_cmake_build += ' -DEB_ENABLE_TESTS:VAR=OFF '
 end
 if COMPILE_DYNAMIC then
-  cmd_cmake_build += ' -DBUILD_SHARED:VAR=true '
+  cmd_cmake_build += ' -DEB_BUILD_SHARED:VAR=ON '
 else
-  cmd_cmake_build += ' -DBUILD_SHARED:VAR=false '
+  cmd_cmake_build += ' -DEB_BUILD_SHARED:VAR=OFF '
 end
 if COMPILE_DEBUG then
-  cmd_cmake_build += ' -DCMAKE_BUILD_TYPE:VAR=Debug --loglevel=WARNING '
+  cmd_cmake_build += ' -DCMAKE_BUILD_TYPE:VAR=Debug --loglevel=STATUS '
 else
-  cmd_cmake_build += ' -DCMAKE_BUILD_TYPE:VAR=Release --loglevel=WARNING '
+  cmd_cmake_build += ' -DCMAKE_BUILD_TYPE:VAR=Release --loglevel=STATUS '
 end
-cmd_cmake_build += " -DINSTALL_LOCAL=ON "
 
+desc "default task --> build"
+task :default => :build
 
-task :default => [:build]
+desc "build Embed Figlet"
+task :build do
+  case OS
+  when :mac
+    puts "Embed Figlet build (osx)".green
+    Rake::Task[:build_osx].invoke
+  when :linux
+    puts "Embed Figlet build (linux)".green
+    Rake::Task[:build_linux].invoke
+  when :win
+    puts "Embed Figlet build (windows)".green
+    Rake::Task[:build_win].invoke
+  end
+end
 
 task :mkl, [:year, :bits] do |t, args|
   args.with_defaults(:year => "2017", :bits => "x64" )
@@ -85,9 +114,9 @@ task :build_win, [:year, :bits] do |t, args|
 
   cmd_cmake = win_vs(args.bits,args.year) + cmd_cmake_build
 
-  puts "run CMAKE for CLOTHOIDS".yellow
+  puts "run CMAKE for Embed Figlet".yellow
   sh cmd_cmake + ' ..'
-  puts "compile with CMAKE for CLOTHOIDS".yellow
+  puts "compile with CMAKE for Embed Figlet".yellow
   if COMPILE_DEBUG then
     sh 'cmake --build . --config Debug --target install '+PARALLEL+QUIET
   else
@@ -109,9 +138,9 @@ task :build_osx do
 
   cmd_cmake = "cmake " + cmd_cmake_build
 
-  puts "run CMAKE for CLOTHOIDS".yellow
+  puts "run CMAKE for Embed Figlet".yellow
   sh cmd_cmake + ' ..'
-  puts "compile with CMAKE for CLOTHOIDS".yellow
+  puts "compile with CMAKE for Embed Figlet".yellow
   if COMPILE_DEBUG then
     sh 'cmake --build . --config Debug --target install '+PARALLEL+QUIET
   else
@@ -128,7 +157,7 @@ end
 desc 'pack for OSX/LINUX/WINDOWS'
 task :cpack do
   FileUtils.cd "build"
-  puts "run CPACK for ROOTS".yellow
+  puts "run CPACK for Embed Figlet".yellow
   sh 'cpack -C CPackConfig.cmake'
   sh 'cpack -C CPackSourceConfig.cmake'
   FileUtils.cd ".."
