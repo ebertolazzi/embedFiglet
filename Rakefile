@@ -1,17 +1,22 @@
 require_relative "./cmake_utils/Rakefile_common.rb"
 
 task :build_common, [:bits] do |t, args|
-  args.with_defaults( :bits => "x64" )
+  args.with_defaults( :bits => "" )
 
-  puts "UTILS build (osx/linux/mingw/windows)".green
+  puts "FIGLET build (osx/linux/mingw/windows)".green
 
   FileUtils.rm_rf   'lib'
   FileUtils.rm_rf   'build'
   FileUtils.mkdir_p 'build'
   FileUtils.cd      'build'
 
-  puts "run CMAKE for UTILS".yellow
-  sh "cmake -G Ninja -DBITS:VAR=#{args.bits} " + cmd_cmake_build() + ' ..'
+  puts "run CMAKE for FIGLET".yellow
+
+  if args.bits.size > 0 then
+    sh "cmake -G Ninja -DBITS:VAR=#{args.bits} " + cmd_cmake_build() + ' ..'
+  else
+    sh "cmake -G Ninja " + cmd_cmake_build() + ' ..'
+  end
 
   puts "compile with CMAKE for UTILS".yellow
   if COMPILE_DEBUG then
@@ -54,7 +59,7 @@ task :clean_linux => :clean do end
 task :clean_mingw => :clean do end
 task :clean_win   => :clean do end
 
-desc 'pack for OSX/LINUX/WINDOWS'
+desc 'pack for OSX/LINUX/MINTGW/WINDOWS'
 task :cpack do
   FileUtils.cd "build"
   puts "run CPACK for Embed Figlet".yellow
