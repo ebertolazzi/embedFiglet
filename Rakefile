@@ -1,4 +1,8 @@
-require_relative "./cmake_utils/Rakefile_common.rb"
+if File.exist?(File.expand_path('./cmake_utils/Rakefile_common.rb', File.dirname(__FILE__))) then
+  require_relative "./cmake_utils/Rakefile_common.rb"
+else
+  require_relative "../Rakefile_common.rb"
+end
 
 task :build_common, [:bits] do |t, args|
   args.with_defaults( :bits => "" )

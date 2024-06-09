@@ -11,9 +11,19 @@
 
 cmake_minimum_required(VERSION 3.14)
 
-include(./cmake_utils/CMakeLists-common.txt)
-
 project( embedFiglet VERSION ${UTILS_PROJECT_VERSION} )
+
+if (IS_DIRECTORY "${PROJECT_SOURCE_DIR}/cmake_utils")
+  set( HOME "${PROJECT_SOURCE_DIR}/cmake_utils/" )
+else()
+  if (IS_DIRECTORY "${PROJECT_SOURCE_DIR}/../cmake_utils")
+    set( HOME "${PROJECT_SOURCE_DIR}/../cmake_utils/" )
+  else()
+    set( HOME "${PROJECT_SOURCE_DIR}/../../cmake_utils/" )
+  endif()
+endif()
+
+include( "${HOME}/CMakeLists-common.txt" )
 
 if ( UTILS_INSTALL_LOCAL )
   set( CMAKE_INSTALL_PREFIX ${CMAKE_HOME_DIRECTORY} )
@@ -21,8 +31,8 @@ endif()
 
 message("EMBED_FIGLET current version = v${UTILS_PROJECT_VERSION}")
 
-include(./cmake_utils/CMakeLists-cflags.txt)
-include(./cmake_utils/CMakeLists-utilities.txt)
+include( "${HOME}/CMakeLists-cflags.txt" )
+include( "${HOME}/CMakeLists-utilities.txt" )
 
 # Evaluating the suffix to append to target built by this CMake file
 utils_artifacts_suffix(ARTIFACTS_STATIC_SUFFIX TRUE)
@@ -154,6 +164,6 @@ install(
 #                       |___/
 #
 
-include( ./cmake_utils/CMakeLists-cpack.txt )
+include( "${HOME}/CMakeLists-cpack.txt" )
 
 utils_final_messages()
