@@ -1,0 +1,14 @@
+.. meta::6e0e09495b201d457c7836ab7e3187bcecd762cc99764c3ae13a27ed4e8d952240d36452513727663d544b581aa80a6ac11edbd28551e3a0c8d81f1c8b023814
+
+:orphan:
+
+.. title:: Splines: Available framing mode
+
+Available framing mode
+======================
+
+.. container:: doxygen-content
+
+   
+   .. raw:: html
+     :file: framemode.html

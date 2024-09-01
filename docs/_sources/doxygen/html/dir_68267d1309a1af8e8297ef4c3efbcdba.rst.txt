@@ -1,0 +1,14 @@
+.. meta::f12fb595752344405cda540abd8a6241f2556d06d79b84c58586cdaea8ad3bdfa1b8cc4ea0b4e09b61195b005231d2524aa286d4324367de9e160de3b5141953
+
+:orphan:
+
+.. title:: Splines: /Users/enrico/Ricerca/develop/PINS/pins-mechatronix/LibSources/submodules/embedFiglet/src Directory Reference
+
+/Users/enrico/Ricerca/develop/PINS/pins-mechatronix/LibSources/submodules/embedFiglet/src Directory Reference
+=============================================================================================================
+
+.. container:: doxygen-content
+
+   
+   .. raw:: html
+     :file: dir_68267d1309a1af8e8297ef4c3efbcdba.html

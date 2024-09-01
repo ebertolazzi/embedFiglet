@@ -1,0 +1,14 @@
+.. meta::6de9de91411a05270dca4b55c4f3167845b4975f677e4bd837607081039a667da64d277aaa35ab354759ae58dae8472a37d8aba3736ef903410ca8baa32bd641
+
+:orphan:
+
+.. title:: Splines: Figlet::Banner Class Reference
+
+Banner Class Reference
+======================
+
+.. container:: doxygen-content
+
+   
+   .. raw:: html
+     :file: class_figlet_1_1_banner.html

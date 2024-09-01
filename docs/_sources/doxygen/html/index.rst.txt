@@ -1,0 +1,24 @@
+.. meta::5c080a1ababeb8601d5b0a6ab8ed8427e45ae853b5c04701b17a80a5756da5726d55acbce069b3bd5d11d781b37f6826f4ea54462e41813c77bdd93d5a9293bb
+
+:orphan:
+
+.. title:: Splines: Embeddable Figlet Library
+
+Splines
+=======
+
+.. toctree::
+   :caption: Main Page
+   :maxdepth: 2
+   :hidden:
+
+   Related Pages <pages>
+   Namespaces <namespaces_namespaces>
+   Classes <annotated_classes>
+   Files <files>
+
+.. container:: doxygen-content
+
+   
+   .. raw:: html
+     :file: index.html

@@ -1,0 +1,14 @@
+.. meta::623fe91f065e2c1a425c4ce8c74839163a3c58ce8bae58f99a798f41489f330ed7c3097c82217dfaf321795cf419713194f32c1d1a57edd5ded7533dfcf54b34
+
+:orphan:
+
+.. title:: Splines: Available printing mode
+
+Available printing mode
+=======================
+
+.. container:: doxygen-content
+
+   
+   .. raw:: html
+     :file: printmode.html

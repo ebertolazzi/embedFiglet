@@ -11,7 +11,7 @@
 
 cmake_minimum_required(VERSION 3.14)
 
-project( embedFiglet VERSION ${UTILS_PROJECT_VERSION} )
+project( embedFiglet )
 
 if (IS_DIRECTORY "${PROJECT_SOURCE_DIR}/cmake_utils")
   set( HOME "${PROJECT_SOURCE_DIR}/cmake_utils/" )
@@ -24,6 +24,12 @@ else()
 endif()
 
 include( "${HOME}/CMakeLists-common.txt" )
+
+project(
+  ${PROJECT_NAME}
+  VERSION ${UTILS_PROJECT_VERSION}
+  HOMEPAGE_URL "https://ebertolazzi.github.io/embedFiglet/"
+)
 
 if ( UTILS_INSTALL_LOCAL )
   set( CMAKE_INSTALL_PREFIX ${CMAKE_HOME_DIRECTORY} )
