@@ -1,162 +1,207 @@
-<!DOCTYPE html>
-
-<html lang="en" data-content_root="./">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
-
-    <title>Contents &#8212; Splines</title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
-    <link rel="stylesheet" type="text/css" href="_static/agogo.css?v=9f70d9a6" />
-    <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=fd3f3429" />
-    <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-data-viewer/jsonview.bundle.css?v=f6ef2277" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-needs/libs/html/datatables.min.css?v=4b4fd840" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-needs/common_css/need_style.css?v=678fb11e" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-needs/common_css/need_core.css?v=f5b60a78" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-needs/common_css/needstable.css?v=5e1b6797" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-needs/common_css/need_links.css?v=2150a916" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-needs/common_css/need_toggle.css?v=5c6620df" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-needs/modern.css?v=803738c0" />
-    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=9e3b0030" />
-    <script src="_static/jquery.js?v=5d32c60e"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="_static/documentation_options.js?v=60dbed4a"></script>
-    <script src="_static/doctools.js?v=9a2dae69"></script>
-    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
-    <script src="_static/copybutton.js?v=f281be69"></script>
-    <script src="_static/design-tabs.js?v=f930bc37"></script>
-    <script src="_static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
-    <script src="_static/sphinx-data-viewer/jsonview_loader.js?v=f7ff7e7d"></script>
-    <script src="_static/sphinx-needs/libs/html/datatables.min.js?v=8a4aee21"></script>
-    <script src="_static/sphinx-needs/libs/html/datatables_loader.js?v=a2cae175"></script>
-    <script src="_static/sphinx-needs/libs/html/sphinx_needs_collapse.js?v=dca66431"></script>
-    <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Embed Figlet" href="README.html" /> 
-  </head><body>
-    <div class="header-wrapper" role="banner">
-      <div class="header">
-          <p class="logo"><a href="#">
-            <img class="logo" src="_static/Figlet.png" alt="Logo of Splines"/>
-          </a></p>
-        <div class="headertitle"><a
-          href="#">Splines</a></div>
-<!--
-        <div class="rel" role="navigation" aria-label="Related">
-          <a href="README.html" title="Embed Figlet"
-             accesskey="N">next</a> |
-          <a href="genindex.html" title="General Index"
-             accesskey="I">index</a>
-        </div>
--->
-       </div>
-    </div>
-
-    <div class="content-wrapper">
-      <div class="content">
-        <div class="document">
-            
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
-            
-  <section class="tex2jax_ignore mathjax_ignore" id="contents">
-<h1>Contents<a class="headerlink" href="#contents" title="Link to this heading">¶</a></h1>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="README.html">Embed Figlet</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="README.html#online-documentation">Online documentation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="README.html#author">Author</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="C%2B%2Bdoc.html">C++ usage</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="C%2B%2Bdoc.html#available-printing-mode">Available printing mode</a></li>
-<li class="toctree-l2"><a class="reference internal" href="C%2B%2Bdoc.html#available-framing-mode">Available framing mode</a></li>
-<li class="toctree-l2"><a class="reference internal" href="C%2B%2Bdoc.html#compile-and-test">Compile and test</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="Matlab-doc.html">MATLAB toolbox</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="Matlab-doc.html#installation">Installation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Matlab-doc.html#usage">Usage</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Matlab-doc.html#fonts">Fonts</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Matlab-doc.html#available-fonts">Available fonts</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Matlab-doc.html#printing-mode">Printing mode</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Matlab-doc.html#framing">Framing</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="index_CPP.html">Clothoids C++ interface</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="doxygen/html/namespaces_namespaces.html">Namespaces</a></li>
-<li class="toctree-l2"><a class="reference internal" href="doxygen/html/annotated_classes.html">Classes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="doxygen/html/files.html">Files</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="author.html">Author</a></li>
-<li class="toctree-l1"><a class="reference internal" href="LICENSE.html">LICENSE</a></li>
-</ul>
+<!-- HTML header for doxygen 1.12.0-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>embedFiglet: Embeddable Figlet Library</title>
+<link rel="icon" href="magnet-icon.png" type="image/x-icon" />
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js", "TeX/AMSmath.js", "TeX/AMSsymbols.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript">
+  DoxygenAwesomeDarkModeToggle.init()
+  DoxygenAwesomeInteractiveToc.init()
+  DoxygenAwesomeTabs.init()
+  DoxygenAwesomeParagraphLink.init()
+</script>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="Figlet.png"/></td>
+  <td id="projectalign">
+   <div id="projectname">embedFiglet
+   </div>
+   <div id="projectbrief">Utilities for C++ programming</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
 </div>
-</section>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Search',true);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('index.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
 
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
 
-            <div class="clearer"></div>
-          </div>
-        </div>
-      </div>
-        </div>
-        <div class="sidebar">
-          
-          <h3>Table of Contents</h3>
-          <ul>
-<li class="toctree-l1"><a class="reference internal" href="README.html">Embed Figlet</a></li>
-<li class="toctree-l1"><a class="reference internal" href="C%2B%2Bdoc.html">C++ usage</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Matlab-doc.html">MATLAB toolbox</a></li>
-<li class="toctree-l1"><a class="reference internal" href="index_CPP.html">Clothoids C++ interface</a></li>
-<li class="toctree-l1"><a class="reference internal" href="author.html">Author</a></li>
-<li class="toctree-l1"><a class="reference internal" href="LICENSE.html">LICENSE</a></li>
+<div><div class="header">
+  <div class="headertitle"><div class="title">Embeddable <a class="el" href="d6/d82/namespace_figlet.html" title="Collects structures and classes for banner generation.">Figlet</a> Library </div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><dl class="section author"><dt>Author</dt><dd>Enrico Bertolazzi (<a href="#" onclick="location.href='mai'+'lto:'+'enr'+'ic'+'o.b'+'er'+'tol'+'az'+'zi@'+'un'+'itn'+'.i'+'t'; return false;">enric<span class="obfuscator">.nosp@m.</span>o.be<span class="obfuscator">.nosp@m.</span>rtola<span class="obfuscator">.nosp@m.</span>zzi@<span class="obfuscator">.nosp@m.</span>unitn<span class="obfuscator">.nosp@m.</span>.it</a>), homepage: <a href="http://www.ing.unitn.it/~bertolaz">http://www.ing.unitn.it/~bertolaz</a> </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.0.2 </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>2013</dd></dl>
+<p>This library available at</p>
+<ul>
+<li><a href="https://github.com/ebertolazzi/embedFiglet">https://github.com/ebertolazzi/embedFiglet</a></li>
+<li><a href="https://bitbucket.org/ebertolazzi/embedfiglet">https://bitbucket.org/ebertolazzi/embedfiglet</a></li>
 </ul>
-
-          <search role="search">
-            <h3 style="margin-top: 1.5em;">Search</h3>
-            <form class="search" action="search.html" method="get">
-                <input type="text" name="q" />
-                <input type="submit" value="Go" />
-            </form>
-          </search>
-
-        </div>
-        <div class="clearer"></div>
-      </div>
-    </div>
-
-    <div class="footer-wrapper">
-      <div class="footer">
-<!--
-        <div class="left">
-          <div role="navigation" aria-label="Related">
-            <a href="README.html" title="Embed Figlet"
-              >next</a> |
-            <a href="genindex.html" title="General Index"
-              >index</a>
-          </div>
-          <div role="note" aria-label="source link">
-              <br/>
-              <a href="_sources/index.md.txt"
-                rel="nofollow">Show Source</a>
-          </div>
-        </div>
--->
-        <div class="right">
-          
-    <div class="footer" role="contentinfo">
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7.
-    </div>
-        </div>
-        <div class="clearer"></div>
-      </div>
-    </div>
-
-  </body>
+<p>implement a subset of <a class="el" href="d6/d82/namespace_figlet.html" title="Collects structures and classes for banner generation.">Figlet</a> capability, i.e. print large letters out of ordinary text</p>
+<div class="fragment"><div class="line"> _ _ _          _   _     _</div>
+<div class="line">| (_) | _____  | |_| |__ (_)___</div>
+<div class="line">| | | |/ / _ \ | __| <span class="stringliteral">&#39;_ \| / __|</span></div>
+<div class="line"><span class="stringliteral">| | |   &lt;  __/ | |_| | | | \__ \_</span></div>
+<div class="line"><span class="stringliteral">|_|_|_|\_\___|  \__|_| |_|_|___(_)</span></div>
+</div><!-- fragment --><p>Differently of standard FIGlet command (<a href="http://www.figlet.org/">http://www.figlet.org/</a>) this print can be done inside a user program using run time generated string as follows</p>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="d2/d26/_figlet_8hh.html">Figlet.hh</a>&quot;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;sstream&gt;</span></div>
+<div class="line"><span class="keyword">using namespace </span>std;</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">int</span></div>
+<div class="line">main() {</div>
+<div class="line">  <a class="code hl_variable" href="d6/d82/namespace_figlet.html#a6de316f54ef1ee51e56d60ad963b873d">Figlet::standard</a>.print(<span class="stringliteral">&quot;Fractions&quot;</span>);</div>
+<div class="line">  <span class="keywordflow">for</span> ( <span class="keywordtype">int</span> i = 2; i &lt;= 4; ++i ) {</div>
+<div class="line">    ostringstream ss;</div>
+<div class="line">    ss &lt;&lt; <span class="stringliteral">&quot;5/&quot;</span> &lt;&lt; i &lt;&lt; <span class="stringliteral">&quot; = &quot;</span> &lt;&lt; 5.0/i;</div>
+<div class="line">    <a class="code hl_variable" href="d6/d82/namespace_figlet.html#a202c6fe94cfa82316e5b01d28fd88788">Figlet::small</a>.print(ss.str().c_str());</div>
+<div class="line">  }</div>
+<div class="line">  cout &lt;&lt; <span class="stringliteral">&quot;ALL DONE!\n&quot;</span>;</div>
+<div class="line">  <span class="keywordflow">return</span> 0;</div>
+<div class="line">}</div>
+<div class="ttc" id="a_figlet_8hh_html"><div class="ttname"><a href="d2/d26/_figlet_8hh.html">Figlet.hh</a></div></div>
+<div class="ttc" id="anamespace_figlet_html_a202c6fe94cfa82316e5b01d28fd88788"><div class="ttname"><a href="d6/d82/namespace_figlet.html#a202c6fe94cfa82316e5b01d28fd88788">Figlet::small</a></div><div class="ttdeci">Banner small</div><div class="ttdoc">instance Banner class using figlet font small</div></div>
+<div class="ttc" id="anamespace_figlet_html_a6de316f54ef1ee51e56d60ad963b873d"><div class="ttname"><a href="d6/d82/namespace_figlet.html#a6de316f54ef1ee51e56d60ad963b873d">Figlet::standard</a></div><div class="ttdeci">Banner standard</div><div class="ttdoc">instance Banner class using figlet font standard</div></div>
+</div><!-- fragment --><p>which output is the following</p>
+<div class="fragment"><div class="line"> _____               _   _</div>
+<div class="line">|  ___| __ __ _  ___| |_(_) ___  _ __  ___</div>
+<div class="line">| |_ | <span class="stringliteral">&#39;__/ _` |/ __| __| |/ _ \| &#39;</span>_ \/ __|</div>
+<div class="line">|  _|| | | (_| | (__| |_| | (_) | | | \__ \</div>
+<div class="line">|_|  |_|  \__,_|\___|\__|_|\___/|_| |_|___/</div>
+<div class="line"> </div>
+<div class="line"> ___   _____         ___   ___</div>
+<div class="line">| __| / /_  )  ___  |_  ) | __|</div>
+<div class="line">|__ \/ / / /  |___|  / / _|__ \</div>
+<div class="line">|___/_/ /___| |___| /___(_)___/</div>
+<div class="line"> </div>
+<div class="line"> ___   ______        _    __  __  __  ______</div>
+<div class="line">| __| / /__ /  ___  / |  / / / / / / / /__  |</div>
+<div class="line">|__ \/ / |_ \ |___| | |_/ _ Y _ Y _ Y _ \/ /</div>
+<div class="line">|___/_/ |___/ |___| |_(_)___|___|___|___/_/</div>
+<div class="line"> </div>
+<div class="line"> ___   ___ _          _   ___ ___</div>
+<div class="line">| __| / / | |   ___  / | |_  ) __|</div>
+<div class="line">|__ \/ /|_  _| |___| | |_ / /|__ \</div>
+<div class="line">|___/_/   |_|  |___| |_(_)___|___/</div>
+</div><!-- fragment --><p>No initialization files are necessary. The fonts are hardware embedded in the library. The available fonts are:</p>
+<ul>
+<li>banner</li>
+<li>big</li>
+<li>doom</li>
+<li>larry3d</li>
+<li>mini</li>
+<li>script</li>
+<li>small</li>
+<li>standard</li>
+<li>straight</li>
+</ul>
+<p>A simple ruby script permits to convert figlet .flf files to structures which can be embedded in the library.</p>
+<ul>
+<li><a class="el" href="df/db8/printmode.html">Available printing mode</a></li>
+<li><a class="el" href="dd/dc1/framemode.html">Available framing mode</a> </li>
+</ul>
+</div></div><!-- PageDoc -->
+<a href="doxygen_crawl.html"></a>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+  </ul>
+</div>
+</body>
 </html>

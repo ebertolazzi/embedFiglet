@@ -1,0 +1,10 @@
+#projectlogo img {
+  content: url("../../Figlet-b.png");
+}
+
+/* Logo per la modalità scura */
+@media (prefers-color-scheme: dark) {
+  #projectlogo img {
+      content: url("../../Figlet-w.png");
+  }
+}

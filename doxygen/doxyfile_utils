@@ -1,0 +1,64 @@
+@INCLUDE = Doxyfile
+
+# Imposta il nome del progetto
+PROJECT_NAME           = "embedFiglet"
+
+# Imposta la descrizione del progetto
+PROJECT_BRIEF          = "Utilities for C++ programming"
+
+PROJECT_LOGO           = Figlet.png
+PROJECT_ICON           = magnet-icon.png
+
+# Imposta la directory in cui sono contenuti i file sorgente
+INPUT                  = ../src extra
+
+#../src
+#USE_MDFILE_AS_MAINPAGE =
+
+FILE_PATTERNS          = *.c \
+                         *.cc \
+                         *.cpp \
+                         *.c++ \
+                         *.h \
+                         *.hh \
+                         *.hxx \
+                         *.hpp \
+                         *.md
+
+EXCLUDE                =
+
+EXTRACT_ALL            = YES
+RECURSIVE              = YES
+
+USE_MATHJAX            = YES
+MATHJAX_EXTENSIONS     = TeX/AMSmath TeX/AMSsymbols
+
+# Imposta la directory di output per la documentazione generata
+OUTPUT_DIRECTORY       = ./docs
+
+PREDEFINED             = DOXYGEN_SHOULD_SKIP_THIS
+
+#
+# PER AWESOME
+#
+GENERATE_TREEVIEW      = YES # optional. Also works without treeview
+DISABLE_INDEX          = NO
+FULL_SIDEBAR           = NO
+HTML_EXTRA_STYLESHEET  = doxygen-awesome/doxygen-awesome.css \
+                         doxygen-awesome/doxygen-awesome-sidebar-only-darkmode-toggle.css
+
+#                         workaround.css
+
+#HTML_EXTRA_STYLESHEET  = doxygen-awesome-css-main/doxygen-custom/custom.css
+#                         doxygen-awesome-css-main/doxygen-custom/custom-alternative.css
+
+HTML_COLORSTYLE       = LIGHT
+
+HTML_EXTRA_FILES      = doxygen-awesome/doxygen-awesome-darkmode-toggle.js \
+                        doxygen-awesome/doxygen-awesome-interactive-toc.js \
+                        doxygen-awesome/doxygen-awesome-tabs.js \
+                        doxygen-awesome/doxygen-awesome-paragraph-link.js
+
+CREATE_SUBDIRS         = YES
+LAYOUT_FILE            = DoxygenLayout.xml
+HTML_HEADER            = header.html
