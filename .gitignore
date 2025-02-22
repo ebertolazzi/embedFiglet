@@ -82,3 +82,5 @@ docs_build/sphinx/_build
 docs_build/sphinx/_doxygen
 *.mltbx
 doc_generate/.vscode
+.idea
+cmake-build-debug

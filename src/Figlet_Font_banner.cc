@@ -9,9 +9,9 @@ namespace Figlet {
 
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
-  static char     const Hardblank  = '$';
-  static unsigned const FontHeight = 8;
-  static unsigned const FontMaxLen = 54;
+  static constexpr char     Hardblank  = '$';
+  static constexpr unsigned FontHeight = 8;
+  static constexpr unsigned FontMaxLen = 54;
   static FontFiglet characters[] = {
 
     // letter "space"
@@ -4607,7 +4607,7 @@ namespace Figlet {
     }
   };
 
-  static unsigned const FontSize = sizeof(characters)/sizeof(characters[0]);
+  static constexpr unsigned FontSize = sizeof(characters)/sizeof(characters[0]);
   Banner banner(characters, Hardblank, FontHeight, FontMaxLen, FontSize );
 
   #endif

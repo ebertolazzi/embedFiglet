@@ -74,23 +74,22 @@ namespace Figlet {
   , charPosition(0)
   , printMode(FIGLET_SMUSHED)
   {
-    fill(charToTable,charToTable+maxTableSize,0); // caratteri non noti mappati in spazi
-    fill(rspaces,rspaces+Height,0);
-    for ( unsigned i=0; i < FontSize; ++i ) {
-      unsigned ipos = unsigned(characters[i].nchar);
-      if ( ipos < maxTableSize ) {
-        charToTable[ipos] = u_short(i);
-        charWidth[ipos]   = u_short( strlen(characters[i].rows[0]) );
+    fill_n(charToTable,maxTableSize,0); // caratteri non noti mappati in spazi
+    fill_n(rspaces,Height,0);
+    for ( unsigned i{0}; i < FontSize; ++i ) {
+      if ( auto const ipos{static_cast<unsigned>(characters[i].nchar)}; ipos < maxTableSize ) {
+        charToTable[ipos] = static_cast<u_short>(i);
+        charWidth[ipos]   = static_cast<u_short>(strlen(characters[i].rows[0]));
       }
     }
-    Width = charWidth[charToTable[int('M')]];
+    Width = charWidth[charToTable[static_cast<int>('M')]];
   }
 
   void
   Banner::init() {
     charPosition = 0;
-    std::fill( rspaces, rspaces+Height, 0  );
-    for ( unsigned i = 0; i < Height; ++i ) *lines[i] = '\0';
+    fill_n( rspaces, Height, 0  );
+    for ( unsigned i{0}; i < Height; ++i ) *lines[i] = '\0';
   }
 
   // ---------------------------------------------------------------------------
@@ -98,19 +97,19 @@ namespace Figlet {
   bool
   Banner::pushFullWidth( unsigned c ) {
     FontFiglet const * f = characters + charToTable[c];
-    unsigned cw = charWidth[c];
+    unsigned const cw{charWidth[c]};
 
     // controllo che il carattere stia nel buffer
     if ( charPosition+cw > maxLenght ) return false;
 
-    unsigned maxlen = maxLenght-charPosition;
-    for ( unsigned i = 0; i < Height; ++i )
+    unsigned const maxlen{maxLenght-charPosition};
+    for ( unsigned i{0}; i < Height; ++i )
     STRCPY( lines[i]+charPosition, f->rows[i], maxlen );
 
     charPosition += cw;
 
     // aggiorno spazi liberi a destra
-    std::copy( f -> rspaces, f -> rspaces + Height, rspaces );
+    copy_n( f -> rspaces, Height, rspaces );
     return true;
   }
 
@@ -118,18 +117,18 @@ namespace Figlet {
 
   bool
   Banner::pushMonospaced( unsigned c ) {
-    FontFiglet const * f = characters + charToTable[c];
-    unsigned cw = charWidth[c];
-    unsigned dd = Width >= cw ? Width - cw : 0; // extra spazi
+    FontFiglet const * f{characters + charToTable[c]};
+    unsigned const cw{ charWidth[c] };
+    unsigned const dd{ Width >= cw ? Width - cw : 0 }; // extra spazi
 
     // controllo che il carattere stia nel buffer
     if ( charPosition+cw+dd > maxLenght ) return false;
 
     // centratura carattere
-    unsigned dR = dd/2;
-    unsigned dL = dd-dR;
+    unsigned const dR{dd/2};
+    unsigned const dL{dd-dR};
 
-    for ( unsigned i = 0; i < Height; ++i ) {
+    for ( unsigned i{0}; i < Height; ++i ) {
       char       * p = lines[i]+charPosition;
       char const * q = f->rows[i];
       for ( unsigned j = 0; j < dL; ++j ) *p++ = ' ';
@@ -140,7 +139,7 @@ namespace Figlet {
     charPosition += cw+dd;
 
     // aggiorno spazi liberi a destra
-    std::copy( f -> rspaces, f -> rspaces + Height, rspaces );
+    copy_n( f -> rspaces, Height, rspaces );
     return true;
   }
 
@@ -148,19 +147,19 @@ namespace Figlet {
 
   bool
   Banner::pushPacked( unsigned c ) {
-    FontFiglet const * f = characters + charToTable[c];
-    unsigned cw = unsigned(charWidth[c]);
+    FontFiglet const * f{characters + charToTable[c]};
+    auto cw{static_cast<unsigned>(charWidth[c])};
     // calcolo overlapping
     unsigned overlap = rspaces[0] + f->lspaces[0];
-    for ( unsigned i = 1; i < Height; ++i ) {
-      unsigned tmp = rspaces[i] + f->lspaces[i];
+    for ( unsigned i{1}; i < Height; ++i ) {
+      auto tmp{ static_cast<unsigned>(rspaces[i] + f->lspaces[i])};
       if ( tmp < overlap ) overlap = tmp;
     }
 
     // controllo che il carattere stia nel buffer
     if ( charPosition+cw > maxLenght+overlap ) return false;
 
-    for ( unsigned i = 0; i < Height; ++i ) {
+    for ( unsigned i{0}; i < Height; ++i ) {
       // copio porzione di stringa
       if ( overlap > f->lspaces[i] ) {
         unsigned charP  = (charPosition+f->lspaces[i])-overlap;
@@ -174,7 +173,7 @@ namespace Figlet {
     charPosition += cw-overlap;
 
     // aggiorno spazi liberi a destra
-    std::copy( f -> rspaces, f -> rspaces + Height, rspaces );
+    copy_n( f -> rspaces, Height, rspaces );
     return true;
   }
 
@@ -305,22 +304,22 @@ namespace Figlet {
     init();
     switch ( printMode ) {
     case FIGLET_SMUSHED:
-      for ( char const * p = message; *p != '\0'; ++p ) pushSmushed(unsigned(*p));
+      for ( char const * p{message}; *p != '\0'; ++p ) pushSmushed(static_cast<unsigned>(*p));
       break;
     case FIGLET_PACKED:
-      for ( char const * p = message; *p != '\0'; ++p ) pushPacked(unsigned(*p));
+      for ( char const * p{message}; *p != '\0'; ++p ) pushPacked(static_cast<unsigned>(*p));
       break;
     case FIGLET_FULLWIDTH:
-      for ( char const * p = message; *p != '\0'; ++p ) pushFullWidth(unsigned(*p));
+      for ( char const * p{message}; *p != '\0'; ++p ) pushFullWidth(static_cast<unsigned>(*p));
       break;
     case FIGLET_MONOSPACED:
-      for ( char const * p = message; *p != '\0'; ++p ) pushMonospaced(unsigned(*p));
+      for ( char const * p{message}; *p != '\0'; ++p ) pushMonospaced(static_cast<unsigned>(*p));
       break;
     }
 
     // replace Hardblank
-    for ( unsigned i = 0; i < Height; ++i ) {
-      char *p = lines[i];
+    for ( unsigned i{0}; i < Height; ++i ) {
+      char *p{lines[i]};
       do { if ( *p == Hardblank ) *p = ' '; } while ( *p++ != '\0' );
     }
   }
@@ -337,13 +336,13 @@ namespace Figlet {
 
     fillForPrint(message);
 
-    for ( unsigned i = 0; i < strlen(top); ++i ) {
-      for ( unsigned j = 0; j < charPosition; ++j ) s << top[i];
+    for ( unsigned i{0}; i < strlen(top); ++i ) {
+      for ( unsigned j{0}; j < charPosition; ++j ) s << top[i];
       s << '\n';
     }
-    for ( unsigned i = 0; i < Height; ++i ) s << lines[i] << '\n';
-    for ( unsigned i = 0; i < strlen(bottom); ++i ) {
-      for ( unsigned j = 0; j < charPosition; ++j ) s << bottom[i];
+    for ( unsigned i{0}; i < Height; ++i ) s << lines[i] << '\n';
+    for ( unsigned i{0}; i < strlen(bottom); ++i ) {
+      for ( unsigned j{0}; j < charPosition; ++j ) s << bottom[i];
       s << '\n';
     }
     return charPosition;
@@ -363,20 +362,20 @@ namespace Figlet {
     switch ( fm ) {
     case FIGLET_SINGLE:
       s << '+';
-      for ( unsigned j = 0; j < charPosition+2; ++j ) s << '-';
+      for ( unsigned j{0}; j < charPosition+2; ++j ) s << '-';
       s << "+\n";
-      for ( unsigned i = 0; i < Height; ++i ) s << "| " << lines[i] << " |\n";
+      for ( unsigned i{0}; i < Height; ++i ) s << "| " << lines[i] << " |\n";
       s << '+';
-      for ( unsigned j = 0; j < charPosition+2; ++j ) s << '-';
+      for ( unsigned j{0}; j < charPosition+2; ++j ) s << '-';
       s << "+\n";
       break;
     case FIGLET_DOUBLE:
       s << '@';
-      for ( unsigned j = 0; j < charPosition+2; ++j ) s << '=';
+      for ( unsigned j{0}; j < charPosition+2; ++j ) s << '=';
       s << "@\n";
-      for ( unsigned i = 0; i < Height; ++i ) s << "# " << lines[i] << " #\n";
+      for ( unsigned i{0}; i < Height; ++i ) s << "# " << lines[i] << " #\n";
       s << '@';
-      for ( unsigned j = 0; j < charPosition+2; ++j ) s << '=';
+      for ( unsigned j{0}; j < charPosition+2; ++j ) s << '=';
       s << "@\n";
       break;
     }
