@@ -46,6 +46,7 @@ POSSIBILITY OF SUCH DAMAGE.
 
 #include "Figlet.hh"
 #include <string.h>
+#include <algorithm>
 
 #ifdef EMBED_FIGLET_USE_VISUAL_STUDIO
   #define STRCPY(TO,FROM,MAXLEN) strcpy_s( TO, MAXLEN, FROM );
