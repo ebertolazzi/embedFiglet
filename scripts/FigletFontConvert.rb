@@ -14,7 +14,7 @@
 # |                                                                          |
 # |      Enrico Bertolazzi                                                   |
 # |      Dipartimento di Ingegneria Industriale (DII)                        |
-# |      Universita` degli Studi di Trento                                   |
+# |      Università degli Studi di Trento                                    |
 # |      email: enrico.bertolazzi@unitn.it                                   |
 # |                                                                          |
 # *--------------------------------------------------------------------------*
