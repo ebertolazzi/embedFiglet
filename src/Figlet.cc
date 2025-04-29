@@ -75,8 +75,8 @@ namespace Figlet {
   , charPosition(0)
   , printMode(FIGLET_SMUSHED)
   {
-    fill_n(charToTable,maxTableSize,0); // caratteri non noti mappati in spazi
-    fill_n(rspaces,Height,0);
+    fill_n(charToTable,maxTableSize,static_cast<unsigned char>(0)); // caratteri non noti mappati in spazi
+    fill_n(rspaces,Height,static_cast<unsigned char>(0));
     for ( unsigned i{0}; i < FontSize; ++i ) {
       if ( auto const ipos{static_cast<unsigned>(characters[i].nchar)}; ipos < maxTableSize ) {
         charToTable[ipos] = static_cast<u_short>(i);
@@ -290,7 +290,7 @@ namespace Figlet {
     charPosition += cwo;
 
     // aggiorno spazi liberi alla destra ultimo carattere inserito
-    for ( unsigned i = 0; i < Height; ++i ) {
+    for ( unsigned i{0}; i < Height; ++i ) {
       rspaces[i] += cwo;
       if ( rspaces[i] > fchar->rspaces[i] ) rspaces[i] = fchar->rspaces[i];
     }
