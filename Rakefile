@@ -1,73 +1,110 @@
-if File.exist?(File.expand_path('./cmake_utils/Rakefile_common.rb', File.dirname(__FILE__))) then
-  require_relative "./cmake_utils/Rakefile_common.rb"
-else
-  require_relative "../Rakefile_common.rb"
+require 'fileutils'
+require 'rbconfig'
+require 'rake'
+
+class String
+  def green  = "\e[32m#{self}\e[0m"
+  def yellow = "\e[33m#{self}\e[0m"
+  def red    = "\e[31m#{self}\e[0m"
 end
 
-task :build_common, [:bits] do |t, args|
-  args.with_defaults( :bits => "" )
+ROOT      = File.expand_path(__dir__)
+BUILD_DIR = File.join(ROOT, 'build')
+BUILD_TYPE = ENV.fetch('BUILD_TYPE', 'Release')
+GENERATOR  = ENV.fetch('CMAKE_GENERATOR', 'Ninja')
+PARALLEL   = ENV['JOBS'] ? "--parallel #{ENV['JOBS']}" : '--parallel'
 
-  puts "FIGLET build (osx/linux/mingw/windows)".green
+HOST_OS = RbConfig::CONFIG['host_os']
+PLATFORM = case HOST_OS
+           when /darwin/i then 'osx'
+           when /linux/i  then 'linux'
+           when /mingw|mswin/i then 'windows'
+           else HOST_OS
+           end
 
-  FileUtils.rm_rf   'lib'
-  FileUtils.rm_rf   'build'
-  FileUtils.mkdir_p 'build'
-  FileUtils.cd      'build'
-
-  puts "run CMAKE for FIGLET".yellow
-
-  if args.bits.size > 0 then
-    sh "cmake -G Ninja -DBITS:VAR=#{args.bits} " + cmd_cmake_build() + ' ..'
-  else
-    sh "cmake -G Ninja " + cmd_cmake_build() + ' ..'
-  end
-
-  puts "compile with CMAKE for UTILS".yellow
-  if COMPILE_DEBUG then
-    sh 'cmake --build . --config Debug --target install '+PARALLEL
-  else
-    sh 'cmake --build . --config Release --target install '+PARALLEL
-  end
-
-  FileUtils.cd '..'
+def bool_env(name, default)
+  value = ENV[name]
+  return default if value.nil? || value.empty?
+  %w[1 true yes on].include?(value.downcase)
 end
 
-task :build_osx   => :build_common do end
-task :build_linux => :build_common do end
-task :build_mingw => :build_common do end
-
-desc 'compile for WINDOWS'
-task :build_win do
-  # check architecture
-  case `where cl.exe`.chop
-  when /x64\\cl\.exe/
-    VS_ARCH = 'x64'
-  when /amd64\\cl\.exe/
-    VS_ARCH = 'x64'
-  when /bin\\cl\.exe/
-    VS_ARCH = 'x86'
-  else
-    raise RuntimeError, "Cannot determine architecture for Visual Studio".red
-  end
-  Rake::Task[:build_common].invoke(VS_ARCH)
+def cmake_bool(value)
+  value ? 'ON' : 'OFF'
 end
 
+def configure_args(enable_tests:)
+  shared = bool_env('BUILD_SHARED', false)
+  install_local = bool_env('UTILS_INSTALL_LOCAL', true)
+
+  [
+    '-S', ROOT,
+    '-B', BUILD_DIR,
+    '-G', GENERATOR,
+    "-DCMAKE_BUILD_TYPE=#{BUILD_TYPE}",
+    "-DCMAKE_INSTALL_PREFIX=#{File.join(ROOT, 'lib')}",
+    '-DCMAKE_INSTALL_LIBDIR=lib',
+    '-DCMAKE_INSTALL_INCLUDEDIR=include',
+    '-DCMAKE_INSTALL_BINDIR=bin',
+    "-DUTILS_BUILD_SHARED:BOOL=#{cmake_bool(shared)}",
+    "-DUTILS_INSTALL_LOCAL:BOOL=#{cmake_bool(install_local)}",
+    "-DUTILS_ENABLE_TESTS:BOOL=#{cmake_bool(enable_tests)}",
+    "-DBUILD_EXECUTABLE:BOOL=#{cmake_bool(enable_tests)}"
+  ]
+end
+
+def configure(enable_tests:)
+  FileUtils.mkdir_p BUILD_DIR
+  puts "Configurazione CMake in #{BUILD_DIR} per #{PLATFORM}...".yellow
+  sh 'cmake', *configure_args(enable_tests: enable_tests)
+end
+
+def build_target(target)
+  sh 'cmake', '--build', BUILD_DIR, '--config', BUILD_TYPE, '--target', target, PARALLEL
+end
+
+def run_ctest
+  sh 'ctest', '--test-dir', BUILD_DIR, '--build-config', BUILD_TYPE, '--output-on-failure'
+end
+
+desc 'Configure, compile and install only the library'
+task :build do
+  configure(enable_tests: false)
+  puts 'Compilazione e installazione della sola libreria...'.yellow
+  build_target('install')
+end
+
+desc 'Configure, compile tests and run them'
+task :run do
+  configure(enable_tests: true)
+  puts 'Compilazione dei test...'.yellow
+  build_target('embedFiglet_all_tests')
+  puts 'Esecuzione dei test...'.yellow
+  run_ctest
+end
+
+desc 'Remove build and generated artifacts'
 task :clean do
-  FileUtils.rm_rf 'build'
-  FileUtils.rm_rf 'lib'
-  FileUtils.rm_rf 'lib3rd'
+  FileUtils.rm_rf BUILD_DIR
+  FileUtils.rm_rf File.join(ROOT, 'lib')
+  FileUtils.rm_rf File.join(ROOT, 'bin')
 end
 
-task :clean_osx   => :clean do end
-task :clean_linux => :clean do end
-task :clean_mingw => :clean do end
-task :clean_win   => :clean do end
-
-desc 'pack for OSX/LINUX/MINTGW/WINDOWS'
+desc 'Create CPack packages from the existing build directory'
 task :cpack do
-  FileUtils.cd "build"
-  puts "run CPACK for Embed Figlet".yellow
-  sh 'cpack -C CPackConfig.cmake'
-  sh 'cpack -C CPackSourceConfig.cmake'
-  FileUtils.cd ".."
+  Dir.chdir(BUILD_DIR) do
+    puts 'run CPACK for embedFiglet'.yellow
+    sh 'cpack', '-C', BUILD_TYPE
+  end
 end
+
+task :build_osx   => :build
+task :build_linux => :build
+task :build_mingw => :build
+task :build_win   => :build
+
+task :clean_osx   => :clean
+task :clean_linux => :clean
+task :clean_mingw => :clean
+task :clean_win   => :clean
+
+task :default => :build

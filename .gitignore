@@ -84,3 +84,5 @@ docs_build/sphinx/_doxygen
 doc_generate/.vscode
 .idea
 cmake-build-debug
+.vscode
+doxygen/docs
