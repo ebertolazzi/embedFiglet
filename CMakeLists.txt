@@ -354,6 +354,13 @@ function(embed_figlet_configure_target target_name)
     target_compile_options(${target_name} PRIVATE -Wall -Wextra)
   endif()
 
+  # Figlet.cc/Figlet.hh contain UTF-8 box-drawing characters. Without /utf-8
+  # MSVC reads them in the machine ANSI code page, which both floods the build
+  # log with C4819 and mangles the rendered banners at run time.
+  if(MSVC)
+    target_compile_options(${target_name} PRIVATE /utf-8)
+  endif()
+
   # VERSION is used by shared-library metadata on platforms that support it.
   # POSITION_INDEPENDENT_CODE keeps the static library usable from shared
   # libraries and is required for shared-library builds on many platforms.
