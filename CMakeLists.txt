@@ -13,7 +13,8 @@
 # The minimum CMake version is kept at 3.16 because the project only uses
 # features available at that level, while still allowing newer CMake releases
 # to opt into more deterministic policy behavior below.
-cmake_minimum_required(VERSION 3.16)
+cmake_minimum_required(VERSION 3.28)
+include("${CMAKE_CURRENT_LIST_DIR}/CMakeLists_compiler.txt")
 
 # --------------------------------------------------------------------------
 # CMake policy selection
@@ -114,6 +115,7 @@ project(
   HOMEPAGE_URL "https://ebertolazzi.github.io/embedFiglet/"
   LANGUAGES CXX
 )
+pins_configure_compiler()
 
 # --------------------------------------------------------------------------
 # Standard CMake modules
