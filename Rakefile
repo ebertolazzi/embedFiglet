@@ -14,12 +14,24 @@ BUILD_TYPE = ENV.fetch('BUILD_TYPE', 'Release')
 GENERATOR  = ENV.fetch('CMAKE_GENERATOR', 'Ninja')
 PARALLEL   = ENV['JOBS'] ? "--parallel #{ENV['JOBS']}" : '--parallel'
 
+# MSYSTEM is exported by every MSYS2 shell and is the only reliable way to
+# tell a MinGW environment from a plain POSIX one: the ruby shipped in the
+# MSYS subsystem reports its platform as "linux"/"cygwin" even when it drives
+# a UCRT64 / MINGW64 toolchain, which made this build announce itself as Linux
+# and pick the Linux library suffixes. MSYSTEM=MSYS is the POSIX shell and is
+# deliberately NOT treated as MinGW.
+PINS_MINGW_ENVS = %w(UCRT64 MINGW64 MINGW32 CLANG64 CLANG32 CLANGARM64)
+PINS_IS_MINGW   = PINS_MINGW_ENVS.include?(ENV['MSYSTEM'].to_s.upcase)
+
 HOST_OS = RbConfig::CONFIG['host_os']
-PLATFORM = case HOST_OS
-           when /darwin/i then 'osx'
-           when /linux/i  then 'linux'
-           when /mingw|mswin/i then 'windows'
-           else HOST_OS
+PLATFORM = if PINS_IS_MINGW then 'windows'
+           else
+             case HOST_OS
+             when /darwin/i      then 'osx'
+             when /mingw|mswin/i then 'windows'
+             when /linux/i       then 'linux'
+             else HOST_OS
+             end
            end
 
 def bool_env(name, default)
