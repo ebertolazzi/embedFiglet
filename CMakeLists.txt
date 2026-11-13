@@ -479,11 +479,15 @@ function(embed_figlet_add_generic_library_link target_name base_name library_kin
     # Keep install idempotent and do not create symlinks with absolute paths.
     # The target output directory is already ${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR}
     # in the standard Rake workflow, so only cleanup of stale bad layouts is needed.
-    install(CODE
+    # CMake 4.5 accetta una sola stringa dopo install(CODE): le righe si
+    # concatenano prima in _pins_install_code.
+    set(_pins_install_code "")
+    string(APPEND _pins_install_code
       "file(REMOVE \"${legacy_root_real}\")\n"
       "file(REMOVE \"${legacy_root_generic}\")\n"
       "file(REMOVE_RECURSE \"${legacy_bad_users}\")\n"
     )
+    install(CODE "${_pins_install_code}")
   endif()
 endfunction()
 
@@ -595,13 +599,17 @@ if(UTILS_INSTALL_LOCAL)
 
   # Final cleanup after install(TARGETS). This catches stale artifacts from
   # previous builds and also protects against misconfigured install prefixes.
-  install(CODE
+  # CMake 4.5 accetta una sola stringa dopo install(CODE): le righe si
+  # concatenano prima in _pins_install_code.
+  set(_pins_install_code "")
+  string(APPEND _pins_install_code
     "file(REMOVE \"${CMAKE_CURRENT_SOURCE_DIR}/lib/${CMAKE_STATIC_LIBRARY_PREFIX}${PROJECT_NAME}_${EMBED_FIGLET_PLATFORM_SUFFIX}_static${CMAKE_STATIC_LIBRARY_SUFFIX}\")\n"
     "file(REMOVE \"${CMAKE_CURRENT_SOURCE_DIR}/lib/${CMAKE_STATIC_LIBRARY_PREFIX}${PROJECT_NAME}_${EMBED_FIGLET_PLATFORM_SUFFIX}${CMAKE_SHARED_LIBRARY_SUFFIX}\")\n"
     "file(REMOVE \"${CMAKE_CURRENT_SOURCE_DIR}/lib/${CMAKE_STATIC_LIBRARY_PREFIX}${PROJECT_NAME}${CMAKE_STATIC_LIBRARY_SUFFIX}\")\n"
     "file(REMOVE \"${CMAKE_CURRENT_SOURCE_DIR}/lib/${CMAKE_SHARED_LIBRARY_PREFIX}${PROJECT_NAME}${CMAKE_SHARED_LIBRARY_SUFFIX}\")\n"
     "file(REMOVE_RECURSE \"${CMAKE_CURRENT_SOURCE_DIR}/lib/Users\")\n"
   )
+  install(CODE "${_pins_install_code}")
 endif()
 
 # --------------------------------------------------------------------------
